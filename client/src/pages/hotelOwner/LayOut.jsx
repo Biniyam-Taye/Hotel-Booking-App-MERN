@@ -1,22 +1,26 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Navbar from '../../components/hotelOwner/Navbar'
 import SideBar from '../../components/hotelOwner/SideBar'
 import { Outlet } from 'react-router-dom'
+import { useAppContext } from '../../context/AppContext'
 
 const LayOut = () => {
+    const { isOwner, navigate } = useAppContext()
+
+    useEffect(() => {
+        if (!isOwner) {
+            navigate('/')
+        }
+    }, [isOwner])
     return (
         <div className="flex flex-col h-screen">
 
-            {/* Top Navbar */}
             <Navbar />
 
-            {/* Sidebar + Page Content */}
             <div className="flex flex-1 overflow-hidden">
 
-                {/* Sidebar */}
                 <SideBar />
 
-                {/* Main Content */}
                 <div className="flex-1 p-4 pt-10 md:px-10 overflow-y-auto">
                     <Outlet />
                 </div>

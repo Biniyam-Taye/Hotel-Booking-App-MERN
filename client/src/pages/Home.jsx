@@ -4,11 +4,13 @@ import FeaturedDestination from '../components/FeaturedDestination'
 import ExclusiveOffer from '../components/ExclusiveOffer'
 import Testimonial from '../components/Testimonial'
 import Newslatter from '../components/Newslatter'
+import RecommendedHotels from '../components/recommendedHotels'
 
 const Home = () => {
     return (
         <>
             <Hero />
+            <RecommendedHotels />
             <FeaturedDestination />
             <ExclusiveOffer />
             <Testimonial />
