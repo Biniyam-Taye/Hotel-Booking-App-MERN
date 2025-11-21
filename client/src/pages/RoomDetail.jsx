@@ -15,20 +15,29 @@ const RoomDetail = () => {
     const [guests, setGuests] = useState(1)
 
     const [isAvailable, setIsAvailable] = useState(false)
+
     // Check if the Room is Available
     const checkAvailability = async () => {
         try {
+            // FIX: Ensure both dates are selected before proceeding
+            if (!checkInDate || !checkOutDate) {
+                toast.error('Please select both Check-in and Check-out dates.');
+                return;
+            }
+
             // Check is Check-in Date is greater than Check-Out Date
             if (checkInDate >= checkOutDate) {
                 toast.error('Check-in Date should be less than Check-Out Date')
                 return;
             }
 
+            // FIX: Convert date strings to ISO string format before sending to backend
             const { data } = await axios.post('/api/bookings/check-availability', {
                 room: id,
-                checkInDate,
-                checkOutDate
+                checkInDate: new Date(checkInDate).toISOString(),
+                checkOutDate: new Date(checkOutDate).toISOString()
             })
+
             if (data.success) {
                 if (data.isAvailable) {
                     setIsAvailable(true)
@@ -42,19 +51,29 @@ const RoomDetail = () => {
             }
         } catch (error) {
             toast.error(error.message)
+            setIsAvailable(false); // Reset availability on error
         }
     }
+
     // onSubmitHandler function to check availability & book the room
     const onSubmitHandler = async (e) => {
         try {
             e.preventDefault();
+
+            // FIX: Check if dates are selected before calling checkAvailability/book
+            if (!checkInDate || !checkOutDate) {
+                toast.error('Please select Check-in and Check-out dates before booking.');
+                return;
+            }
+
             if (!isAvailable) {
                 return checkAvailability();
             } else {
+                // FIX: Convert date strings to ISO string format before booking
                 const { data } = await axios.post('/api/bookings/book', {
                     room: id,
-                    checkInDate,
-                    checkOutDate,
+                    checkInDate: new Date(checkInDate).toISOString(),
+                    checkOutDate: new Date(checkOutDate).toISOString(),
                     guests,
                     paymentMethod: "Pay At Hotel"
                 }, {

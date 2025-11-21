@@ -23,4 +23,4 @@ const bookingSchema = new mongoose.Schema({
 
 const Booking = mongoose.model("Booking", bookingSchema);
 
-export default bookingSchema;
+export default Booking; // <<< FIXED: Export the Mongoose Model, not the schema!
