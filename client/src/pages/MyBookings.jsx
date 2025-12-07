@@ -41,10 +41,36 @@ const MyBookings = () => {
         }
     }
 
-
     useEffect(() => {
         if (user) {
             fetchUserBookings()
+
+            const urlParams = new URLSearchParams(window.location.search);
+            const success = urlParams.get('success');
+            const sessionId = urlParams.get('session_id');
+
+            if (success === 'true' && sessionId) {
+                const verifyPayment = async () => {
+                    try {
+                        const { data } = await axios.post('/api/bookings/verify',
+                            { success, session_id: sessionId },
+                            { headers: { Authorization: `Bearer ${await getToken()}` } }
+                        );
+
+                        if (data.success) {
+                            fetchUserBookings();
+                            toast.success(data.message);
+                        } else {
+                            toast.error(data.message);
+                        }
+                    } catch (error) {
+                        toast.error(error.message);
+                    } finally {
+                        window.history.replaceState(null, '', window.location.pathname);
+                    }
+                }
+                verifyPayment();
+            }
         }
     }, [user])
 

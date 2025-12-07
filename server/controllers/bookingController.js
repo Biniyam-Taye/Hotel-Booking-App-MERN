@@ -185,7 +185,8 @@ export const stripePayment = async (req, res) => {
         const session = await stripeInstance.checkout.sessions.create({
             line_items,
             mode: "payment",
-            success_url: `${origin}/loader/my-bookings`,
+            // --- CRITICAL FIX: Ensure the correct flag is present in the success URL ---
+            success_url: `${origin}/my-bookings?success=true&session_id={CHECKOUT_SESSION_ID}`,
             cancel_url: `${origin}/my-bookings`,
             metadata: {
                 bookingId,
@@ -200,3 +201,30 @@ export const stripePayment = async (req, res) => {
 
 
 };
+
+// API to verify payment status
+export const verifyPayment = async (req, res) => {
+    try {
+        const { bookingId, success, session_id } = req.body;
+        const userId = req.user._id;
+
+        if (success === "true" && session_id) {
+            const stripeInstance = new stripe(process.env.STRIPE_SECRET_KEY);
+            const session = await stripeInstance.checkout.sessions.retrieve(session_id);
+
+            if (session.payment_status === "paid") {
+                const bookingIdFromSession = session.metadata.bookingId;
+                await Booking.findByIdAndUpdate(bookingIdFromSession, { isPaid: true, paymentMethod: "stripe", status: "confirmed" });
+                res.json({ success: true, message: "Payment Successful" });
+            } else {
+                res.json({ success: false, message: "Payment Failed" });
+            }
+        } else {
+            res.json({ success: false, message: "Payment Failed" });
+        }
+
+    } catch (error) {
+        console.error(error);
+        res.json({ success: false, message: error.message });
+    }
+}

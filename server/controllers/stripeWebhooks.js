@@ -40,7 +40,7 @@ export const stripeWebhooks = async (request, response) => {
         // Mark Payment as Paid
         const updatedBooking = await Booking.findByIdAndUpdate(
             bookingId,
-            { isPaid: true, paymentMethod: "stripe" },
+            { isPaid: true, paymentMethod: "stripe", status: "confirmed" },
             { new: true } // {new: true} is good practice to get the updated document
         );
 
