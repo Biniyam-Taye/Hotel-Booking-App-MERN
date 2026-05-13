@@ -42,7 +42,7 @@ const FeaturedDestination = () => {
                 <div className="relative group/desc cursor-default max-w-2xl">
                     {/* Background glass reveal */}
                     <div className="absolute inset-0 -m-4 rounded-2xl bg-gradient-to-r from-blue-50/0 via-cyan-50/0 to-blue-50/0 scale-95 opacity-0 group-hover/desc:opacity-100 group-hover/desc:scale-100 group-hover/desc:from-blue-50/80 group-hover/desc:via-cyan-50/60 group-hover/desc:to-blue-50/80 transition-all duration-500 border border-transparent group-hover/desc:border-blue-100 backdrop-blur-sm"></div>
-                    <p className='relative z-10 text-gray-400 text-sm md:text-base leading-relaxed transition-all duration-500 group-hover/desc:text-gray-700 group-hover/desc:text-lg group-hover/desc:font-medium px-4 py-2'>
+                    <p className='relative z-10 text-gray-600 text-base md:text-lg font-medium leading-relaxed transition-all duration-500 group-hover/desc:text-gray-900 group-hover/desc:text-xl group-hover/desc:font-semibold px-4 py-2'>
                         Discover our handpicked selection of exceptional properties around the world, offering unparalleled luxury and unforgettable experiences.
                     </p>
                     {/* Bottom accent line that grows on hover */}
@@ -57,24 +57,24 @@ const FeaturedDestination = () => {
                 ))}
             </div>
 
-            {/* View All Button */}
-            <button
-                onClick={() => { navigate('/rooms'); scrollTo(0, 0) }}
-                className='relative mt-16 group/cta overflow-hidden px-10 py-4 rounded-2xl font-semibold text-base transition-all duration-300 hover:-translate-y-1 hover:scale-105 active:scale-95 hover:shadow-[0_12px_35px_rgba(73,185,255,0.5)] bg-gradient-to-r from-[#49B9FF] to-blue-600 text-white shadow-lg shadow-blue-300/40'
-            >
-                {/* Rotating border glow on hover */}
-                <span className="absolute inset-0 rounded-2xl opacity-0 group-hover/cta:opacity-100 transition-opacity duration-500"
-                    style={{ background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent)', animation: 'none' }}
-                />
-                <span className="relative z-10 flex items-center gap-2">
-                    Explore All Destinations
-                    <svg className="w-5 h-5 group-hover/cta:translate-x-1.5 group-hover/cta:scale-110 transition-all duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                    </svg>
-                </span>
-                {/* Shimmer sweep */}
-                <div className="absolute inset-0 bg-white/20 translate-x-[-100%] group-hover/cta:translate-x-[100%] transition-transform duration-600 skew-x-12" />
-            </button>
+            {/* View All Button — outline style with fill-on-hover */}
+            <div className="relative mt-16 group/cta cursor-pointer" onClick={() => { navigate('/rooms'); scrollTo(0, 0) }}>
+                {/* Outer glow ring that appears on hover */}
+                <div className="absolute -inset-1 rounded-2xl bg-gradient-to-r from-[#49B9FF] to-blue-600 opacity-0 group-hover/cta:opacity-40 blur-md transition-all duration-500"></div>
+
+                <button className="relative flex items-center gap-3 px-10 py-4 rounded-2xl font-semibold text-base border-2 border-[#49B9FF] text-[#49B9FF] bg-transparent overflow-hidden transition-all duration-300 group-hover/cta:text-white group-hover/cta:border-blue-600 group-hover/cta:-translate-y-1 active:scale-95">
+                    {/* Fill block slides in from left on hover */}
+                    <span className="absolute inset-0 bg-gradient-to-r from-[#49B9FF] to-blue-600 translate-x-[-101%] group-hover/cta:translate-x-0 transition-transform duration-500 ease-out"></span>
+                    <span className="relative z-10 flex items-center gap-3">
+                        Explore All Destinations
+                        <span className="flex items-center justify-center w-7 h-7 rounded-full border-2 border-[#49B9FF] group-hover/cta:border-white transition-all duration-300 group-hover/cta:bg-white/20">
+                            <svg className="w-4 h-4 group-hover/cta:translate-x-0.5 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                            </svg>
+                        </span>
+                    </span>
+                </button>
+            </div>
         </div>
     )
 }
