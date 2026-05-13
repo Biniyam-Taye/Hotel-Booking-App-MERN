@@ -38,7 +38,7 @@ const Hero = () => {
                 </h1>
                 
                 <p className='max-w-lg mt-4 text-sm md:text-base text-gray-300 font-light drop-shadow-md leading-relaxed transition-all duration-500 hover:text-white hover:translate-x-1 cursor-default'>
-                    Unparalleled luxury and comfort await at the world's most exclusive hotels and resorts. Start your unforgettable journey today.
+                    Unparalleled luxury and comfort await at the world's most exclusive rooms and resorts. Start your unforgettable journey today.
                 </p>
 
                 <div className='inline-flex items-center gap-3 bg-white/10 backdrop-blur-md border border-white/20 px-4 py-2 rounded-xl text-sm font-medium hover:bg-white/20 transition-all cursor-default mt-5 shadow-sm'>

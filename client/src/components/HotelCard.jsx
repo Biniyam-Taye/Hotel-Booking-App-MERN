@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { assets } from '../assets/assets'
+import { useAppContext } from '../context/AppContext'
 
 // Color palette for card accents per index (badges & bottom line only)
 const cardAccents = [
@@ -11,6 +12,7 @@ const cardAccents = [
 ]
 
 const HotelCard = ({ room, index }) => {
+    const { currency } = useAppContext()
     const accent = cardAccents[index % cardAccents.length]
 
     return (
@@ -42,7 +44,7 @@ const HotelCard = ({ room, index }) => {
 
                 {/* Floating price tag on image hover */}
                 <div className="absolute bottom-3 right-3 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-xl shadow-md opacity-0 group-hover:opacity-100 transition-all duration-500 translate-y-2 group-hover:translate-y-0">
-                    <span className="font-bold text-gray-900 text-sm">${room.pricePerNight}</span>
+                    <span className="font-bold text-gray-900 text-sm">{currency}{room.pricePerNight}</span>
                     <span className="text-gray-400 text-xs">/night</span>
                 </div>
             </div>
@@ -50,7 +52,7 @@ const HotelCard = ({ room, index }) => {
             {/* Card Body */}
             <div className='p-5'>
                 <div className='flex items-start justify-between mb-2'>
-                    <p className='font-playfair text-lg font-bold text-gray-900 leading-tight'>{room.hotel.name}</p>
+                    <p className='font-playfair text-lg font-bold text-gray-900 leading-tight'>Room {index + 1}</p>
                     <div className='flex items-center gap-1 bg-amber-50 border border-amber-200 px-2 py-0.5 rounded-lg flex-shrink-0 ml-2'>
                         <img src={assets.starIconFilled} alt="star" className="w-3.5 h-3.5" />
                         <span className="text-xs font-bold text-amber-600">4.5</span>
@@ -64,7 +66,7 @@ const HotelCard = ({ room, index }) => {
 
                 <div className='flex items-center justify-between'>
                     <div>
-                        <span className='text-2xl font-bold text-gray-900'>${room.pricePerNight}</span>
+                        <span className='text-2xl font-bold text-gray-900'>{currency}{room.pricePerNight}</span>
                         <span className="text-gray-400 text-xs ml-1">/night</span>
                     </div>
 

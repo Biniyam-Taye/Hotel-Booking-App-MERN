@@ -5,7 +5,7 @@ import { useAppContext } from '../context/AppContext'
 import toast from 'react-hot-toast'
 
 const MyBookings = () => {
-    const { axios, getToken, user } = useAppContext()
+    const { axios, getToken, user, currency } = useAppContext()
     const [bookings, setBookings] = useState([])
 
     const fetchUserBookings = async () => {
@@ -79,7 +79,7 @@ const MyBookings = () => {
         <div className='py-28 md:pb-35 md:pt-32 px-4 md:px-16 lg:px-24 xl:px-32'>
             <Title
                 title='My Booking'
-                subTitle='Easily manage your past,current, and upcoming hotel reservation in one place.Plan your trips seamlessly with just a few clicks'
+                subTitle='Easily manage your past,current, and upcoming room reservation in one place.Plan your trips seamlessly with just a few clicks'
                 align='left'
             />
 
@@ -87,7 +87,7 @@ const MyBookings = () => {
 
                 {/* HEADER */}
                 <div className='hidden md:grid md:grid-cols-[3fr_2fr_1fr] w-full border-b border-gray-300 font-medium text-base py-3'>
-                    <div>Hotels</div>
+                    <div>Rooms</div>
                     <div>Date & Timings</div>
                     <div>Payment</div>
                 </div>
@@ -125,7 +125,7 @@ const MyBookings = () => {
                                     <span>Guests: {booking.guests}</span>
                                 </div>
 
-                                <p className='text-base'>Total: ${booking.totalPrice}</p>
+                                <p className='text-base'>Total: {currency}{booking.totalPrice}</p>
                             </div>
                         </div>
 

@@ -17,7 +17,7 @@ const Navbar = () => {
     // Navigation links for both desktop & mobile
     const navLinks = [
         { name: 'Home', path: '/' },
-        { name: 'Hotels', path: '/rooms' },
+        { name: 'Rooms', path: '/rooms' },
         { name: 'Experience', path: '/' },
         { name: 'About', path: '/' },
     ];
