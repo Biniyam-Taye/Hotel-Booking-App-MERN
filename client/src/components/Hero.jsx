@@ -32,14 +32,6 @@ const Hero = () => {
             <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/40 to-transparent pointer-events-none"></div>
             
             <div className="relative z-10 w-full animate-fade-in-up mt-10">
-                <div className='inline-flex items-center gap-3 bg-white/10 backdrop-blur-md border border-white/20 px-4 py-2 rounded-xl text-sm font-medium hover:bg-white/20 transition-all cursor-default mb-6 shadow-sm'>
-                    <span className="relative flex h-3 w-3">
-                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#49B9FF] opacity-75"></span>
-                      <span className="relative inline-flex rounded-full h-3 w-3 bg-[#49B9FF]"></span>
-                    </span>
-                    The Ultimate Hotel Experience
-                </div>
-                
                 <h1 className='font-playfair text-4xl md:text-6xl lg:text-7xl font-bold max-w-3xl drop-shadow-xl leading-tight'>
                     Discover Your Perfect <br className="hidden md:block" />
                     <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#49B9FF] to-blue-200">Getaway</span> Destination
@@ -48,6 +40,14 @@ const Hero = () => {
                 <p className='max-w-xl mt-6 text-base md:text-lg text-gray-200 font-light drop-shadow-md leading-relaxed'>
                     Unparalleled luxury and comfort await at the world's most exclusive hotels and resorts. Start your unforgettable journey today.
                 </p>
+
+                <div className='inline-flex items-center gap-3 bg-white/10 backdrop-blur-md border border-white/20 px-4 py-2 rounded-xl text-sm font-medium hover:bg-white/20 transition-all cursor-default mt-5 shadow-sm'>
+                    <span className="relative flex h-3 w-3">
+                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#49B9FF] opacity-75"></span>
+                      <span className="relative inline-flex rounded-full h-3 w-3 bg-[#49B9FF]"></span>
+                    </span>
+                    The Ultimate Hotel Experience
+                </div>
                 
                 {/* Premium Widget Search Bar */}
                 <form onSubmit={onSearch} className='bg-white/95 backdrop-blur-2xl shadow-[0_20px_50px_rgba(0,0,0,0.25)] rounded-[2rem] p-3 mt-12 flex flex-col md:flex-row items-stretch gap-3 w-full max-w-[1050px] transition-transform hover:-translate-y-1 duration-500 relative z-20 border border-white/50'>
