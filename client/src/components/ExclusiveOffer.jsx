@@ -1,36 +1,16 @@
 import React from 'react'
 import { assets, exclusiveOffers } from '../assets/assets'
 
-// Unique accent config per card
-const cardConfig = [
-    {
-        badge: 'from-orange-400 to-pink-500',
-        border: 'hover:border-orange-300',
-        glow: 'hover:shadow-[0_20px_50px_rgba(249,115,22,0.18)]',
-        tag: 'bg-orange-50 text-orange-600 border-orange-200',
-        btnAccent: 'from-orange-400 to-pink-500',
-        accentLine: 'from-orange-400 to-pink-500',
-        lightBg: 'group-hover:bg-orange-50/60',
-    },
-    {
-        badge: 'from-violet-500 to-purple-600',
-        border: 'hover:border-violet-300',
-        glow: 'hover:shadow-[0_20px_50px_rgba(139,92,246,0.18)]',
-        tag: 'bg-violet-50 text-violet-600 border-violet-200',
-        btnAccent: 'from-violet-500 to-purple-600',
-        accentLine: 'from-violet-500 to-purple-600',
-        lightBg: 'group-hover:bg-violet-50/60',
-    },
-    {
-        badge: 'from-emerald-400 to-teal-500',
-        border: 'hover:border-emerald-300',
-        glow: 'hover:shadow-[0_20px_50px_rgba(16,185,129,0.18)]',
-        tag: 'bg-emerald-50 text-emerald-600 border-emerald-200',
-        btnAccent: 'from-emerald-400 to-teal-500',
-        accentLine: 'from-emerald-400 to-teal-500',
-        lightBg: 'group-hover:bg-emerald-50/60',
-    },
-]
+// Single unified orange accent for all cards
+const cardConfig = {
+    badge: 'from-orange-400 to-pink-500',
+    border: 'hover:border-orange-300',
+    glow: 'hover:shadow-[0_20px_50px_rgba(249,115,22,0.22)]',
+    tag: 'bg-orange-50 text-orange-600 border-orange-200',
+    btnAccent: 'from-orange-400 to-orange-500',
+    accentLine: 'from-orange-400 to-pink-500',
+    lightBg: 'group-hover:bg-orange-50/50',
+}
 
 const ExclusiveOffer = () => {
     return (
@@ -94,7 +74,7 @@ const ExclusiveOffer = () => {
             {/* Offer Cards Grid */}
             <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7 relative z-10'>
                 {exclusiveOffers.map((item, index) => {
-                    const cfg = cardConfig[index % cardConfig.length]
+                    const cfg = cardConfig
                     return (
                         <div
                             key={item._id}
@@ -130,16 +110,18 @@ const ExclusiveOffer = () => {
                                 <p className='text-gray-500 text-sm leading-relaxed mb-5'>{item.description}</p>
 
                                 {/* CTA row */}
-                                <div className="flex items-center justify-between">
+                                <div className="flex items-center justify-between mt-auto pt-2">
                                     <div className="relative group/btn">
-                                        <span className="absolute inset-0 rounded-xl opacity-0 scale-100 group-hover/btn:opacity-100 group-hover/btn:scale-[1.5] bg-current transition-all duration-500 pointer-events-none blur-sm" />
-                                        <button className={`relative flex items-center gap-2 px-5 py-2.5 rounded-xl text-xs font-bold text-white bg-gradient-to-r ${cfg.btnAccent} shadow-md transition-all duration-300 group-hover/btn:shadow-lg group-hover/btn:-translate-y-0.5 active:scale-95 overflow-hidden`}>
+                                        {/* Clean expanding ring animation instead of ugly dark blur */}
+                                        <span className="absolute inset-0 rounded-xl border border-orange-400 opacity-0 scale-100 group-hover/btn:opacity-100 group-hover/btn:scale-125 transition-all duration-500 pointer-events-none" />
+                                        <button className={`relative flex items-center gap-2 px-6 py-2.5 rounded-xl text-xs font-bold text-white bg-gradient-to-r ${cfg.btnAccent} shadow-md shadow-orange-500/20 transition-all duration-300 group-hover/btn:shadow-[0_4px_15px_rgba(249,115,22,0.4)] group-hover/btn:-translate-y-0.5 active:scale-95 overflow-hidden`}>
                                             <span className="relative z-10 flex items-center gap-1.5">
                                                 View Offer
-                                                <svg className="w-3.5 h-3.5 group-hover/btn:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <svg className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                                                 </svg>
                                             </span>
+                                            {/* Shimmer sweep */}
                                             <div className="absolute inset-0 bg-white/20 translate-x-[-100%] group-hover/btn:translate-x-[100%] transition-transform duration-500 skew-x-12" />
                                         </button>
                                     </div>
