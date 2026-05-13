@@ -15,3 +15,4 @@ style: compact Newsletter layout padding
 style: convert Footer to floating white card
 style: add soft shadow to Footer
 style: restore original Footer content
+style: refine Footer rounded corners
