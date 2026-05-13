@@ -18,8 +18,8 @@ const Navbar = () => {
     const navLinks = [
         { name: 'Home', path: '/' },
         { name: 'Rooms', path: '/rooms' },
-        { name: 'Experience', path: '/' },
-        { name: 'About', path: '/' },
+        { name: 'Experience', path: '/experience' },
+        { name: 'About', path: '/about' },
     ];
 
     // State for scroll-based styling

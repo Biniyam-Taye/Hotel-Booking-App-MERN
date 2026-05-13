@@ -6,6 +6,8 @@ import Footer from './components/Footer'
 import AllRooms from './pages/AllRooms'
 import RoomDetail from './pages/RoomDetail'
 import MyBookings from './pages/MyBookings'
+import Experience from './pages/Experience'
+import About from './pages/About'
 import HotelReg from './components/HotelReg'
 import LayOut from './pages/hotelOwner/LayOut'
 import Dashboard from './pages/hotelOwner/Dashboard'
@@ -32,6 +34,8 @@ const App = () => {
           <Route path='/rooms' element={<AllRooms />} />
           <Route path='/rooms/:id' element={<RoomDetail />} />
           <Route path='/my-bookings' element={<MyBookings />} />
+          <Route path='/experience' element={<Experience />} />
+          <Route path='/about' element={<About />} />
           <Route path='/loader/:nextUrl' element={<Loader />} />
 
           <Route path='/owner' element={<LayOut />}>
