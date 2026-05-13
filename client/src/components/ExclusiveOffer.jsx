@@ -62,9 +62,16 @@ const ExclusiveOffer = () => {
                         <div className="h-[2px] w-12 bg-gradient-to-l from-transparent to-orange-400 transition-all duration-700 group-hover/divider:w-24 group-hover/divider:shadow-[0_0_8px_rgba(249,115,22,0.8)]"></div>
                     </div>
 
-                    <p className='text-gray-600 text-base md:text-lg font-medium max-w-lg leading-relaxed'>
-                        Take advantage of our limited-time offers and special packages to enhance your stay.
-                    </p>
+                    {/* Description — glass card reveal on hover */}
+                    <div className="relative group/desc cursor-default max-w-lg">
+                        {/* Glass background reveal */}
+                        <div className="absolute inset-0 -m-3 rounded-2xl bg-gradient-to-r from-orange-50/0 via-pink-50/0 to-orange-50/0 scale-95 opacity-0 group-hover/desc:opacity-100 group-hover/desc:scale-100 group-hover/desc:from-orange-50/80 group-hover/desc:via-pink-50/60 group-hover/desc:to-orange-50/80 transition-all duration-500 border border-transparent group-hover/desc:border-orange-100"></div>
+                        <p className='relative z-10 text-gray-600 text-base md:text-lg font-medium leading-relaxed transition-all duration-500 group-hover/desc:text-gray-900 group-hover/desc:text-xl group-hover/desc:font-semibold px-3 py-1.5'>
+                            Take advantage of our limited-time offers and special packages to enhance your stay.
+                        </p>
+                        {/* Bottom accent sweep line */}
+                        <div className="absolute -bottom-1 left-1/2 -translate-x-1/2 h-[2px] w-0 bg-gradient-to-r from-orange-400 to-pink-500 rounded-full group-hover/desc:w-3/4 transition-all duration-700"></div>
+                    </div>
                 </div>
 
                 {/* View All — outline ghost style matching FeaturedDestination */}
