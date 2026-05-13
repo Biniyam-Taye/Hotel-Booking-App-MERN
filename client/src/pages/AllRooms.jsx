@@ -152,8 +152,8 @@ const AllRooms = () => {
                         <span className="w-1.5 h-1.5 rounded-full bg-indigo-500 animate-pulse"></span>
                         Exclusive Accommodations
                     </div>
-                    <h1 className='font-playfair text-4xl md:text-5xl font-bold text-gray-900 mb-4'>
-                        Find Your <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-indigo-600">Perfect Stay</span>
+                    <h1 className='font-playfair text-4xl md:text-5xl font-bold text-gray-900 mb-4 cursor-default'>
+                        Find Your <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-indigo-600 transition-all duration-500 hover:from-[#FF4D00] hover:to-[#FF8C00] hover:drop-shadow-[0_0_12px_rgba(255,77,0,0.4)]">Perfect Stay</span>
                     </h1>
                     
                     <div className="relative group/desc cursor-default max-w-2xl">

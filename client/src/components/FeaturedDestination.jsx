@@ -26,7 +26,7 @@ const FeaturedDestination = () => {
                 <h2 className='font-playfair text-4xl md:text-5xl font-bold text-gray-900 mb-5 cursor-default'>
                     <span className="inline-block transition-all duration-500 hover:-translate-y-1 hover:text-gray-700">Featured</span>
                     {' '}
-                    <span className="inline-block text-transparent bg-clip-text bg-gradient-to-r from-[#49B9FF] to-blue-700 transition-all duration-500 hover:-translate-y-1 hover:from-blue-400 hover:to-cyan-400 hover:drop-shadow-[0_0_12px_rgba(73,185,255,0.6)]">
+                    <span className="inline-block text-transparent bg-clip-text bg-gradient-to-r from-[#49B9FF] to-blue-700 transition-all duration-500 hover:-translate-y-1 hover:from-[#FF4D00] hover:to-[#FF8C00] hover:drop-shadow-[0_0_12px_rgba(255,77,0,0.6)]">
                         Destinations
                     </span>
                 </h2>
