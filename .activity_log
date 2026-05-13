@@ -13,3 +13,4 @@ style: transform Newsletter into dark premium banner
 feat: add animated border to Newsletter input
 style: compact Newsletter layout padding
 style: convert Footer to floating white card
+style: add soft shadow to Footer
