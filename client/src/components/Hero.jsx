@@ -27,55 +27,75 @@ const Hero = () => {
 
     return (
         <div className='flex flex-col items-start justify-center px-6 md:px-16 lg:px-24
-         xl:px-32 text-white bg-[url("/src/assets/heroImage.png")] bg-no-repeat bg-cover bg-center h-screen'>
-            <p className='bg-[#49B9FF]/50 px-3.5 py-1 rounded-full mt-20'>The Ultimate Hotel Experiance</p>
-            <h1 className='font-playfair text-2xl md:text-5xl md:text-[56px] md:leading-[56px] font-bold md:font-extrabold max-w-xl mt-4'>Discover Your Perfect Geteway Destination</h1>
-            <p className='max-w-130 mt-2 text-sm md:text-base'>Unparalleled luxury and comfort await at the world's most exclusive hotels and resorts. Start your jorney today</p>
-            <form onSubmit={onSearch} className='bg-white text-gray-500 rounded-lg px-6 py-4 mt-8 flex flex-col md:flex-row max-md:items-start gap-4 max-md:mx-auto'>
-
-                <div>
-                    <div className='flex items-center gap-2'>
-                        <img src={assets.calenderIcon} alt="" className='h-4' />
-                        <label htmlFor="destinationInput">Destination</label>
-                    </div>
-                    <input onChange={e => setDestination(e.target.value)} value={destination} list='destinations' id="destinationInput" type="text" className=" rounded border border-gray-200 px-3 py-1.5 mt-1.5 text-sm outline-none" placeholder="Type here" required />
-                    <datalist id='destinations'>
-                        {
-                            cities.map((city, index) => (
+         xl:px-32 text-white bg-[url("/src/assets/heroImage.png")] bg-no-repeat bg-cover bg-center h-screen relative group/hero overflow-hidden'>
+            {/* Overlay gradient for better text readability */}
+            <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/20 to-transparent pointer-events-none"></div>
+            
+            <div className="relative z-10 w-full animate-fade-in-up">
+                <p className='inline-block bg-white/10 backdrop-blur-md border border-white/20 px-5 py-2 rounded-full mt-20 text-sm md:text-base font-medium shadow-lg hover:bg-white/20 transition-all duration-300 hover:scale-105 cursor-default hover:shadow-[0_0_15px_rgba(255,255,255,0.3)]'>
+                    ✨ The Ultimate Hotel Experience
+                </p>
+                
+                <h1 className='font-playfair text-4xl md:text-5xl lg:text-[72px] lg:leading-[80px] font-extrabold max-w-3xl mt-6 drop-shadow-2xl transition-all duration-700 hover:translate-x-2'>
+                    Discover Your Perfect <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#49B9FF] to-cyan-300 drop-shadow-md">Getaway</span> Destination
+                </h1>
+                
+                <p className='max-w-2xl mt-6 text-sm md:text-lg text-gray-100 font-light drop-shadow-lg leading-relaxed opacity-90 hover:opacity-100 transition-opacity duration-300'>
+                    Unparalleled luxury and comfort await at the world's most exclusive hotels and resorts. Start your unforgettable journey today.
+                </p>
+                
+                <form onSubmit={onSearch} className='bg-white/10 backdrop-blur-xl border border-white/20 shadow-[0_8px_32px_0_rgba(0,0,0,0.3)] rounded-2xl px-6 py-6 mt-12 flex flex-col lg:flex-row gap-6 w-full max-w-[1050px] transition-all duration-500 hover:shadow-[0_16px_40px_0_rgba(0,0,0,0.5)] hover:bg-white/15'>
+                    
+                    {/* Destination Input */}
+                    <div className="flex-1 w-full group/input relative">
+                        <div className='flex items-center gap-2 mb-2 text-sm font-medium text-gray-200 transition-colors group-hover/input:text-white'>
+                            <img src={assets.locationIcon} alt="Location" className='h-4 group-hover/input:scale-125 group-hover/input:-translate-y-1 transition-transform duration-300' style={{ filter: 'brightness(0) invert(1)' }} />
+                            <label htmlFor="destinationInput">Destination</label>
+                        </div>
+                        <div className="relative">
+                            <input onChange={e => setDestination(e.target.value)} value={destination} list='destinations' id="destinationInput" type="text" className="w-full bg-black/20 border border-white/10 rounded-xl px-4 py-3.5 text-white placeholder-gray-400 outline-none focus:bg-black/40 focus:border-[#49B9FF]/50 focus:ring-2 focus:ring-[#49B9FF]/30 transition-all duration-300 hover:bg-black/30" placeholder="Where are you going?" required />
+                        </div>
+                        <datalist id='destinations'>
+                            {cities.map((city, index) => (
                                 <option value={city} key={index} />
-                            ))
-                        }
-                    </datalist>
-                </div>
-
-                <div>
-                    <div className='flex items-center gap-2'>
-                        <img src={assets.calenderIcon} alt="" className='h-4' />
-
-                        <label htmlFor="checkIn">Check in</label>
+                            ))}
+                        </datalist>
                     </div>
-                    <input id="checkIn" type="date" className=" rounded border border-gray-200 px-3 py-1.5 mt-1.5 text-sm outline-none" />
-                </div>
 
-                <div>
-                    <div className='flex items-center gap-2'>
-                        <img src={assets.calenderIcon} alt="" className='h-4' />
-
-                        <label htmlFor="checkOut">Check out</label>
+                    {/* Check In Input */}
+                    <div className="flex-1 w-full group/input">
+                        <div className='flex items-center gap-2 mb-2 text-sm font-medium text-gray-200 transition-colors group-hover/input:text-white'>
+                            <img src={assets.calenderIcon} alt="Check In" className='h-4 group-hover/input:scale-125 group-hover/input:-translate-y-1 transition-transform duration-300' style={{ filter: 'brightness(0) invert(1)' }} />
+                            <label htmlFor="checkIn">Check in</label>
+                        </div>
+                        <input id="checkIn" type="date" className="w-full bg-black/20 border border-white/10 rounded-xl px-4 py-3.5 text-white outline-none focus:bg-black/40 focus:border-[#49B9FF]/50 focus:ring-2 focus:ring-[#49B9FF]/30 transition-all duration-300 hover:bg-black/30 [color-scheme:dark]" />
                     </div>
-                    <input id="checkOut" type="date" className=" rounded border border-gray-200 px-3 py-1.5 mt-1.5 text-sm outline-none" />
-                </div>
 
-                <div className='flex md:flex-col max-md:gap-2 max-md:items-center'>
-                    <label htmlFor="guests">Guests</label>
-                    <input min={1} max={4} id="guests" type="number" className=" rounded border border-gray-200 px-3 py-1.5 mt-1.5 text-sm outline-none  max-w-16" placeholder="0" />
-                </div>
+                    {/* Check Out Input */}
+                    <div className="flex-1 w-full group/input">
+                        <div className='flex items-center gap-2 mb-2 text-sm font-medium text-gray-200 transition-colors group-hover/input:text-white'>
+                            <img src={assets.calenderIcon} alt="Check Out" className='h-4 group-hover/input:scale-125 group-hover/input:-translate-y-1 transition-transform duration-300' style={{ filter: 'brightness(0) invert(1)' }} />
+                            <label htmlFor="checkOut">Check out</label>
+                        </div>
+                        <input id="checkOut" type="date" className="w-full bg-black/20 border border-white/10 rounded-xl px-4 py-3.5 text-white outline-none focus:bg-black/40 focus:border-[#49B9FF]/50 focus:ring-2 focus:ring-[#49B9FF]/30 transition-all duration-300 hover:bg-black/30 [color-scheme:dark]" />
+                    </div>
 
-                <button className='flex items-center justify-center gap-1 rounded-md bg-black py-3 px-4 text-white my-auto cursor-pointer max-md:w-full max-md:py-1' >
-                    <img src={assets.searchIcon} alt="searchIcon" className='h-7' />
-                    <span>Search</span>
-                </button>
-            </form>
+                    {/* Guests Input */}
+                    <div className="w-full lg:w-32 group/input">
+                        <div className='flex items-center gap-2 mb-2 text-sm font-medium text-gray-200 transition-colors group-hover/input:text-white'>
+                            <img src={assets.guestsIcon} alt="Guests" className='h-4 group-hover/input:scale-125 group-hover/input:-translate-y-1 transition-transform duration-300' style={{ filter: 'brightness(0) invert(1)' }} />
+                            <label htmlFor="guests">Guests</label>
+                        </div>
+                        <input min={1} max={4} id="guests" type="number" className="w-full bg-black/20 border border-white/10 rounded-xl px-4 py-3.5 text-white placeholder-gray-400 outline-none focus:bg-black/40 focus:border-[#49B9FF]/50 focus:ring-2 focus:ring-[#49B9FF]/30 transition-all duration-300 hover:bg-black/30" placeholder="0" />
+                    </div>
+
+                    {/* Search Button */}
+                    <button className='flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-[#49B9FF] to-blue-600 py-3.5 px-8 text-white font-semibold mt-auto lg:mt-7 w-full lg:w-auto transition-all duration-300 hover:scale-105 hover:shadow-[0_0_20px_rgba(73,185,255,0.6)] active:scale-95 group/btn border border-white/10'>
+                        <img src={assets.searchIcon} alt="searchIcon" className='h-5 group-hover/btn:rotate-90 transition-transform duration-500' style={{ filter: 'brightness(0) invert(1)' }} />
+                        <span className="tracking-wide">Search</span>
+                    </button>
+                </form>
+            </div>
         </div>
     )
 }
