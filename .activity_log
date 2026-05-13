@@ -10,3 +10,4 @@ style: redesign Testimonial section
 feat: add glowing blobs to Testimonial background
 style: implement glass hover on Testimonial description
 style: transform Newsletter into dark premium banner
+feat: add animated border to Newsletter input
