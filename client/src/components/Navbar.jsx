@@ -55,13 +55,13 @@ const Navbar = () => {
 
     return (
         <nav className={`fixed top-0 left-0 w-full flex items-center justify-between px-4 md:px-16 lg:px-24 xl:px-32 transition-all duration-500 z-50 ${isScrolled
-            ? "bg-white/80 shadow-[0_4px_30px_rgba(0,0,0,0.08)] text-gray-700 backdrop-blur-xl py-3 border-b border-white/60"
-            : "py-5 md:py-6"
+            ? "bg-white/80 shadow-[0_4px_30px_rgba(0,0,0,0.08)] text-gray-700 backdrop-blur-xl py-5 border-b border-white/60"
+            : "py-7 md:py-8"
             }`}>
 
             {/* Logo */}
             <Link to='/' className="group flex items-center gap-2">
-                <img src={assets.logo} alt="logo" className={`h-8 transition-all duration-500 group-hover:scale-105 ${isScrolled && "invert opacity-80"}`} />
+                <img src={assets.logo} alt="logo" className={`h-11 transition-all duration-500 group-hover:scale-105 ${isScrolled && "invert opacity-80"}`} />
             </Link>
 
             {/* Desktop Navigation */}
@@ -70,7 +70,7 @@ const Navbar = () => {
                     <a
                         key={i}
                         href={link.path}
-                        className={`relative px-4 py-2 text-sm font-medium rounded-xl transition-all duration-300 group
+                        className={`relative px-5 py-2.5 text-base font-medium rounded-xl transition-all duration-300 group
                             ${isScrolled
                                 ? "text-gray-600 hover:text-gray-900 hover:bg-gray-100"
                                 : "text-white/80 hover:text-white hover:bg-white/10"
@@ -78,7 +78,7 @@ const Navbar = () => {
                     >
                         {link.name}
                         {/* Animated underline */}
-                        <span className={`absolute bottom-1.5 left-4 right-4 h-[2px] rounded-full scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left
+                        <span className={`absolute bottom-1.5 left-5 right-5 h-[2px] rounded-full scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left
                             ${isScrolled ? "bg-[#49B9FF]" : "bg-white"}`}
                         />
                     </a>
@@ -88,7 +88,7 @@ const Navbar = () => {
                 {user && (
                     <button
                         onClick={() => isOwner ? navigate('/owner') : setShowHotelReg(true)}
-                        className={`ml-2 px-5 py-2 text-sm font-semibold rounded-xl border transition-all duration-300 hover:scale-105 active:scale-95
+                        className={`ml-3 px-6 py-2.5 text-base font-semibold rounded-xl border transition-all duration-300 hover:scale-105 active:scale-95
                             ${isScrolled
                                 ? "border-gray-300 text-gray-700 hover:border-[#49B9FF] hover:text-[#49B9FF] hover:shadow-[0_0_12px_rgba(73,185,255,0.3)]"
                                 : "border-white/40 text-white hover:bg-white/15 hover:border-white hover:shadow-[0_0_12px_rgba(255,255,255,0.2)]"
@@ -102,9 +102,9 @@ const Navbar = () => {
             {/* Desktop Right Side */}
             <div className="hidden md:flex items-center gap-3">
                 {/* Search icon */}
-                <button className={`p-2 rounded-xl transition-all duration-300 hover:scale-110 active:scale-95
+                <button className={`p-2.5 rounded-xl transition-all duration-300 hover:scale-110 active:scale-95
                     ${isScrolled ? "hover:bg-gray-100" : "hover:bg-white/10"}`}>
-                    <img src={assets.searchIcon} alt="search" className={`${isScrolled && 'invert'} h-5 w-5`} />
+                    <img src={assets.searchIcon} alt="search" className={`${isScrolled && 'invert'} h-6 w-6`} />
                 </button>
 
                 {user ? (
@@ -119,7 +119,7 @@ const Navbar = () => {
                 ) : (
                     <button
                         onClick={openSignIn}
-                        className={`relative overflow-hidden px-6 py-2.5 rounded-xl text-sm font-semibold transition-all duration-300 hover:scale-105 active:scale-95 group/login
+                        className={`relative overflow-hidden px-8 py-3 rounded-xl text-base font-semibold transition-all duration-300 hover:scale-105 active:scale-95 group/login
                             ${isScrolled
                                 ? "bg-gradient-to-r from-[#49B9FF] to-blue-600 text-white shadow-lg shadow-blue-500/30 hover:shadow-blue-500/50"
                                 : "bg-white text-gray-900 shadow-lg hover:shadow-white/30"
