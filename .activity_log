@@ -8,3 +8,4 @@ feat: add cinematic zoom effect to Offer cards
 style: unify orange accent palette across components
 style: redesign Testimonial section
 feat: add glowing blobs to Testimonial background
+style: implement glass hover on Testimonial description
