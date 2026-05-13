@@ -3,8 +3,8 @@ import { assets } from '../assets/assets'
 
 const Footer = () => {
     return (
-        <div className="px-6 md:px-16 lg:px-24 xl:px-32 pb-12 pt-6 bg-white">
-            <footer className="bg-[#F6F9FC] rounded-[3rem] p-8 md:p-12 w-full text-gray-500 shadow-[0_25px_60px_rgba(0,0,0,0.15)] border border-gray-200">
+        <div className="px-6 md:px-16 lg:px-24 xl:px-32 pb-14 pt-8 bg-white">
+            <footer className="bg-[#F6F9FC] rounded-[3.5rem] p-10 md:p-14 w-full text-gray-500 shadow-[0_40px_100px_rgba(0,0,0,0.25)] border border-gray-200">
                 <div className="flex flex-col md:flex-row justify-between w-full gap-10 border-b border-gray-500/30 pb-6">
 
                     {/* Left Logo + Text */}

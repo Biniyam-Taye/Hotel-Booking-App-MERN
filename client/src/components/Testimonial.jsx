@@ -23,9 +23,15 @@ const Testimonial = () => {
                     <div className="w-2.5 h-2.5 rounded-full bg-indigo-500 transition-all duration-500 group-hover/divider:scale-150 group-hover/divider:shadow-[0_0_10px_rgba(99,102,241,0.6)]"></div>
                     <div className="h-[2px] w-12 bg-gradient-to-l from-transparent to-indigo-500 transition-all duration-700 group-hover/divider:w-24"></div>
                 </div>
-                <p className='text-gray-500 text-base md:text-lg max-w-2xl leading-relaxed'>
-                    Discover why discerning travelers consistently choose BiniStay for their exclusive and luxurious accommodations around the world.
-                </p>
+                <div className="relative group/desc cursor-default max-w-2xl">
+                    {/* Background glass reveal */}
+                    <div className="absolute inset-0 -m-4 rounded-2xl bg-gradient-to-r from-blue-50/0 via-indigo-50/0 to-blue-50/0 scale-95 opacity-0 group-hover/desc:opacity-100 group-hover/desc:scale-100 group-hover/desc:from-blue-50/80 group-hover/desc:via-indigo-50/60 group-hover/desc:to-blue-50/80 transition-all duration-500 border border-transparent group-hover/desc:border-indigo-100 backdrop-blur-sm shadow-xl shadow-indigo-500/0 group-hover/desc:shadow-indigo-500/5"></div>
+                    <p className='relative z-10 text-gray-500 text-base md:text-lg leading-relaxed transition-all duration-500 group-hover/desc:text-gray-900 group-hover/desc:text-xl group-hover/desc:font-semibold'>
+                        Discover why discerning travelers consistently choose BiniStay for their exclusive and luxurious accommodations around the world.
+                    </p>
+                    {/* Bottom accent line that grows on hover */}
+                    <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 h-[2px] w-0 bg-gradient-to-r from-blue-500 to-indigo-600 rounded-full group-hover/desc:w-3/4 transition-all duration-700"></div>
+                </div>
             </div>
 
             {/* Testimonial Cards Grid */}

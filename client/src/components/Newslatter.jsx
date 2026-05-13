@@ -3,7 +3,7 @@ import { assets } from '../assets/assets'
 
 const Newslatter = () => {
     return (
-        <div className="relative flex flex-col items-center max-w-6xl w-full mx-auto px-6 md:px-12 py-24 my-20 bg-[#0B0F19] rounded-[2.5rem] text-white overflow-hidden group/news shadow-[0_20px_50px_rgba(0,0,0,0.3)]">
+        <div className="relative flex flex-col items-center max-w-6xl w-full mx-auto px-6 md:px-12 py-8 my-6 bg-[#0B0F19] rounded-[2rem] text-white overflow-hidden group/news shadow-[0_20px_50px_rgba(0,0,0,0.3)]">
             
             {/* Animated Space-like Background Effects */}
             <div className="absolute -top-40 -right-40 w-96 h-96 bg-blue-600/30 rounded-full blur-[100px] pointer-events-none group-hover/news:bg-blue-500/40 transition-colors duration-1000"></div>
@@ -15,16 +15,16 @@ const Newslatter = () => {
 
             <div className="relative z-10 flex flex-col items-center w-full">
                 {/* Accent Badge */}
-                <div className="inline-flex items-center gap-2 bg-white/5 border border-white/10 px-4 py-1.5 rounded-full text-xs font-medium text-blue-300 mb-8 backdrop-blur-sm">
+                <div className="inline-flex items-center gap-2 bg-white/5 border border-white/10 px-4 py-1 rounded-full text-[10px] font-medium text-blue-300 mb-4 backdrop-blur-sm">
                     <span className="w-1.5 h-1.5 rounded-full bg-blue-400 animate-pulse"></span>
                     Weekly Travel Inspiration
                 </div>
 
-                <h2 className="font-playfair text-4xl md:text-5xl font-bold text-center mb-6">
+                <h2 className="font-playfair text-3xl md:text-4xl font-bold text-center mb-2">
                     Stay <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-indigo-400">Inspired</span>
                 </h2>
                 
-                <p className="text-gray-400 text-center text-base md:text-lg max-w-2xl mb-12 leading-relaxed">
+                <p className="text-gray-400 text-center text-sm md:text-base max-w-xl mb-6 leading-relaxed">
                     Join our VIP newsletter and be the first to discover hidden gems, exclusive resort offers, and highly curated travel itineraries.
                 </p>
 
@@ -50,7 +50,7 @@ const Newslatter = () => {
                     </button>
                 </div>
 
-                <p className="text-gray-500 mt-8 text-xs text-center flex items-center gap-2">
+                <p className="text-gray-500 mt-4 text-[10px] text-center flex items-center gap-2">
                     <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
                     By subscribing, you agree to our Privacy Policy and consent to receive updates.
                 </p>
