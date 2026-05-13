@@ -3,3 +3,4 @@ feat: add glass reveal effect to Featured cards
 style: standardize Hotel Card buttons
 feat: implement expanding hover line on Hotel Cards
 refactor: streamline Exclusive Offer component
+style: apply light theme to Exclusive Offer
