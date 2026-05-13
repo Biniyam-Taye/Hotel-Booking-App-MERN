@@ -5,3 +5,4 @@ feat: implement expanding hover line on Hotel Cards
 refactor: streamline Exclusive Offer component
 style: apply light theme to Exclusive Offer
 feat: add cinematic zoom effect to Offer cards
+style: unify orange accent palette across components
