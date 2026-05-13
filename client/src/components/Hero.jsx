@@ -26,67 +26,79 @@ const Hero = () => {
     }
 
     return (
-        <div className='flex flex-col items-center justify-center px-6 md:px-16 lg:px-24
-         xl:px-32 text-white bg-[url("/src/assets/heroImage.png")] bg-no-repeat bg-cover bg-center h-screen relative overflow-hidden text-center'>
-            {/* Subtle overlay */}
-            <div className="absolute inset-0 bg-black/30 pointer-events-none"></div>
+        <div className='flex flex-col items-start justify-center px-6 md:px-16 lg:px-24
+         xl:px-32 text-white bg-[url("/src/assets/heroImage.png")] bg-no-repeat bg-cover bg-center h-screen relative overflow-hidden'>
+            {/* Gradient overlay for text readability while keeping the image vibrant on the right */}
+            <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/40 to-transparent pointer-events-none"></div>
             
-            <div className="relative z-10 w-full flex flex-col items-center animate-fade-in-up mt-16">
-                <div className='inline-flex items-center gap-2 bg-white/20 backdrop-blur-sm border border-white/40 px-4 py-1.5 rounded-full text-xs md:text-sm font-medium hover:bg-white/30 transition-colors cursor-default mb-4'>
-                    <span className="w-2 h-2 rounded-full bg-[#49B9FF] animate-pulse"></span>
+            <div className="relative z-10 w-full animate-fade-in-up mt-10">
+                <div className='inline-flex items-center gap-3 bg-white/10 backdrop-blur-md border border-white/20 px-4 py-2 rounded-xl text-sm font-medium hover:bg-white/20 transition-all cursor-default mb-6 shadow-sm'>
+                    <span className="relative flex h-3 w-3">
+                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#49B9FF] opacity-75"></span>
+                      <span className="relative inline-flex rounded-full h-3 w-3 bg-[#49B9FF]"></span>
+                    </span>
                     The Ultimate Hotel Experience
                 </div>
                 
-                <h1 className='font-playfair text-3xl md:text-5xl lg:text-6xl font-bold max-w-4xl tracking-tight drop-shadow-lg leading-tight'>
-                    Discover Your Perfect <span className="text-[#49B9FF]">Getaway</span> Destination
+                <h1 className='font-playfair text-4xl md:text-6xl lg:text-7xl font-bold max-w-3xl drop-shadow-xl leading-tight'>
+                    Discover Your Perfect <br className="hidden md:block" />
+                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#49B9FF] to-blue-200">Getaway</span> Destination
                 </h1>
                 
-                <p className='max-w-xl mt-4 text-sm md:text-base text-gray-100 font-light drop-shadow-md'>
-                    Unparalleled luxury and comfort await at the world's most exclusive hotels and resorts.
+                <p className='max-w-xl mt-6 text-base md:text-lg text-gray-200 font-light drop-shadow-md leading-relaxed'>
+                    Unparalleled luxury and comfort await at the world's most exclusive hotels and resorts. Start your unforgettable journey today.
                 </p>
                 
-                {/* Unified White Pill Search Bar */}
-                <form onSubmit={onSearch} className='bg-white text-gray-800 rounded-full shadow-[0_10px_40px_rgba(0,0,0,0.2)] p-2 mt-10 flex flex-col md:flex-row items-center w-full max-w-4xl transition-transform hover:scale-[1.01] duration-300 relative z-20'>
+                {/* Premium Widget Search Bar */}
+                <form onSubmit={onSearch} className='bg-white/95 backdrop-blur-2xl shadow-[0_20px_50px_rgba(0,0,0,0.25)] rounded-[2rem] p-3 mt-12 flex flex-col md:flex-row items-stretch gap-3 w-full max-w-[1050px] transition-transform hover:-translate-y-1 duration-500 relative z-20 border border-white/50'>
                     
                     {/* Destination */}
-                    <div className="flex-1 w-full md:w-auto hover:bg-gray-100 rounded-full px-6 py-2 transition-colors cursor-pointer relative group">
-                        <label htmlFor="destinationInput" className="block text-[11px] font-bold text-gray-500 uppercase tracking-wider mb-0.5 cursor-pointer">Where</label>
-                        <input onChange={e => setDestination(e.target.value)} value={destination} list='destinations' id="destinationInput" type="text" className="w-full bg-transparent text-sm font-medium text-gray-900 placeholder-gray-400 outline-none truncate" placeholder="Search destinations" required />
-                        <datalist id='destinations'>
-                            {cities.map((city, index) => (
-                                <option value={city} key={index} />
-                            ))}
-                        </datalist>
+                    <div className='flex-1 w-full bg-gray-50/80 hover:bg-blue-50/50 border border-transparent hover:border-blue-200 rounded-[1.5rem] px-5 py-4 transition-all duration-300 group cursor-text focus-within:bg-white focus-within:border-blue-400 focus-within:ring-4 focus-within:ring-blue-100 shadow-inner'>
+                        <div className='flex items-center gap-2 mb-1.5'>
+                            <img src={assets.locationIcon} alt="Location" className='w-4 h-4 opacity-50 group-focus-within:opacity-100 group-focus-within:scale-110 transition-all' />
+                            <label htmlFor="destinationInput" className='text-[11px] font-bold text-gray-500 uppercase tracking-wider cursor-text'>Destination</label>
+                        </div>
+                        <div className="relative">
+                            <input onChange={e => setDestination(e.target.value)} value={destination} list='destinations' id="destinationInput" type="text" className="w-full text-base md:text-lg font-bold text-gray-900 placeholder-gray-400 outline-none bg-transparent truncate" placeholder="Where are you going?" required />
+                            <datalist id='destinations'>
+                                {cities.map((city, index) => (
+                                    <option value={city} key={index} />
+                                ))}
+                            </datalist>
+                        </div>
                     </div>
-
-                    <div className="hidden md:block w-px h-10 bg-gray-200"></div>
 
                     {/* Check In */}
-                    <div className="flex-1 w-full md:w-auto hover:bg-gray-100 rounded-full px-6 py-2 transition-colors cursor-pointer relative group">
-                        <label htmlFor="checkIn" className="block text-[11px] font-bold text-gray-500 uppercase tracking-wider mb-0.5 cursor-pointer">Check in</label>
-                        <input id="checkIn" type="date" className="w-full bg-transparent text-sm font-medium text-gray-900 outline-none cursor-pointer [color-scheme:light]" />
+                    <div className='flex-1 w-full bg-gray-50/80 hover:bg-blue-50/50 border border-transparent hover:border-blue-200 rounded-[1.5rem] px-5 py-4 transition-all duration-300 group cursor-text focus-within:bg-white focus-within:border-blue-400 focus-within:ring-4 focus-within:ring-blue-100 shadow-inner'>
+                        <div className='flex items-center gap-2 mb-1.5'>
+                            <img src={assets.calenderIcon} alt="Check In" className='w-4 h-4 opacity-50 group-focus-within:opacity-100 group-focus-within:scale-110 transition-all' />
+                            <label htmlFor="checkIn" className='text-[11px] font-bold text-gray-500 uppercase tracking-wider cursor-text'>Check in</label>
+                        </div>
+                        <input id="checkIn" type="date" className="w-full text-base md:text-lg font-bold text-gray-900 outline-none bg-transparent [color-scheme:light] cursor-text" />
                     </div>
-
-                    <div className="hidden md:block w-px h-10 bg-gray-200"></div>
 
                     {/* Check Out */}
-                    <div className="flex-1 w-full md:w-auto hover:bg-gray-100 rounded-full px-6 py-2 transition-colors cursor-pointer relative group">
-                        <label htmlFor="checkOut" className="block text-[11px] font-bold text-gray-500 uppercase tracking-wider mb-0.5 cursor-pointer">Check out</label>
-                        <input id="checkOut" type="date" className="w-full bg-transparent text-sm font-medium text-gray-900 outline-none cursor-pointer [color-scheme:light]" />
+                    <div className='flex-1 w-full bg-gray-50/80 hover:bg-blue-50/50 border border-transparent hover:border-blue-200 rounded-[1.5rem] px-5 py-4 transition-all duration-300 group cursor-text focus-within:bg-white focus-within:border-blue-400 focus-within:ring-4 focus-within:ring-blue-100 shadow-inner'>
+                        <div className='flex items-center gap-2 mb-1.5'>
+                            <img src={assets.calenderIcon} alt="Check Out" className='w-4 h-4 opacity-50 group-focus-within:opacity-100 group-focus-within:scale-110 transition-all' />
+                            <label htmlFor="checkOut" className='text-[11px] font-bold text-gray-500 uppercase tracking-wider cursor-text'>Check out</label>
+                        </div>
+                        <input id="checkOut" type="date" className="w-full text-base md:text-lg font-bold text-gray-900 outline-none bg-transparent [color-scheme:light] cursor-text" />
                     </div>
 
-                    <div className="hidden md:block w-px h-10 bg-gray-200"></div>
-
-                    {/* Guests & Search Button Container */}
-                    <div className="flex w-full md:w-auto items-center hover:bg-gray-100 rounded-full pl-6 pr-2 py-2 transition-colors cursor-pointer group">
-                        <div className="flex-1 mr-4">
-                            <label htmlFor="guests" className="block text-[11px] font-bold text-gray-500 uppercase tracking-wider mb-0.5 cursor-pointer">Who</label>
-                            <input min={1} max={4} id="guests" type="number" className="w-full bg-transparent text-sm font-medium text-gray-900 placeholder-gray-400 outline-none" placeholder="Add guests" />
+                    {/* Guests & Button Container */}
+                    <div className='flex items-stretch w-full md:w-auto gap-3'>
+                        <div className='flex-1 md:w-36 bg-gray-50/80 hover:bg-blue-50/50 border border-transparent hover:border-blue-200 rounded-[1.5rem] px-5 py-4 transition-all duration-300 group cursor-text focus-within:bg-white focus-within:border-blue-400 focus-within:ring-4 focus-within:ring-blue-100 shadow-inner'>
+                            <div className='flex items-center gap-2 mb-1.5'>
+                                <img src={assets.guestsIcon} alt="Guests" className='w-4 h-4 opacity-50 group-focus-within:opacity-100 group-focus-within:scale-110 transition-all' />
+                                <label htmlFor="guests" className='text-[11px] font-bold text-gray-500 uppercase tracking-wider cursor-text'>Guests</label>
+                            </div>
+                            <input min={1} max={4} id="guests" type="number" className="w-full text-base md:text-lg font-bold text-gray-900 placeholder-gray-400 outline-none bg-transparent" placeholder="0" />
                         </div>
                         
-                        {/* Search Button */}
-                        <button className='flex items-center justify-center rounded-full bg-[#49B9FF] hover:bg-blue-500 w-12 h-12 md:w-14 md:h-14 text-white transition-all duration-300 shadow-md hover:shadow-lg hover:scale-105 active:scale-95 flex-shrink-0'>
-                            <img src={assets.searchIcon} alt="searchIcon" className='h-5 w-5' style={{ filter: 'brightness(0) invert(1)' }} />
+                        <button className='bg-gradient-to-br from-[#49B9FF] to-blue-600 hover:to-blue-700 w-full md:w-20 rounded-[1.5rem] shadow-lg shadow-blue-500/40 hover:shadow-blue-500/60 hover:-translate-y-1 active:scale-95 transition-all duration-300 flex items-center justify-center flex-shrink-0 group/btn h-full py-4 md:py-0'>
+                            <img src={assets.searchIcon} alt="Search" className='w-6 h-6 group-hover/btn:scale-125 transition-transform duration-500' style={{ filter: 'brightness(0) invert(1)' }} />
+                            <span className="md:hidden ml-2 font-bold text-white tracking-wide">Search</span>
                         </button>
                     </div>
                 </form>
