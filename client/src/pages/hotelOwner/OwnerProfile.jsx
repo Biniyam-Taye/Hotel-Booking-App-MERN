@@ -58,7 +58,7 @@ const OwnerProfile = () => {
             <Title align='left' font='outfit' title='Profile Settings'
                 subTitle='Manage your owner profile and hotel information visible to guests and admins.' />
 
-            <motionless className="max-w-xl space-y-4 mt-8">
+            <div className="max-w-xl space-y-4 mt-8">
                 <div>
                     <label className="text-sm font-medium text-gray-700">Username</label>
                     <input value={form.username} onChange={e => setForm({ ...form, username: e.target.value })}
@@ -86,11 +86,11 @@ const OwnerProfile = () => {
                     <input value={form.hotel.address} onChange={e => setForm({ ...form, hotel: { ...form.hotel, address: e.target.value } })}
                         className="mt-1 w-full border rounded-lg px-4 py-2.5 outline-none focus:border-blue-500" />
                 </div>
-                <motionless>
+                <div>
                     <label className="text-sm font-medium text-gray-700">Contact</label>
                     <input value={form.hotel.contact} onChange={e => setForm({ ...form, hotel: { ...form.hotel, contact: e.target.value } })}
                         className="mt-1 w-full border rounded-lg px-4 py-2.5 outline-none focus:border-blue-500" />
-                </motionless>
+                </div>
                 <div>
                     <label className="text-sm font-medium text-gray-700">Description</label>
                     <textarea value={form.hotel.description} onChange={e => setForm({ ...form, hotel: { ...form.hotel, description: e.target.value } })}
@@ -101,7 +101,7 @@ const OwnerProfile = () => {
                     className="bg-primary text-white px-8 py-2.5 rounded-lg font-medium disabled:opacity-60">
                     {saving ? 'Saving...' : 'Save changes'}
                 </button>
-            </motionless>
+            </div>
         </form>
     )
 }

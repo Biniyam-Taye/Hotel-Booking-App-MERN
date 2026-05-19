@@ -30,6 +30,10 @@ const AuthGuard = ({ children }) => {
         return <Navigate to="/admin" replace />
     }
 
+    if (user && isOwner && isPendingPath) {
+        return <Navigate to="/owner" replace />
+    }
+
     if (user && isPendingOwner) {
         if (!isPendingPath && !isAuthPage) {
             return <Navigate to="/owner/pending" replace />

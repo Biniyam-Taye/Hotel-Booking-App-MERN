@@ -39,4 +39,18 @@ const ensureAdmin = async () => {
     console.log("Admin account created:", email);
 };
 
+export const migrateLegacyOwners = async () => {
+    const Hotel = (await import("../models/Hotel.js")).default;
+    const User = (await import("../models/user.js")).default;
+
+    await User.updateMany(
+        { role: "hotelOwner", ownerStatus: "none" },
+        { $set: { ownerStatus: "approved" } }
+    );
+    await Hotel.updateMany(
+        { status: { $exists: false } },
+        { $set: { status: "approved" } }
+    );
+};
+
 export default ensureAdmin;

@@ -39,7 +39,9 @@ export const createRoom = async (req, res) => {
 
 export const getRooms = async (req, res) => {
     try {
-        const approvedHotels = await Hotel.find({ status: "approved" }).select("_id");
+        const approvedHotels = await Hotel.find({
+            $or: [{ status: "approved" }, { status: { $exists: false } }],
+        }).select("_id");
         const approvedIds = approvedHotels.map((h) => h._id.toString());
 
         const rooms = await Room.find({

@@ -13,11 +13,11 @@ import bookingRouter from "./routes/bookingRoutes.js"
 import adminRouter from "./routes/adminRoutes.js"
 import ownerRouter from "./routes/ownerRoutes.js"
 import { stripeWebhooks } from "./controllers/stripeWebhooks.js"
-import ensureAdmin from "./utils/ensureAdmin.js"
+import ensureAdmin, { migrateLegacyOwners } from "./utils/ensureAdmin.js"
 
 connectDB()
 connectCloudinary()
-ensureAdmin()
+ensureAdmin().then(() => migrateLegacyOwners())
 
 const app = express()
 app.use(cors())

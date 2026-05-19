@@ -15,19 +15,26 @@ import AddRoom from './pages/hotelOwner/AddRoom'
 import ListRoom from './pages/hotelOwner/ListRoom'
 import Login from './pages/Login'
 import Signup from './pages/Signup'
+import PendingApproval from './pages/hotelOwner/PendingApproval'
+import OwnerProfile from './pages/hotelOwner/OwnerProfile'
+import AdminDashboard from './pages/admin/AdminDashboard'
 import { Toaster } from 'react-hot-toast'
 import Loader from './components/Loader'
 import AuthGuard from './components/AuthGuard'
 
 const App = () => {
-  const isOwnerPath = useLocation().pathname.includes("owner");
-  const isAuthPage = ['/login', '/signup'].includes(useLocation().pathname);
+  const path = useLocation().pathname;
+  const isOwnerPath = path.startsWith("/owner") && path !== "/owner/pending";
+  const isAdminPath = path.startsWith("/admin");
+  const isPendingPath = path === "/owner/pending";
+  const isAuthPage = ['/login', '/signup'].includes(path);
+  const hidePublicChrome = isOwnerPath || isAuthPage || isAdminPath || isPendingPath;
 
   return (
     <AuthGuard>
       <div>
         <Toaster />
-        {!isOwnerPath && !isAuthPage && <Navbar />}
+        {!hidePublicChrome && <Navbar />}
 
         <div className='min-h-[70vh]'>
           <Routes>
@@ -41,16 +48,19 @@ const App = () => {
             <Route path='/login' element={<Login />} />
             <Route path='/signup' element={<Signup />} />
             <Route path='/loader/:nextUrl' element={<Loader />} />
+            <Route path='/owner/pending' element={<PendingApproval />} />
+            <Route path='/admin' element={<AdminDashboard />} />
 
             <Route path='/owner' element={<LayOut />}>
               <Route index element={<Dashboard />} />
               <Route path='add-room' element={<AddRoom />} />
               <Route path='list-room' element={<ListRoom />} />
+              <Route path='profile' element={<OwnerProfile />} />
             </Route>
           </Routes>
         </div>
 
-        {!isOwnerPath && !isAuthPage && <Footer />}
+        {!hidePublicChrome && <Footer />}
       </div>
     </AuthGuard>
   )

@@ -17,7 +17,10 @@ const Login = () => {
         try {
             const user = await login(email, password)
             toast.success('Welcome back!')
-            navigate(user.role === 'hotelOwner' ? '/owner' : '/')
+            if (user.isAdmin) navigate('/admin')
+            else if (user.role === 'hotelOwner' && user.ownerStatus === 'pending') navigate('/owner/pending')
+            else if (user.isOwner) navigate('/owner')
+            else navigate('/')
         } catch (error) {
             toast.error(error.response?.data?.message || error.message)
         } finally {
