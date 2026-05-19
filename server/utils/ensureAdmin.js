@@ -11,13 +11,28 @@ const ensureAdmin = async () => {
         return;
     }
 
-    const existing = await User.findOne({ email: email.toLowerCase() });
+    const normalizedEmail = email.toLowerCase();
+    const existing = await User.findOne({ email: normalizedEmail }).select("+password");
+
     if (existing) {
+        let changed = false;
+
         if (existing.role !== "admin") {
             existing.role = "admin";
             existing.ownerStatus = "none";
+            changed = true;
+        }
+
+        // Legacy Clerk accounts have no password — set from ADMIN_PASSWORD
+        if (!existing.password) {
+            existing.password = await bcrypt.hash(password, 10);
+            changed = true;
+            console.log("Admin password set for existing account:", normalizedEmail);
+        }
+
+        if (changed) {
             await existing.save();
-            console.log("Existing user promoted to admin");
+            console.log("Admin account updated:", normalizedEmail);
         }
         return;
     }
@@ -27,7 +42,7 @@ const ensureAdmin = async () => {
 
     await User.create({
         _id: userId,
-        email: email.toLowerCase(),
+        email: normalizedEmail,
         username: "Admin",
         password: hashedPassword,
         image: `https://api.dicebear.com/7.x/avataaars/svg?seed=admin`,
@@ -36,7 +51,7 @@ const ensureAdmin = async () => {
         recentSearchedCities: [],
     });
 
-    console.log("Admin account created:", email);
+    console.log("Admin account created:", normalizedEmail);
 };
 
 export const migrateLegacyOwners = async () => {

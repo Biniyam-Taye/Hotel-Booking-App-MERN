@@ -94,6 +94,13 @@ export const login = async (req, res) => {
             return res.status(401).json({ success: false, message: "Invalid email or password" });
         }
 
+        if (!user.password) {
+            return res.status(401).json({
+                success: false,
+                message: "This account has no password set. Restart the server after setting ADMIN_PASSWORD in .env, or sign up again.",
+            });
+        }
+
         const match = await bcrypt.compare(password, user.password);
         if (!match) {
             return res.status(401).json({ success: false, message: "Invalid email or password" });
