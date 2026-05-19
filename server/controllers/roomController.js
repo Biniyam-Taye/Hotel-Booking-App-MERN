@@ -39,7 +39,13 @@ export const createRoom = async (req, res) => {
 
 export const getRooms = async (req, res) => {
     try {
-        const rooms = await Room.find({ isAvailable: true }).populate({
+        const approvedHotels = await Hotel.find({ status: "approved" }).select("_id");
+        const approvedIds = approvedHotels.map((h) => h._id.toString());
+
+        const rooms = await Room.find({
+            isAvailable: true,
+            hotel: { $in: approvedIds },
+        }).populate({
             path: 'hotel',
             populate: {
                 path: 'owner',

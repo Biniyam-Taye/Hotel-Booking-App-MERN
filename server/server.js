@@ -10,10 +10,14 @@ import hotelRouter from "./routes/hotelRoutes.js"
 import connectCloudinary from "./configs/cloudinary.js"
 import roomRouter from "./routes/roomRoute.js"
 import bookingRouter from "./routes/bookingRoutes.js"
+import adminRouter from "./routes/adminRoutes.js"
+import ownerRouter from "./routes/ownerRoutes.js"
 import { stripeWebhooks } from "./controllers/stripeWebhooks.js"
+import ensureAdmin from "./utils/ensureAdmin.js"
 
 connectDB()
 connectCloudinary()
+ensureAdmin()
 
 const app = express()
 app.use(cors())
@@ -41,6 +45,8 @@ app.use("/api/user", userRouter)
 app.use("/api/hotels", hotelRouter)
 app.use("/api/rooms", roomRouter)
 app.use("/api/bookings", bookingRouter)
+app.use("/api/admin", adminRouter)
+app.use("/api/owner", ownerRouter)
 
 const PORT = process.env.PORT || 3000
 app.listen(PORT, () => console.log(`server is running on port ${PORT}`))

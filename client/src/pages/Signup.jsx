@@ -11,7 +11,9 @@ const Signup = () => {
     const [username, setUsername] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
-    const [hotel, setHotel] = useState({ name: '', address: '', contact: '', city: '' })
+    const [phone, setPhone] = useState('')
+    const [bio, setBio] = useState('')
+    const [hotel, setHotel] = useState({ name: '', address: '', contact: '', city: '', description: '' })
     const [loading, setLoading] = useState(false)
 
     const onSubmit = async (e) => {
@@ -23,13 +25,19 @@ const Signup = () => {
                 email,
                 password,
                 role: accountType === 'owner' ? 'hotelOwner' : 'user',
+                phone: accountType === 'owner' ? phone : undefined,
+                bio: accountType === 'owner' ? bio : undefined,
             }
             if (accountType === 'owner') {
                 payload.hotel = hotel
             }
-            const user = await signup(payload)
-            toast.success(accountType === 'owner' ? 'Hotel owner account created!' : 'Account created!')
-            navigate(user.role === 'hotelOwner' ? '/owner' : '/')
+            const result = await signup(payload)
+            toast.success(result.message)
+            if (result.user.role === 'hotelOwner') {
+                navigate('/owner/pending')
+            } else {
+                navigate('/')
+            }
         } catch (error) {
             toast.error(error.response?.data?.message || error.message)
         } finally {
@@ -72,98 +80,80 @@ const Signup = () => {
                 <form onSubmit={onSubmit} className="space-y-4">
                     <div>
                         <label className="text-sm font-medium text-gray-700">Username</label>
-                        <input
-                            type="text"
-                            value={username}
-                            onChange={(e) => setUsername(e.target.value)}
-                            className="mt-1 w-full rounded-xl border border-gray-200 px-4 py-3 focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 outline-none"
-                            required
-                        />
+                        <input type="text" value={username} onChange={(e) => setUsername(e.target.value)}
+                            className="mt-1 w-full rounded-xl border border-gray-200 px-4 py-3 focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 outline-none" required />
                     </div>
                     <div>
                         <label className="text-sm font-medium text-gray-700">Email</label>
-                        <input
-                            type="email"
-                            value={email}
-                            onChange={(e) => setEmail(e.target.value)}
-                            className="mt-1 w-full rounded-xl border border-gray-200 px-4 py-3 focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 outline-none"
-                            required
-                        />
+                        <input type="email" value={email} onChange={(e) => setEmail(e.target.value)}
+                            className="mt-1 w-full rounded-xl border border-gray-200 px-4 py-3 focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 outline-none" required />
                     </div>
                     <div>
                         <label className="text-sm font-medium text-gray-700">Password</label>
-                        <input
-                            type="password"
-                            value={password}
-                            onChange={(e) => setPassword(e.target.value)}
+                        <input type="password" value={password} onChange={(e) => setPassword(e.target.value)}
                             className="mt-1 w-full rounded-xl border border-gray-200 px-4 py-3 focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 outline-none"
-                            minLength={6}
-                            required
-                        />
+                            minLength={6} required />
                     </div>
 
                     {accountType === 'owner' && (
                         <div className="space-y-4 pt-2 border-t border-gray-100">
-                            <p className="text-sm font-semibold text-gray-800">Hotel details</p>
-                            <div>
-                                <label className="text-sm font-medium text-gray-700">Hotel name</label>
-                                <input
-                                    type="text"
-                                    value={hotel.name}
-                                    onChange={(e) => setHotel({ ...hotel, name: e.target.value })}
-                                    className="mt-1 w-full rounded-xl border border-gray-200 px-4 py-3 outline-none focus:border-blue-500"
-                                    required
-                                />
-                            </div>
+                            <p className="text-sm font-semibold text-gray-800">Owner profile</p>
+                            <p className="text-xs text-amber-700 bg-amber-50 border border-amber-200 rounded-lg px-3 py-2">
+                                Your application will be reviewed by an admin before you can list rooms.
+                            </p>
                             <div>
                                 <label className="text-sm font-medium text-gray-700">Phone</label>
-                                <input
-                                    type="text"
-                                    value={hotel.contact}
-                                    onChange={(e) => setHotel({ ...hotel, contact: e.target.value })}
-                                    className="mt-1 w-full rounded-xl border border-gray-200 px-4 py-3 outline-none focus:border-blue-500"
-                                    required
-                                />
+                                <input type="text" value={phone} onChange={(e) => setPhone(e.target.value)}
+                                    className="mt-1 w-full rounded-xl border border-gray-200 px-4 py-3 outline-none focus:border-blue-500" required />
+                            </div>
+                            <div>
+                                <label className="text-sm font-medium text-gray-700">About you / hospitality experience</label>
+                                <textarea value={bio} onChange={(e) => setBio(e.target.value)}
+                                    placeholder="Tell us about your experience hosting guests..."
+                                    className="mt-1 w-full rounded-xl border border-gray-200 px-4 py-3 outline-none focus:border-blue-500 h-20 resize-none" />
+                            </div>
+
+                            <p className="text-sm font-semibold text-gray-800 pt-2">Hotel details</p>
+                            <div>
+                                <label className="text-sm font-medium text-gray-700">Hotel name</label>
+                                <input type="text" value={hotel.name} onChange={(e) => setHotel({ ...hotel, name: e.target.value })}
+                                    className="mt-1 w-full rounded-xl border border-gray-200 px-4 py-3 outline-none focus:border-blue-500" required />
+                            </div>
+                            <div>
+                                <label className="text-sm font-medium text-gray-700">Hotel contact phone</label>
+                                <input type="text" value={hotel.contact} onChange={(e) => setHotel({ ...hotel, contact: e.target.value })}
+                                    className="mt-1 w-full rounded-xl border border-gray-200 px-4 py-3 outline-none focus:border-blue-500" required />
                             </div>
                             <div>
                                 <label className="text-sm font-medium text-gray-700">Address</label>
-                                <input
-                                    type="text"
-                                    value={hotel.address}
-                                    onChange={(e) => setHotel({ ...hotel, address: e.target.value })}
-                                    className="mt-1 w-full rounded-xl border border-gray-200 px-4 py-3 outline-none focus:border-blue-500"
-                                    required
-                                />
+                                <input type="text" value={hotel.address} onChange={(e) => setHotel({ ...hotel, address: e.target.value })}
+                                    className="mt-1 w-full rounded-xl border border-gray-200 px-4 py-3 outline-none focus:border-blue-500" required />
                             </div>
                             <div>
                                 <label className="text-sm font-medium text-gray-700">City</label>
-                                <select
-                                    value={hotel.city}
-                                    onChange={(e) => setHotel({ ...hotel, city: e.target.value })}
-                                    className="mt-1 w-full rounded-xl border border-gray-200 px-4 py-3 outline-none focus:border-blue-500"
-                                    required
-                                >
+                                <select value={hotel.city} onChange={(e) => setHotel({ ...hotel, city: e.target.value })}
+                                    className="mt-1 w-full rounded-xl border border-gray-200 px-4 py-3 outline-none focus:border-blue-500" required>
                                     <option value="">Select city</option>
-                                    {cities.map((c) => (
-                                        <option key={c} value={c}>{c}</option>
-                                    ))}
+                                    {cities.map((c) => <option key={c} value={c}>{c}</option>)}
                                 </select>
+                            </div>
+                            <div>
+                                <label className="text-sm font-medium text-gray-700">Hotel description</label>
+                                <textarea value={hotel.description} onChange={(e) => setHotel({ ...hotel, description: e.target.value })}
+                                    placeholder="Describe your property, amenities, and what guests can expect..."
+                                    className="mt-1 w-full rounded-xl border border-gray-200 px-4 py-3 outline-none focus:border-blue-500 h-24 resize-none" />
                             </div>
                         </div>
                     )}
 
-                    <button
-                        type="submit"
-                        disabled={loading}
-                        className="w-full py-3.5 rounded-xl bg-gradient-to-r from-[#49B9FF] to-blue-600 text-white font-semibold shadow-lg mt-2 disabled:opacity-60"
-                    >
-                        {loading ? 'Creating account...' : accountType === 'owner' ? 'Create owner account' : 'Create account'}
+                    <button type="submit" disabled={loading}
+                        className="w-full py-3.5 rounded-xl bg-gradient-to-r from-[#49B9FF] to-blue-600 text-white font-semibold shadow-lg mt-2 disabled:opacity-60">
+                        {loading ? 'Submitting...' : accountType === 'owner' ? 'Submit for approval' : 'Create account'}
                     </button>
                 </form>
 
                 <p className="text-center text-sm text-gray-500 mt-6">
-                    Already have an account?{' '}
-                    <Link to="/login" className="text-blue-600 font-semibold hover:underline">Sign in</Link>
+                    Already have an account? <Link to="/login" className="text-blue-600 font-semibold hover:underline">Sign in</Link>
                 </p>
             </div>
         </div>

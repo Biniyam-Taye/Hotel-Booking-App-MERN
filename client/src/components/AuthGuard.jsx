@@ -2,7 +2,7 @@ import { Navigate, useLocation } from 'react-router-dom'
 import { useAppContext } from '../context/AppContext'
 
 const AuthGuard = ({ children }) => {
-    const { user, isOwner, authLoading } = useAppContext()
+    const { user, isOwner, isAdmin, ownerStatus, authLoading } = useAppContext()
     const location = useLocation()
 
     if (authLoading) {
@@ -14,22 +14,42 @@ const AuthGuard = ({ children }) => {
     }
 
     const isAuthPage = ['/login', '/signup'].includes(location.pathname)
+    const isAdminPath = location.pathname.startsWith('/admin')
     const isOwnerPath = location.pathname.startsWith('/owner')
+    const isPendingPath = location.pathname === '/owner/pending'
+    const isPendingOwner = user?.role === 'hotelOwner' && ownerStatus === 'pending'
 
     if (user && isAuthPage) {
-        return <Navigate to={isOwner ? '/owner' : '/'} replace />
-    }
-
-    if (user && isOwner && !isOwnerPath && !isAuthPage) {
-        return <Navigate to="/owner" replace />
-    }
-
-    if (user && !isOwner && isOwnerPath) {
+        if (isAdmin) return <Navigate to="/admin" replace />
+        if (isPendingOwner) return <Navigate to="/owner/pending" replace />
+        if (isOwner) return <Navigate to="/owner" replace />
         return <Navigate to="/" replace />
     }
 
-    if (!user && isOwnerPath) {
+    if (user && isAdmin && !isAdminPath && !isAuthPage) {
+        return <Navigate to="/admin" replace />
+    }
+
+    if (user && isPendingOwner) {
+        if (!isPendingPath && !isAuthPage) {
+            return <Navigate to="/owner/pending" replace />
+        }
+    }
+
+    if (user && isOwner && !isOwnerPath && !isAuthPage && !isAdminPath) {
+        return <Navigate to="/owner" replace />
+    }
+
+    if (user && !isOwner && !isPendingOwner && !isAdmin && isOwnerPath) {
+        return <Navigate to="/" replace />
+    }
+
+    if (!user && (isOwnerPath || isAdminPath)) {
         return <Navigate to="/login" replace />
+    }
+
+    if (user && !isAdmin && isAdminPath) {
+        return <Navigate to="/" replace />
     }
 
     return children

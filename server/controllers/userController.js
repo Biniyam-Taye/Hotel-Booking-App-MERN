@@ -1,7 +1,6 @@
-// userController.js
 import User from "../models/user.js";
+import { isApprovedOwner } from "../utils/userHelpers.js";
 
-// GET /api/user/
 export const getUserData = async (req, res) => {
     try {
         if (!req.user) {
@@ -9,21 +8,23 @@ export const getUserData = async (req, res) => {
         }
 
         const role = req.user.role;
-        const recentSearchedCities = req.user.recentSearchedCities;
+        const recentSearchedCities = req.user.recentSearchedCities || [];
+        const isOwner = isApprovedOwner(req.user);
+        const isAdmin = role === "admin";
 
-        // FIX CHECK: Ensures 'isOwner' is TRUE only if the database role is exactly 'hotelOwner'
-        // This MUST match the role saved in hotelController.js (now corrected to lowercase 'hotelOwner').
-        const isOwner = role === 'hotelOwner';
-
-        // Return the definitive owner status
         res.json({
             success: true,
             role,
             recentSearchedCities,
             isOwner,
+            isAdmin,
+            ownerStatus: req.user.ownerStatus || "none",
+            rejectionReason: req.user.rejectionReason || "",
             username: req.user.username,
             email: req.user.email,
             image: req.user.image,
+            phone: req.user.phone || "",
+            bio: req.user.bio || "",
         });
     } catch (error) {
         console.error("getUserData Error:", error);
@@ -31,8 +32,6 @@ export const getUserData = async (req, res) => {
     }
 }
 
-
-// Store User Recent Searched Cities (Remaining unchanged)
 export const storeRecentSearchedCities = async (req, res) => {
     try {
         const { recentSearchedCity } = req.body;
@@ -42,7 +41,8 @@ export const storeRecentSearchedCities = async (req, res) => {
             return res.status(404).json({ success: false, message: "User not found in DB." });
         }
 
-        // Array logic
+        if (!user.recentSearchedCities) user.recentSearchedCities = [];
+
         if (user.recentSearchedCities.length < 3) {
             user.recentSearchedCities.push(recentSearchedCity)
         } else {

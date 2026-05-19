@@ -6,7 +6,15 @@ const userSchema = new mongoose.Schema({
     password: { type: String, required: true, select: false },
     username: { type: String, required: true },
     image: { type: String, required: true },
-    role: { type: String, enum: ["user", "hotelOwner"], default: "user" },
+    phone: { type: String, default: "" },
+    bio: { type: String, default: "" },
+    role: { type: String, enum: ["user", "hotelOwner", "admin"], default: "user" },
+    ownerStatus: {
+        type: String,
+        enum: ["none", "pending", "approved", "rejected"],
+        default: "none",
+    },
+    rejectionReason: { type: String, default: "" },
     recentSearchedCities: [{ type: String }],
 }, { timestamps: true });
 

@@ -14,6 +14,8 @@ export const AppProvider = ({ children }) => {
     const [user, setUser] = useState(null)
     const [token, setToken] = useState(() => localStorage.getItem('token'))
     const [isOwner, setIsOwner] = useState(false)
+    const [isAdmin, setIsAdmin] = useState(false)
+    const [ownerStatus, setOwnerStatus] = useState('none')
     const [authLoading, setAuthLoading] = useState(true)
     const [searchedCities, setSearchedCities] = useState([]);
     const [rooms, setRooms] = useState([]);
@@ -23,32 +25,48 @@ export const AppProvider = ({ children }) => {
         localStorage.setItem('user', JSON.stringify(userData));
         setToken(authToken);
         setUser(userData);
-        setIsOwner(userData.role === 'hotelOwner');
+        setIsOwner(!!userData.isOwner);
+        setIsAdmin(!!userData.isAdmin);
+        setOwnerStatus(userData.ownerStatus || 'none');
         axios.defaults.headers.common['Authorization'] = `Bearer ${authToken}`;
     }
 
     const clearAuth = () => {
         localStorage.removeItem('token');
+        localStorage.removeItem('user');
         setToken(null);
         setUser(null);
         setIsOwner(false);
+        setIsAdmin(false);
+        setOwnerStatus('none');
         delete axios.defaults.headers.common['Authorization'];
+    }
+
+    const syncUserState = (data) => {
+        setIsOwner(!!data.isOwner);
+        setIsAdmin(!!data.isAdmin);
+        setOwnerStatus(data.ownerStatus || 'none');
+        setSearchedCities(data.recentSearchedCities || []);
+        setUser(prev => ({
+            ...prev,
+            role: data.role,
+            username: data.username,
+            email: data.email,
+            image: data.image,
+            phone: data.phone,
+            bio: data.bio,
+            isOwner: data.isOwner,
+            isAdmin: data.isAdmin,
+            ownerStatus: data.ownerStatus,
+            rejectionReason: data.rejectionReason,
+        }));
     }
 
     const fetchUser = async () => {
         try {
             const { data } = await axios.get('/api/user/');
             if (data.success) {
-                setIsOwner(data.isOwner);
-                setSearchedCities(data.recentSearchedCities || []);
-                setUser(prev => ({
-                    ...prev,
-                    role: data.role,
-                    username: data.username,
-                    email: data.email,
-                    image: data.image,
-                    isOwner: data.isOwner,
-                }));
+                syncUserState(data);
             }
         } catch {
             clearAuth();
@@ -67,8 +85,8 @@ export const AppProvider = ({ children }) => {
     const signup = async (payload) => {
         const { data } = await axios.post('/api/auth/signup', payload);
         if (!data.success) throw new Error(data.message);
-        applyAuth(data.token, data.user);
-        return data.user;
+        if (data.token) applyAuth(data.token, data.user);
+        return { user: data.user, message: data.message };
     }
 
     const logout = () => {
@@ -99,7 +117,9 @@ export const AppProvider = ({ children }) => {
                 try {
                     const parsed = JSON.parse(stored);
                     setUser(parsed);
-                    setIsOwner(parsed.role === 'hotelOwner');
+                    setIsOwner(!!parsed.isOwner);
+                    setIsAdmin(!!parsed.isAdmin);
+                    setOwnerStatus(parsed.ownerStatus || 'none');
                 } catch { /* ignore */ }
             }
             fetchUser();
@@ -127,9 +147,12 @@ export const AppProvider = ({ children }) => {
         token,
         authLoading,
         isOwner,
+        isAdmin,
+        ownerStatus,
         login,
         signup,
         logout,
+        fetchUser,
         getToken,
         axios,
         searchedCities,

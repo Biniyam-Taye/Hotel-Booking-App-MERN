@@ -3,24 +3,16 @@ import jwt from "jsonwebtoken";
 import mongoose from "mongoose";
 import User from "../models/user.js";
 import Hotel from "../models/Hotel.js";
+import { formatUser } from "../utils/userHelpers.js";
 
 const signToken = (userId) =>
     jwt.sign({ userId }, process.env.JWT_SECRET || "hotel-booking-dev-secret", {
         expiresIn: "7d",
     });
 
-const formatUser = (user) => ({
-    _id: user._id,
-    email: user.email,
-    username: user.username,
-    image: user.image,
-    role: user.role,
-    isOwner: user.role === "hotelOwner",
-});
-
 export const signup = async (req, res) => {
     try {
-        const { email, password, username, role, hotel } = req.body;
+        const { email, password, username, role, phone, bio, hotel } = req.body;
 
         if (!email || !password || !username || !role) {
             return res.status(400).json({ success: false, message: "All fields are required" });
@@ -39,6 +31,9 @@ export const signup = async (req, res) => {
             if (!hotel?.name || !hotel?.address || !hotel?.contact || !hotel?.city) {
                 return res.status(400).json({ success: false, message: "Hotel details are required for owners" });
             }
+            if (!phone) {
+                return res.status(400).json({ success: false, message: "Phone number is required for hotel owners" });
+            }
         }
 
         const userId = new mongoose.Types.ObjectId().toString();
@@ -49,8 +44,11 @@ export const signup = async (req, res) => {
             email: email.toLowerCase(),
             username,
             password: hashedPassword,
+            phone: phone || "",
+            bio: bio || "",
             image: `https://api.dicebear.com/7.x/avataaars/svg?seed=${encodeURIComponent(username)}`,
             role,
+            ownerStatus: role === "hotelOwner" ? "pending" : "none",
             recentSearchedCities: [],
         });
 
@@ -60,17 +58,22 @@ export const signup = async (req, res) => {
                 address: hotel.address,
                 contact: hotel.contact,
                 city: hotel.city,
+                description: hotel.description || "",
                 owner: userId,
+                status: "pending",
             });
         }
 
         const token = signToken(userId);
+        const formatted = formatUser(user);
 
         res.json({
             success: true,
-            message: role === "hotelOwner" ? "Hotel owner account created" : "Account created successfully",
+            message: role === "hotelOwner"
+                ? "Application submitted. An admin will review your profile shortly."
+                : "Account created successfully",
             token,
-            user: formatUser(user),
+            user: formatted,
         });
     } catch (error) {
         console.error("Signup error:", error);
@@ -94,6 +97,13 @@ export const login = async (req, res) => {
         const match = await bcrypt.compare(password, user.password);
         if (!match) {
             return res.status(401).json({ success: false, message: "Invalid email or password" });
+        }
+
+        if (user.role === "hotelOwner" && user.ownerStatus === "rejected") {
+            return res.status(403).json({
+                success: false,
+                message: user.rejectionReason || "Your hotel owner application was rejected. Contact support for help.",
+            });
         }
 
         const token = signToken(user._id);
