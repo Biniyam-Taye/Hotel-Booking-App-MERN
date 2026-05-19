@@ -1,7 +1,3 @@
-import exclusiveOfferCardImg1 from '../assets/exclusiveOfferCardImg1.png'
-import exclusiveOfferCardImg2 from '../assets/exclusiveOfferCardImg2.png'
-import exclusiveOfferCardImg3 from '../assets/exclusiveOfferCardImg3.png'
-
 export const offerTheme = {
     badge: 'from-orange-400 to-pink-500',
     accentLine: 'from-orange-400 to-pink-500',
@@ -20,12 +16,12 @@ export const exclusiveOffers = [
         priceOff: 25,
         expiryDate: 'Aug 31',
         expiryFull: 'August 31, 2026',
-        image: exclusiveOfferCardImg1,
+        image: 'https://images.unsplash.com/photo-1505142468610-359e7d316be0?w=800&q=80',
         detailGallery: [
-            'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=80',
-            'https://images.unsplash.com/photo-1430547347701-753a123afad7?auto=format&fit=crop&w=1200&q=80',
-            'https://images.unsplash.com/photo-1519046904884-53103b34f206?auto=format&fit=crop&w=1200&q=80',
-            'https://images.unsplash.com/photo-1571893314567-32302aae1992?auto=format&fit=crop&w=1200&q=80',
+            'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1200&q=80',
+            'https://images.unsplash.com/photo-1571003123894-1f0594d2b5d9?w=1200&q=80',
+            'https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=1200&q=80',
+            'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1200&q=80',
         ],
         originalFrom: 320,
         discountedFrom: 240,
@@ -72,12 +68,12 @@ export const exclusiveOffers = [
         priceOff: 20,
         expiryDate: 'Sep 20',
         expiryFull: 'September 20, 2026',
-        image: exclusiveOfferCardImg2,
+        image: 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800&q=80',
         detailGallery: [
-            'https://images.unsplash.com/photo-1520250497591-112f2f40a3b4?auto=format&fit=crop&w=1200&q=80',
-            'https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?auto=format&fit=crop&w=1200&q=80',
-            'https://images.unsplash.com/photo-1544161515-4ab6ce6db874?auto=format&fit=crop&w=1200&q=80',
-            'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=1200&q=80',
+            'https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?w=1200&q=80',
+            'https://images.unsplash.com/photo-1544161515-4ab6ce6db874?w=1200&q=80',
+            'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1200&q=80',
+            'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1200&q=80',
         ],
         originalFrom: 450,
         discountedFrom: 360,
@@ -124,12 +120,12 @@ export const exclusiveOffers = [
         priceOff: 30,
         expiryDate: 'Sep 25',
         expiryFull: 'September 25, 2026',
-        image: exclusiveOfferCardImg3,
+        image: 'https://images.unsplash.com/photo-1566073771259-6a8506099945?w=800&q=80',
         detailGallery: [
-            'https://images.unsplash.com/photo-1618773928121-c32242e63f39?auto=format&fit=crop&w=1200&q=80',
-            'https://images.unsplash.com/photo-1564501049412-61c079a174c8?auto=format&fit=crop&w=1200&q=80',
-            'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=1200&q=80',
-            'https://images.unsplash.com/photo-1631049307264-da0ec9d70304?auto=format&fit=crop&w=1200&q=80',
+            'https://images.unsplash.com/photo-1618773928121-c32242e63f39?w=1200&q=80',
+            'https://images.unsplash.com/photo-1611892440504-42a792e24d32?w=1200&q=80',
+            'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=1200&q=80',
+            'https://images.unsplash.com/photo-1590490360182-c33d57733427?w=1200&q=80',
         ],
         originalFrom: 580,
         discountedFrom: 406,
