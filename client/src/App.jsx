@@ -13,6 +13,8 @@ import LayOut from './pages/hotelOwner/LayOut'
 import Dashboard from './pages/hotelOwner/Dashboard'
 import AddRoom from './pages/hotelOwner/AddRoom'
 import ListRoom from './pages/hotelOwner/ListRoom'
+import AddHospitality from './pages/hotelOwner/AddHospitality'
+import ListHospitality from './pages/hotelOwner/ListHospitality'
 import Login from './pages/Login'
 import Signup from './pages/Signup'
 import PendingApproval from './pages/hotelOwner/PendingApproval'
@@ -55,6 +57,8 @@ const App = () => {
               <Route index element={<Dashboard />} />
               <Route path='add-room' element={<AddRoom />} />
               <Route path='list-room' element={<ListRoom />} />
+              <Route path='add-hospitality' element={<AddHospitality />} />
+              <Route path='list-hospitality' element={<ListHospitality />} />
               <Route path='profile' element={<OwnerProfile />} />
             </Route>
           </Routes>

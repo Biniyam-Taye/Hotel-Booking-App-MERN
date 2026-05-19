@@ -19,6 +19,7 @@ export const AppProvider = ({ children }) => {
     const [authLoading, setAuthLoading] = useState(true)
     const [searchedCities, setSearchedCities] = useState([]);
     const [rooms, setRooms] = useState([]);
+    const [hospitalities, setHospitalities] = useState([]);
 
     const applyAuth = (authToken, userData) => {
         localStorage.setItem('token', authToken);
@@ -109,6 +110,17 @@ export const AppProvider = ({ children }) => {
         }
     }
 
+    const fetchHospitalities = async () => {
+        try {
+            const { data } = await axios.get('/api/hospitalities')
+            if (data.success) {
+                setHospitalities(data.hospitalities)
+            }
+        } catch (error) {
+            console.error('Failed to load hospitalities', error.message)
+        }
+    }
+
     useEffect(() => {
         if (token) {
             axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
@@ -138,6 +150,7 @@ export const AppProvider = ({ children }) => {
 
     useEffect(() => {
         fetchRooms();
+        fetchHospitalities();
     }, [])
 
     const value = {
@@ -159,6 +172,9 @@ export const AppProvider = ({ children }) => {
         setSearchedCities,
         rooms,
         setRooms,
+        hospitalities,
+        setHospitalities,
+        fetchHospitalities,
     }
 
     return (

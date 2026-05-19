@@ -12,6 +12,7 @@ import roomRouter from "./routes/roomRoute.js"
 import bookingRouter from "./routes/bookingRoutes.js"
 import adminRouter from "./routes/adminRoutes.js"
 import ownerRouter from "./routes/ownerRoutes.js"
+import hospitalityRouter from "./routes/hospitalityRoutes.js"
 import { stripeWebhooks } from "./controllers/stripeWebhooks.js"
 import ensureAdmin, { migrateLegacyOwners } from "./utils/ensureAdmin.js"
 
@@ -47,6 +48,7 @@ app.use("/api/rooms", roomRouter)
 app.use("/api/bookings", bookingRouter)
 app.use("/api/admin", adminRouter)
 app.use("/api/owner", ownerRouter)
+app.use("/api/hospitalities", hospitalityRouter)
 
 const PORT = process.env.PORT || 3000
 app.listen(PORT, () => console.log(`server is running on port ${PORT}`))

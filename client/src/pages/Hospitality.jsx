@@ -1,8 +1,9 @@
 import React, { useState, useMemo } from 'react'
 import { assets } from '../assets/assets'
-import { useNavigate, useSearchParams } from 'react-router-dom'
+import { useSearchParams } from 'react-router-dom'
 import StarRating from '../components/StarRating'
 import toast from 'react-hot-toast'
+import { useAppContext } from '../context/AppContext'
 
 const CheckBox = ({ label, selected = false, onChange = () => { } }) => {
     return (
@@ -28,60 +29,9 @@ const RadioButton = ({ label, selected = false, onChange = () => { } }) => {
     )
 }
 
-const dummyDining = [
-    {
-        _id: 'd1',
-        name: 'Classic Cheeseburger',
-        category: 'Fast Food',
-        price: 350,
-        city: 'Hotel Restaurant',
-        address: 'Main Dining Hall',
-        rating: 4.9,
-        image: 'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?q=80&w=1000',
-        features: ['Beef Patty', 'Cheddar', 'Lettuce', 'Fries Included'],
-        createdAt: '2023-01-01'
-    },
-    {
-        _id: 'd2',
-        name: 'Spaghetti Carbonara',
-        category: 'Pasta',
-        price: 450,
-        city: 'Italian Section',
-        address: 'Main Dining Hall',
-        rating: 4.8,
-        image: 'https://images.unsplash.com/photo-1612874742237-6526221588e3?q=80&w=1000',
-        features: ['Pancetta', 'Parmesan', 'Egg Yolk', 'Black Pepper'],
-        createdAt: '2023-02-15'
-    },
-    {
-        _id: 'd3',
-        name: 'Tropical Sunset Cocktail',
-        category: 'Drinks',
-        price: 250,
-        city: 'Rooftop Bar',
-        address: 'Level 12',
-        rating: 4.9,
-        image: 'https://images.unsplash.com/photo-1536935338788-846bb9981813?q=80&w=1000',
-        features: ['Rum', 'Mango', 'Lime', 'Mint'],
-        createdAt: '2023-03-10'
-    },
-    {
-        _id: 'd4',
-        name: 'Margherita Pizza',
-        category: 'Pizza',
-        price: 500,
-        city: 'Italian Section',
-        address: 'Main Dining Hall',
-        rating: 4.7,
-        image: 'https://images.unsplash.com/photo-1574071318508-1cdbab80d002?q=80&w=1000',
-        features: ['Wood-fired', 'Mozzarella', 'Fresh Basil', 'Tomato Sauce'],
-        createdAt: '2023-04-20'
-    }
-];
-
 const Hospitality = () => {
     const [searchParams, setSearchParams] = useSearchParams()
-    const navigate = useNavigate()
+    const { hospitalities, currency } = useAppContext()
 
     const [openFilters, setOpenFilters] = useState(false)
     const [selectedFilters, setSelectedFilters] = useState({
@@ -91,12 +41,10 @@ const Hospitality = () => {
 
     const [selectedSort, setSelectedSort] = useState('')
 
-    const categoryTypes = [
-        "Fast Food",
-        "Pasta",
-        "Pizza",
-        "Drinks",
-    ]
+    const categoryTypes = useMemo(() => {
+        const cats = [...new Set(hospitalities.map((h) => h.category).filter(Boolean))]
+        return cats.length ? cats : ["Fast Food", "Pasta", "Pizza", "Drinks"]
+    }, [hospitalities])
 
     const priceRange = [
         "100 to 300",
@@ -164,12 +112,12 @@ const Hospitality = () => {
     const filterDestination = (dining) => {
         const destination = searchParams.get('destination')
         if (!destination) return true
-        return dining.city.toLowerCase().includes(destination.toLowerCase())
+        const city = dining.hotel?.city || ''
+        return city.toLowerCase().includes(destination.toLowerCase())
     }
 
-    // Filter + sort results
     const filteredDining = useMemo(() => {
-        return dummyDining
+        return hospitalities
             .filter(
                 (dining) =>
                     matchesCategoryType(dining) &&
@@ -177,7 +125,7 @@ const Hospitality = () => {
                     filterDestination(dining)
             )
             .sort(sortDining)
-    }, [selectedFilters, selectedSort, searchParams])
+    }, [hospitalities, selectedFilters, selectedSort, searchParams])
 
     // Clear all filters
     const clearFilters = () => {
@@ -216,7 +164,10 @@ const Hospitality = () => {
 
                 {/* Cards List */}
                 <div className="flex flex-col gap-8">
-                    {filteredDining.map((dining, index) => (
+                    {filteredDining.length === 0 && (
+                        <p className="text-center text-gray-500 py-16">No hospitality listings yet. Check back soon!</p>
+                    )}
+                    {filteredDining.map((dining) => (
                         <div key={dining._id} className='group/card flex flex-col md:flex-row bg-white rounded-3xl p-4 gap-6 border border-gray-100 shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-[0_20px_40px_rgb(0,0,0,0.08)] hover:-translate-y-1 transition-all duration-500'>
                             {/* Image container */}
                             <div className="relative md:w-2/5 overflow-hidden rounded-2xl cursor-pointer">
@@ -228,25 +179,27 @@ const Hospitality = () => {
                             <div className='md:w-3/5 flex flex-col justify-between py-2 pr-4'>
                                 <div>
                                     <div className="flex justify-between items-start mb-2">
-                                        <p className='text-blue-500 font-medium text-sm tracking-wide'>{dining.city}</p>
+                                        <p className='text-blue-500 font-medium text-sm tracking-wide'>{dining.hotel?.name || dining.category}</p>
                                         <div className='flex items-center gap-1 bg-orange-50 px-3 py-1 rounded-full border border-orange-100/50'>
                                             <StarRating />
-                                            <span className="text-xs text-gray-600 font-bold ml-1">{dining.rating}</span>
+                                            <span className="text-xs text-gray-600 font-bold ml-1">4.8</span>
                                         </div>
                                     </div>
                                     
                                     <h3 className='text-2xl md:text-3xl font-playfair font-bold text-gray-900 group-hover/card:text-blue-600 cursor-pointer transition-colors duration-300 mb-2'>
-                                        {dining.name}
+                                        {dining.title}
                                     </h3>
-                                    
+                                    {dining.description && (
+                                        <p className='text-gray-500 text-sm mb-2 line-clamp-2'>{dining.description}</p>
+                                    )}
                                     <div className='flex items-center gap-2 text-gray-500 text-sm'>
                                         <img src={assets.locationIcon} alt="location" className="w-4 h-4 opacity-70" />
-                                        <span>{dining.address}</span>
+                                        <span>{dining.hotel?.address}, {dining.hotel?.city}</span>
                                     </div>
                                     
                                     {/* features */}
                                     <div className='flex flex-wrap items-center mt-5 gap-3'>
-                                        {dining.features.map((item, index) => (
+                                        {(dining.features || []).map((item, index) => (
                                             <div key={index} className='flex items-center gap-2 px-3 py-1.5 rounded-xl bg-slate-50 border border-slate-100 text-gray-600 group-hover/card:bg-blue-50 group-hover/card:border-blue-100 group-hover/card:text-blue-600 transition-colors duration-500'>
                                                 <span className='text-[11px] font-medium'>{item}</span>
                                             </div>
@@ -259,11 +212,11 @@ const Hospitality = () => {
                                     <div>
                                         <p className="text-xs text-gray-400 font-medium mb-0.5">Price</p>
                                         <p className='text-2xl font-bold text-gray-900'>
-                                            {dining.price} <span className="text-sm font-medium text-gray-500">ETB</span>
+                                            {currency}{dining.price}
                                         </p>
                                     </div>
                                     
-                                    <button onClick={() => toast.success(`Added ${dining.name} to your order!`)} className="relative group/btn overflow-hidden bg-gray-900 hover:bg-blue-600 text-white px-6 py-3 rounded-xl font-medium transition-colors duration-500 shadow-sm hover:shadow-[0_8px_20px_rgba(37,99,235,0.3)]">
+                                    <button onClick={() => toast.success(`Added ${dining.title} to your order!`)} className="relative group/btn overflow-hidden bg-gray-900 hover:bg-blue-600 text-white px-6 py-3 rounded-xl font-medium transition-colors duration-500 shadow-sm hover:shadow-[0_8px_20px_rgba(37,99,235,0.3)]">
                                         <span className="relative z-10 flex items-center gap-2">
                                             Order Now
                                             <svg className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>

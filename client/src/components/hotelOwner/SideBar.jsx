@@ -8,6 +8,8 @@ const SideBar = () => {
         { name: "Dashboard", path: "/owner", icon: assets.dashboardIcon },
         { name: "Add Room", path: "/owner/add-room", icon: assets.addIcon },
         { name: "List Room", path: "/owner/list-room", icon: assets.listIcon },
+        { name: "Add Hospitality", path: "/owner/add-hospitality", icon: assets.addIcon },
+        { name: "List Hospitality", path: "/owner/list-hospitality", icon: assets.listIcon },
         { name: "Profile", path: "/owner/profile", icon: assets.dashboardIcon },
     ]
 
