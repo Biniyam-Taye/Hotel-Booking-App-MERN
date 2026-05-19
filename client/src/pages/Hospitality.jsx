@@ -32,15 +32,28 @@ const RadioButton = ({ label, selected = false, onChange = () => { } }) => {
 
 const Hospitality = () => {
     const [searchParams, setSearchParams] = useSearchParams()
-    const { hospitalities, currency, user, navigate } = useAppContext()
+    const { hospitalities, currency, user, navigate, axios } = useAppContext()
 
-    const handleOrder = (item) => {
+    const handleOrder = async (item) => {
         if (!user || user.role !== 'user') {
             toast.error('Please sign in as a customer to place an order')
             navigate('/login', { state: { from: '/hospitality' } })
             return
         }
-        toast.success(`Added ${item.title} to your order!`)
+        try {
+            const { data } = await axios.post('/api/hospitalities/order', {
+                hospitalityId: item._id,
+                quantity: 1,
+            })
+            if (data.success) {
+                toast.success(data.message)
+                navigate('/my-bookings')
+            } else {
+                toast.error(data.message)
+            }
+        } catch (error) {
+            toast.error(error.response?.data?.message || error.message)
+        }
     }
 
     const [openFilters, setOpenFilters] = useState(false)

@@ -1,5 +1,6 @@
 import Hotel from "../models/Hotel.js";
 import Hospitality from "../models/Hospitality.js";
+import HospitalityOrder from "../models/HospitalityOrder.js";
 import { v2 as cloudinary } from "cloudinary";
 
 const approvedHotelIds = async () => {
@@ -86,6 +87,48 @@ export const getOwnerHospitalities = async (req, res) => {
         res.json({ success: true, hospitalities });
     } catch (error) {
         res.json({ success: false, message: error.message });
+    }
+};
+
+export const createHospitalityOrder = async (req, res) => {
+    try {
+        const { hospitalityId, quantity = 1 } = req.body;
+        const userId = req.user._id;
+
+        if (!hospitalityId) {
+            return res.status(400).json({ success: false, message: "Hospitality item is required" });
+        }
+
+        const item = await Hospitality.findById(hospitalityId).populate("hotel");
+        if (!item || !item.isAvailable) {
+            return res.json({ success: false, message: "This service is not available" });
+        }
+
+        const hotel = await Hotel.findById(item.hotel._id || item.hotel);
+        if (!hotel || (hotel.status && hotel.status !== "approved")) {
+            return res.json({ success: false, message: "Hotel is not available for orders" });
+        }
+
+        const qty = Math.max(1, Number(quantity) || 1);
+        const totalPrice = item.price * qty;
+
+        const order = await HospitalityOrder.create({
+            user: userId,
+            hospitality: item._id.toString(),
+            hotel: hotel._id.toString(),
+            totalPrice,
+            quantity: qty,
+            paymentMethod: "Pay At Hotel",
+        });
+
+        res.json({
+            success: true,
+            message: "Hospitality order placed successfully",
+            order,
+        });
+    } catch (error) {
+        console.error("createHospitalityOrder:", error);
+        res.status(500).json({ success: false, message: error.message });
     }
 };
 

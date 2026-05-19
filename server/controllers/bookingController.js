@@ -1,5 +1,6 @@
 // controllers/bookingController.js
 import Booking from "../models/Booking.js";
+import HospitalityOrder from "../models/HospitalityOrder.js";
 import Room from "../models/Room.js";
 import Hotel from "../models/Hotel.js";
 import transporter from "../configs/nodemailer.js";
@@ -130,7 +131,11 @@ export const getUserBookings = async (req, res) => {
             .populate("room hotel")
             .sort({ createdAt: -1 });
 
-        res.json({ success: true, bookings });
+        const hospitalityOrders = await HospitalityOrder.find({ user })
+            .populate("hospitality hotel")
+            .sort({ createdAt: -1 });
+
+        res.json({ success: true, bookings, hospitalityOrders });
 
     } catch (error) {
         res.json({ success: false, message: "Failed to fetch bookings" });
@@ -164,45 +169,44 @@ export const getHotelBookings = async (req, res) => {
 };
 export const stripePayment = async (req, res) => {
     try {
-        const { bookingId } = req.body;
-        const booking = await Booking.findById(bookingId);
-        const roomData = await Room.findById(booking.room).populate('hotel');
-        const totalPrice = booking.totalPrice;
+        const { bookingId, orderType = "room" } = req.body;
         const { origin } = req.headers;
-
         const stripeInstance = new stripe(process.env.STRIPE_SECRET_KEY);
 
-        const line_items = [
-            {
+        let productName;
+        let totalPrice;
+
+        if (orderType === "hospitality") {
+            const order = await HospitalityOrder.findById(bookingId).populate("hospitality hotel");
+            if (!order) return res.json({ success: false, message: "Order not found" });
+            productName = `${order.hospitality?.title || "Hospitality"} — ${order.hotel?.name || "Hotel"}`;
+            totalPrice = order.totalPrice;
+        } else {
+            const booking = await Booking.findById(bookingId);
+            const roomData = await Room.findById(booking.room).populate("hotel");
+            productName = roomData.hotel.name;
+            totalPrice = booking.totalPrice;
+        }
+
+        const session = await stripeInstance.checkout.sessions.create({
+            line_items: [{
                 price_data: {
                     currency: "usd",
-                    product_data: {
-                        name: roomData.hotel.name,
-                    },
-                    unit_amount: totalPrice * 100 // Converting dollars/units to cents
+                    product_data: { name: productName },
+                    unit_amount: Math.round(totalPrice * 100),
                 },
                 quantity: 1,
-            }
-        ]
-        // Create Checkout Session
-        const session = await stripeInstance.checkout.sessions.create({
-            line_items,
+            }],
             mode: "payment",
-            // --- CRITICAL FIX: Ensure the correct flag is present in the success URL ---
             success_url: `${origin}/my-bookings?success=true&session_id={CHECKOUT_SESSION_ID}`,
             cancel_url: `${origin}/my-bookings`,
-            metadata: {
-                bookingId,
-            },
+            metadata: { bookingId, orderType },
         });
 
-        res.json({ success: true, url: session.url }); // Line 167
-
+        res.json({ success: true, url: session.url });
     } catch (error) {
         res.json({ success: false, message: "Payment Failed" });
     }
-
-
 };
 
 // API to verify payment status
@@ -216,8 +220,21 @@ export const verifyPayment = async (req, res) => {
             const session = await stripeInstance.checkout.sessions.retrieve(session_id);
 
             if (session.payment_status === "paid") {
-                const bookingIdFromSession = session.metadata.bookingId;
-                await Booking.findByIdAndUpdate(bookingIdFromSession, { isPaid: true, paymentMethod: "stripe", status: "confirmed" });
+                const id = session.metadata.bookingId;
+                const orderType = session.metadata.orderType || "room";
+                if (orderType === "hospitality") {
+                    await HospitalityOrder.findByIdAndUpdate(id, {
+                        isPaid: true,
+                        paymentMethod: "stripe",
+                        status: "confirmed",
+                    });
+                } else {
+                    await Booking.findByIdAndUpdate(id, {
+                        isPaid: true,
+                        paymentMethod: "stripe",
+                        status: "confirmed",
+                    });
+                }
                 res.json({ success: true, message: "Payment Successful" });
             } else {
                 res.json({ success: false, message: "Payment Failed" });
