@@ -10,9 +10,11 @@ const OfferDetail = () => {
     const offer = getOfferById(id)
     const [mainImage, setMainImage] = useState(null)
 
+    const gallery = offer?.detailGallery ?? []
+
     useEffect(() => {
-        if (offer) {
-            setMainImage(offer.image)
+        if (offer?.detailGallery?.length) {
+            setMainImage(offer.detailGallery[0])
             scrollTo(0, 0)
         }
     }, [offer])
@@ -72,7 +74,7 @@ const OfferDetail = () => {
                             </span>
                         </div>
                         <div className="grid grid-cols-4 gap-3">
-                            {offer.gallery.map((img, i) => (
+                            {gallery.map((img, i) => (
                                 <button
                                     key={i}
                                     type="button"
