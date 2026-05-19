@@ -74,12 +74,14 @@ const ExclusiveOffer = () => {
 
             {/* Offer Cards Grid */}
             <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7 relative z-10'>
-                {exclusiveOffers.map((item, index) => {
+                {exclusiveOffers.map((item) => {
                     const cfg = cardConfig
                     return (
-                        <div
+                        <Link
                             key={item._id}
-                            className={`group relative rounded-3xl overflow-hidden bg-white border border-gray-100 cursor-pointer transition-all duration-500 hover:-translate-y-3 ${cfg.glow} ${cfg.border} shadow-[0_4px_20px_rgba(0,0,0,0.07)]`}
+                            to={`/offers/${item._id}`}
+                            onClick={() => scrollTo(0, 0)}
+                            className={`group relative rounded-3xl overflow-hidden bg-white border border-gray-100 transition-all duration-500 hover:-translate-y-3 ${cfg.glow} ${cfg.border} shadow-[0_4px_20px_rgba(0,0,0,0.07)] block`}
                         >
                             {/* Image with zoom */}
                             <div className="relative h-52 overflow-hidden">
@@ -112,27 +114,19 @@ const ExclusiveOffer = () => {
 
                                 {/* CTA row */}
                                 <div className="flex items-center justify-between mt-auto pt-2">
-                                    <div className="relative group/btn">
-                                        {/* Clean expanding ring animation instead of ugly dark blur */}
-                                        <span className="absolute inset-0 rounded-xl border border-orange-400 opacity-0 scale-100 group-hover/btn:opacity-100 group-hover/btn:scale-125 transition-all duration-500 pointer-events-none" />
-                                        <button className={`relative flex items-center gap-2 px-6 py-2.5 rounded-xl text-xs font-bold text-white bg-gradient-to-r ${cfg.btnAccent} shadow-md shadow-orange-500/20 transition-all duration-300 group-hover/btn:shadow-[0_4px_15px_rgba(249,115,22,0.4)] group-hover/btn:-translate-y-0.5 active:scale-95 overflow-hidden`}>
-                                            <span className="relative z-10 flex items-center gap-1.5">
-                                                View Offer
-                                                <svg className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                                                </svg>
-                                            </span>
-                                            {/* Shimmer sweep */}
-                                            <div className="absolute inset-0 bg-white/20 translate-x-[-100%] group-hover/btn:translate-x-[100%] transition-transform duration-500 skew-x-12" />
-                                        </button>
-                                    </div>
+                                    <span className={`relative flex items-center gap-2 px-6 py-2.5 rounded-xl text-xs font-bold text-white bg-gradient-to-r ${cfg.btnAccent} shadow-md shadow-orange-500/20 transition-all duration-300 group-hover:shadow-[0_4px_15px_rgba(249,115,22,0.4)] group-hover:-translate-y-0.5 overflow-hidden`}>
+                                        View Offer
+                                        <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                                        </svg>
+                                    </span>
                                     <span className="text-xs text-gray-400 font-medium">Save {item.priceOff}%</span>
                                 </div>
                             </div>
 
                             {/* Bottom colorful accent line sweeps in on hover */}
-                            <div className={`absolute bottom-0 left-0 right-0 h-[3px] bg-gradient-to-r ${cfg.accentLine} scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left`} />
-                        </div>
+                            <motionless className={`absolute bottom-0 left-0 right-0 h-[3px] bg-gradient-to-r ${cfg.accentLine} scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left`} />
+                        </Link>
                     )
                 })}
             </div>
