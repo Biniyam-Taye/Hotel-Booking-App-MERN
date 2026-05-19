@@ -37,7 +37,7 @@ export const createHospitality = async (req, res) => {
         }
 
         await Hospitality.create({
-            hotel: hotel._id,
+            hotel: hotel._id.toString(),
             title,
             description: description || "",
             category,

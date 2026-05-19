@@ -13,7 +13,7 @@ const RecommendedHospitality = () => {
         <div className='flex flex-col items-center px-6 md:px-16 lg:px-24 py-20'>
             <Title
                 title='Hotel Hospitality'
-                subTitle='Discover dining, drinks, and curated experiences from our partner hotels.'
+                subTitle='Discover dining, spa, massage, tours, and services from our partner hotels.'
             />
 
             <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 w-full mt-4'>

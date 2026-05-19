@@ -10,9 +10,10 @@ import {
 
 const hospitalityRouter = express.Router();
 
-hospitalityRouter.post("/", upload.single("image"), protect, requireOwner, createHospitality);
-hospitalityRouter.get("/", getHospitalities);
+// Specific routes before generic ones
 hospitalityRouter.get("/owner", protect, requireOwner, getOwnerHospitalities);
 hospitalityRouter.post("/toggle-availability", protect, requireOwner, toggleHospitalityAvailability);
+hospitalityRouter.post("/", upload.single("image"), protect, requireOwner, createHospitality);
+hospitalityRouter.get("/", getHospitalities);
 
 export default hospitalityRouter;

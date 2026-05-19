@@ -4,6 +4,7 @@ import { useSearchParams } from 'react-router-dom'
 import StarRating from '../components/StarRating'
 import toast from 'react-hot-toast'
 import { useAppContext } from '../context/AppContext'
+import { ALL_CATEGORIES } from '../constants/hospitalityOptions'
 
 const CheckBox = ({ label, selected = false, onChange = () => { } }) => {
     return (
@@ -42,8 +43,9 @@ const Hospitality = () => {
     const [selectedSort, setSelectedSort] = useState('')
 
     const categoryTypes = useMemo(() => {
-        const cats = [...new Set(hospitalities.map((h) => h.category).filter(Boolean))]
-        return cats.length ? cats : ["Fast Food", "Pasta", "Pizza", "Drinks"]
+        const fromData = [...new Set(hospitalities.map((h) => h.category).filter(Boolean))]
+        const cats = fromData.length ? fromData : ALL_CATEGORIES
+        return [...cats].sort()
     }, [hospitalities])
 
     const priceRange = [
@@ -150,13 +152,13 @@ const Hospitality = () => {
                         Culinary Excellence
                     </div>
                     <h1 className='font-playfair text-4xl md:text-5xl font-bold text-gray-900 mb-4 cursor-default'>
-                        Discover <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-indigo-600 transition-all duration-500 hover:from-[#FF4D00] hover:to-[#FF8C00] hover:drop-shadow-[0_0_12px_rgba(255,77,0,0.4)]">Gastronomy</span>
+                        Discover <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-indigo-600 transition-all duration-500 hover:from-[#FF4D00] hover:to-[#FF8C00] hover:drop-shadow-[0_0_12px_rgba(255,77,0,0.4)]">Hospitality</span>
                     </h1>
                     
                     <div className="relative group/desc cursor-default max-w-2xl">
                         <div className="absolute inset-0 -m-4 rounded-2xl bg-gradient-to-r from-blue-50/0 via-indigo-50/0 to-blue-50/0 scale-95 opacity-0 group-hover/desc:opacity-100 group-hover/desc:scale-100 group-hover/desc:from-blue-50/80 group-hover/desc:via-indigo-50/60 group-hover/desc:to-blue-50/80 transition-all duration-500 border border-transparent group-hover/desc:border-indigo-100 backdrop-blur-sm shadow-xl shadow-indigo-500/0 group-hover/desc:shadow-indigo-500/5"></div>
                         <p className='relative z-10 text-gray-500 text-base md:text-lg leading-relaxed transition-all duration-500 group-hover/desc:text-gray-900 group-hover/desc:font-medium'>
-                            Savor exquisite culinary creations from world-renowned chefs. Our restaurants offer an unforgettable journey through global cuisines.
+                            Discover dining, spa, massage, tours, and hotel services from our partner properties.
                         </p>
                         <div className="absolute -bottom-2 left-0 h-[2px] w-0 bg-gradient-to-r from-blue-500 to-indigo-600 rounded-full group-hover/desc:w-1/2 transition-all duration-700"></div>
                     </div>

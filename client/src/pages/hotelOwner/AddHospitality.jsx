@@ -1,15 +1,13 @@
-import React, { useState } from 'react'
+import React, { useEffect, useMemo, useState } from 'react'
 import Title from '../../components/Title'
 import { assets } from '../../assets/assets'
 import { useAppContext } from '../../context/AppContext'
+import {
+    HOSPITALITY_GROUPS,
+    buildEmptyFeatures,
+    getFeatureOptions,
+} from '../../constants/hospitalityOptions'
 import toast from 'react-hot-toast'
-
-const CATEGORIES = ['Fast Food', 'Pasta', 'Pizza', 'Drinks', 'Breakfast', 'Desserts', 'Local Cuisine', 'Other']
-
-const FEATURE_OPTIONS = [
-    'Vegetarian', 'Vegan', 'Gluten Free', 'Spicy', 'Chef Special',
-    'Room Service', 'Outdoor Dining', 'Live Music',
-]
 
 const AddHospitality = () => {
     const { axios, fetchHospitalities } = useAppContext()
@@ -19,9 +17,22 @@ const AddHospitality = () => {
         description: '',
         category: '',
         price: '',
-        features: FEATURE_OPTIONS.reduce((acc, f) => ({ ...acc, [f]: false }), {}),
+        features: {},
     })
     const [loading, setLoading] = useState(false)
+
+    const featureOptions = useMemo(
+        () => getFeatureOptions(input.category),
+        [input.category]
+    )
+
+    useEffect(() => {
+        if (!input.category) return
+        setInput((prev) => ({
+            ...prev,
+            features: buildEmptyFeatures(getFeatureOptions(prev.category)),
+        }))
+    }, [input.category])
 
     const onSubmit = async (e) => {
         e.preventDefault()
@@ -40,20 +51,21 @@ const AddHospitality = () => {
             formData.append('features', JSON.stringify(features))
             formData.append('image', image)
 
-            const { data } = await axios.post('/api/hospitalities/', formData)
+            const { data } = await axios.post('/api/hospitalities', formData)
+
             if (data.success) {
                 toast.success(data.message)
                 fetchHospitalities()
-                setInput({
-                    title: '', description: '', category: '', price: '',
-                    features: FEATURE_OPTIONS.reduce((acc, f) => ({ ...acc, [f]: false }), {}),
-                })
+                setInput({ title: '', description: '', category: '', price: '', features: {} })
                 setImage(null)
             } else {
                 toast.error(data.message)
             }
         } catch (error) {
-            toast.error(error.response?.data?.message || error.message)
+            const msg = error.response?.status === 404
+                ? 'API not found. Restart the backend server (npm start in server folder).'
+                : (error.response?.data?.message || error.message)
+            toast.error(msg)
         } finally {
             setLoading(false)
         }
@@ -65,14 +77,14 @@ const AddHospitality = () => {
                 align='left'
                 font='outfit'
                 title='Add Hospitality'
-                subTitle='Add dining, drinks, or services guests can discover on the Hospitality page and home page.'
+                subTitle='Add food, drinks, massage, spa, tours, and any service guests can book at your hotel.'
             />
 
             <div className='w-full mt-4'>
                 <p className='text-gray-800'>Title</p>
                 <input
                     type="text"
-                    placeholder='e.g. Tropical Sunset Cocktail'
+                    placeholder='e.g. Deep Tissue Massage, Sunset Cocktail, Airport Pickup'
                     className='border border-gray-300 mt-1 rounded p-2 w-full max-w-lg'
                     value={input.title}
                     onChange={(e) => setInput({ ...input, title: e.target.value })}
@@ -83,7 +95,7 @@ const AddHospitality = () => {
             <div className='w-full mt-4'>
                 <p className='text-gray-800'>Description</p>
                 <textarea
-                    placeholder='Describe this dish or service...'
+                    placeholder='Describe the service, duration, what is included, etc.'
                     className='border border-gray-300 mt-1 rounded p-2 w-full max-w-lg h-24 resize-none'
                     value={input.description}
                     onChange={(e) => setInput({ ...input, description: e.target.value })}
@@ -91,7 +103,7 @@ const AddHospitality = () => {
             </div>
 
             <div className='flex flex-wrap gap-4 mt-4 max-w-lg'>
-                <div className='flex-1 min-w-[140px]'>
+                <div className='flex-1 min-w-[180px]'>
                     <p className='text-gray-800'>Category</p>
                     <select
                         value={input.category}
@@ -100,7 +112,13 @@ const AddHospitality = () => {
                         required
                     >
                         <option value="">Select category</option>
-                        {CATEGORIES.map((c) => <option key={c} value={c}>{c}</option>)}
+                        {HOSPITALITY_GROUPS.map((group) => (
+                            <optgroup key={group.label} label={group.label}>
+                                {group.options.map((c) => (
+                                    <option key={c} value={c}>{c}</option>
+                                ))}
+                            </optgroup>
+                        ))}
                     </select>
                 </div>
                 <div>
@@ -108,7 +126,7 @@ const AddHospitality = () => {
                     <input
                         type="number"
                         min="1"
-                        placeholder='350'
+                        placeholder='450'
                         className='border border-gray-300 mt-1 rounded p-2 w-28'
                         value={input.price}
                         onChange={(e) => setInput({ ...input, price: e.target.value })}
@@ -133,22 +151,30 @@ const AddHospitality = () => {
                 />
             </label>
 
-            <p className='text-gray-800 mt-6'>Features / tags</p>
-            <div className='flex flex-col gap-2 mt-2 max-w-sm'>
-                {FEATURE_OPTIONS.map((feature) => (
-                    <label key={feature} className='flex items-center gap-2 text-gray-600 text-sm'>
-                        <input
-                            type="checkbox"
-                            checked={input.features[feature]}
-                            onChange={() => setInput({
-                                ...input,
-                                features: { ...input.features, [feature]: !input.features[feature] },
-                            })}
-                        />
-                        {feature}
-                    </label>
-                ))}
-            </div>
+            {input.category && (
+                <>
+                    <p className='text-gray-800 mt-6'>Features / tags</p>
+                    <p className='text-xs text-gray-500 mb-2'>Tags update based on the category you selected.</p>
+                    <div className='grid grid-cols-1 sm:grid-cols-2 gap-2 mt-2 max-w-2xl'>
+                        {featureOptions.map((feature) => (
+                            <label key={feature} className='flex items-center gap-2 text-gray-600 text-sm'>
+                                <input
+                                    type="checkbox"
+                                    checked={!!input.features[feature]}
+                                    onChange={() => setInput({
+                                        ...input,
+                                        features: {
+                                            ...input.features,
+                                            [feature]: !input.features[feature],
+                                        },
+                                    })}
+                                />
+                                {feature}
+                            </label>
+                        ))}
+                    </div>
+                </>
+            )}
 
             <button
                 type="submit"
