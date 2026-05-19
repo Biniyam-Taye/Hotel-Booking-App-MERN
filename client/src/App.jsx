@@ -9,48 +9,50 @@ import MyBookings from './pages/MyBookings'
 import Experience from './pages/Experience'
 import About from './pages/About'
 import Hospitality from './pages/Hospitality'
-import HotelReg from './components/HotelReg'
 import LayOut from './pages/hotelOwner/LayOut'
 import Dashboard from './pages/hotelOwner/Dashboard'
 import AddRoom from './pages/hotelOwner/AddRoom'
 import ListRoom from './pages/hotelOwner/ListRoom'
+import Login from './pages/Login'
+import Signup from './pages/Signup'
 import { Toaster } from 'react-hot-toast'
-import { useAppContext } from './context/AppContext'
 import Loader from './components/Loader'
+import AuthGuard from './components/AuthGuard'
 
 const App = () => {
   const isOwnerPath = useLocation().pathname.includes("owner");
-  const { showHotelReg } = useAppContext();
+  const isAuthPage = ['/login', '/signup'].includes(useLocation().pathname);
 
   return (
-    <div>
-      <Toaster />
-      {!isOwnerPath && <Navbar />}
+    <AuthGuard>
+      <div>
+        <Toaster />
+        {!isOwnerPath && !isAuthPage && <Navbar />}
 
-      {showHotelReg && <HotelReg />}
+        <div className='min-h-[70vh]'>
+          <Routes>
+            <Route path='/' element={<Home />} />
+            <Route path='/rooms' element={<AllRooms />} />
+            <Route path='/rooms/:id' element={<RoomDetail />} />
+            <Route path='/my-bookings' element={<MyBookings />} />
+            <Route path='/experience' element={<Experience />} />
+            <Route path='/hospitality' element={<Hospitality />} />
+            <Route path='/about' element={<About />} />
+            <Route path='/login' element={<Login />} />
+            <Route path='/signup' element={<Signup />} />
+            <Route path='/loader/:nextUrl' element={<Loader />} />
 
-      <div className='min-h-[70vh]'>
-        <Routes>
-          <Route path='/' element={<Home />} />
-          <Route path='/rooms' element={<AllRooms />} />
-          <Route path='/rooms/:id' element={<RoomDetail />} />
-          <Route path='/my-bookings' element={<MyBookings />} />
-          <Route path='/experience' element={<Experience />} />
-          <Route path='/hospitality' element={<Hospitality />} />
-          <Route path='/about' element={<About />} />
-          <Route path='/loader/:nextUrl' element={<Loader />} />
+            <Route path='/owner' element={<LayOut />}>
+              <Route index element={<Dashboard />} />
+              <Route path='add-room' element={<AddRoom />} />
+              <Route path='list-room' element={<ListRoom />} />
+            </Route>
+          </Routes>
+        </div>
 
-          <Route path='/owner' element={<LayOut />}>
-            <Route index element={<Dashboard />} />
-            <Route path='add-room' element={<AddRoom />} />
-            <Route path='list-room' element={<ListRoom />} />
-          </Route>
-
-        </Routes>
+        {!isOwnerPath && !isAuthPage && <Footer />}
       </div>
-
-      <Footer />
-    </div>
+    </AuthGuard>
   )
 }
 

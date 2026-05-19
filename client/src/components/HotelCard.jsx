@@ -52,16 +52,19 @@ const HotelCard = ({ room, index }) => {
             {/* Card Body */}
             <div className='p-5'>
                 <div className='flex items-start justify-between mb-2'>
-                    <p className='font-playfair text-lg font-bold text-gray-900 leading-tight'>Room {index + 1}</p>
+                    <p className='font-playfair text-lg font-bold text-gray-900 leading-tight'>{room.title || `Room ${index + 1}`}</p>
                     <div className='flex items-center gap-1 bg-amber-50 border border-amber-200 px-2 py-0.5 rounded-lg flex-shrink-0 ml-2'>
                         <img src={assets.starIconFilled} alt="star" className="w-3.5 h-3.5" />
                         <span className="text-xs font-bold text-amber-600">4.5</span>
                     </div>
                 </div>
 
+                {room.description && (
+                    <p className="text-xs text-gray-400 mb-2 line-clamp-2">{room.description}</p>
+                )}
                 <div className='flex items-center gap-1.5 text-xs text-gray-400 mb-4'>
                     <img src={assets.locationIcon} alt="location" className="w-3.5 h-3.5 opacity-60" />
-                    <span className="truncate">{room.hotel.city}</span>
+                    <span className="truncate">{room.hotel?.city} · {room.hotel?.name}</span>
                 </div>
 
                 <div className='flex items-center justify-between'>

@@ -5,14 +5,12 @@ import toast from 'react-hot-toast';
 
 const ListRoom = () => {
     const [rooms, setRooms] = useState([]);
-    const { axios, getToken, user, currency } = useAppContext();
+    const { axios, user, currency } = useAppContext();
 
     // Fetch Rooms of the Hotel Owner
     const fetchRooms = async () => {
         try {
-            const { data } = await axios.get('/api/rooms/owner/', {
-                headers: { Authorization: `Bearer ${await getToken()}` }
-            });
+            const { data } = await axios.get('/api/rooms/owner/');
             if (data.success) {
                 setRooms(data.rooms)
             } else {
@@ -24,8 +22,7 @@ const ListRoom = () => {
     }
     // Toggle Availability of the Room
     const toggleAvailability = async (roomId) => {
-        const { data } = await axios.post('/api/rooms/toggle-availability', { roomId },
-            { headers: { Authorization: `Bearer ${await getToken()}` } });
+        const { data } = await axios.post('/api/rooms/toggle-availability', { roomId });
         if (data.success) {
             toast.success(data.message)
             fetchRooms()
@@ -68,7 +65,7 @@ const ListRoom = () => {
                         {rooms.map((items, index) => (
                             <tr key={index}>
                                 <td className='py-3 px-4 text-gray-700 border-t border-gray-300'>
-                                    {items.roomType}
+                                    {items.title || items.roomType}
                                 </td>
 
                                 <td className='py-3 px-4 text-gray-700 border-t border-gray-300 max-sm:hidden'>

@@ -5,7 +5,7 @@ import User from "../models/user.js"
 export const registerHotel = async (req, res) => {
     try {
         const { name, address, contact, city } = req.body;
-        const owner = req.auth.userId || req.user.id;
+        const owner = req.user._id;
 
         // ... (Hotel check and creation logic remains the same)
         const hotel = await Hotel.findOne({ owner })

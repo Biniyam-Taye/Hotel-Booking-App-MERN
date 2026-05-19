@@ -5,7 +5,7 @@ import { useAppContext } from '../../context/AppContext'
 import toast from 'react-hot-toast'
 
 const AddRoom = () => {
-    const { axios, getToken } = useAppContext()
+    const { axios } = useAppContext()
 
     const [images, setImages] = useState({
         1: null,
@@ -15,6 +15,8 @@ const AddRoom = () => {
     })
 
     const [input, setInputs] = useState({
+        title: '',
+        description: '',
         roomType: '',
         pricePerNight: 0,
         amenities: {
@@ -31,7 +33,7 @@ const AddRoom = () => {
         e.preventDefault();
 
         // Check if all inputs are filled
-        if (!input.roomType || !input.pricePerNight || !input.amenities ||
+        if (!input.title || !input.roomType || !input.pricePerNight || !input.amenities ||
             !Object.values(images).some((image) => image)) {
             toast.error("Please fill in all the details");
             return;
@@ -39,6 +41,8 @@ const AddRoom = () => {
         setLoading(true);
         try {
             const formData = new FormData()
+            formData.append('title', input.title)
+            formData.append('description', input.description)
             formData.append('roomType', input.roomType)
             formData.append('pricePerNight', input.pricePerNight)
             // Converting Amenities to Array & keeping only enabled Amenities
@@ -49,13 +53,13 @@ const AddRoom = () => {
             Object.keys(images).forEach((key) => {
                 images[key] && formData.append('images', images[key])
             })
-            const { data } = await axios.post('/api/rooms/', formData, {
-                headers: { Authorization: `Bearer ${await getToken()}` }
-            });
+            const { data } = await axios.post('/api/rooms/', formData);
 
             if (data.success) {
                 toast.success(data.message)
                 setInputs({
+                    title: '',
+                    description: '',
                     roomType: '',
                     pricePerNight: 0,
                     amenities: {
@@ -87,6 +91,28 @@ const AddRoom = () => {
                 title='Add Room'
                 subTitle='Fill in the details carefully and accurate room details, pricing, and amenities to enhance user booking experience'
             />
+
+            <div className='w-full mt-4'>
+                <p className='text-gray-800'>Room Title</p>
+                <input
+                    type="text"
+                    placeholder='e.g. Ocean View Deluxe Suite'
+                    className='border border-gray-300 mt-1 rounded p-2 w-full max-w-lg'
+                    value={input.title}
+                    onChange={e => setInputs({ ...input, title: e.target.value })}
+                    required
+                />
+            </div>
+
+            <div className='w-full mt-4'>
+                <p className='text-gray-800'>Description</p>
+                <textarea
+                    placeholder='Describe your room, hospitality, and what makes it special...'
+                    className='border border-gray-300 mt-1 rounded p-2 w-full max-w-lg h-28 resize-none'
+                    value={input.description}
+                    onChange={e => setInputs({ ...input, description: e.target.value })}
+                />
+            </div>
 
             <p className='text-gray-800 mt-10'>Images</p>
 

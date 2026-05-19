@@ -7,7 +7,7 @@ import toast from 'react-hot-toast'
 
 const RoomDetail = () => {
     const { id } = useParams()
-    const { rooms, getToken, axios, navigate, currency } = useAppContext()
+    const { rooms, user, axios, navigate, currency } = useAppContext()
     const [room, setRoom] = useState(null)
     const [mainImage, setMainImage] = useState(null)
     const [checkInDate, setCheckInDate] = useState(null)
@@ -67,18 +67,21 @@ const RoomDetail = () => {
                 return;
             }
 
+            if (!user) {
+                toast.error('Please login to book a room')
+                navigate('/login')
+                return
+            }
+
             if (!isAvailable) {
                 return checkAvailability();
             } else {
-                // FIX: Convert date strings to ISO string format before booking
                 const { data } = await axios.post('/api/bookings/book', {
                     room: id,
                     checkInDate: new Date(checkInDate).toISOString(),
                     checkOutDate: new Date(checkOutDate).toISOString(),
                     guests,
                     paymentMethod: "Pay At Hotel"
-                }, {
-                    headers: { Authorization: `Bearer ${await getToken()}` }
                 })
                 if (data.success) {
                     toast.success(data.message)
@@ -117,9 +120,12 @@ const RoomDetail = () => {
                         </span>
                     </div>
                     <h1 className='text-4xl md:text-5xl font-playfair font-bold text-gray-900'>
-                        Room {roomIndex !== -1 ? roomIndex + 1 : ''}
+                        {room?.title || `Room ${roomIndex !== -1 ? roomIndex + 1 : ''}`}
                         <span className='font-inter text-lg text-gray-500 font-medium ml-3'>({room?.roomType})</span>
                     </h1>
+                    {room?.description && (
+                        <p className='text-gray-600 mt-3 max-w-2xl leading-relaxed'>{room.description}</p>
+                    )}
                     
                     <div className='flex items-center gap-4 mt-4'>
                         <div className='flex items-center gap-1 bg-gray-50 px-3 py-1 rounded-full border border-gray-100'>
@@ -198,10 +204,7 @@ const RoomDetail = () => {
 
                     <div className='border-y border-gray-200 my-12 py-10 text-gray-600 leading-relaxed text-lg'>
                         <p>
-                            Enjoy a comfortable and relaxing stay in our well-designed guest rooms, complete with cozy bedding,
-                            modern amenities, and a calm, welcoming atmosphere. Each room includes high-speed Wi-Fi,
-                            air-conditioning, a private bathroom, and essential conveniences to make your stay easy and enjoyable.
-                            Perfect for both rest and productivity, our rooms offer everything you need for a pleasant and refreshing visit.
+                            {room?.description || `Enjoy a comfortable stay at ${room?.hotel?.name || 'our hotel'}. Modern amenities, cozy bedding, and a welcoming atmosphere await you.`}
                         </p>
                     </div>
 

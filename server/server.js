@@ -4,8 +4,7 @@ import express from "express"
 import cors from "cors"
 import "dotenv/config"
 import connectDB from "./configs/db.js"
-import { clerkMiddleware } from "@clerk/express"
-import clerkWebhooks from "./controllers/clerkWebhooks.js"
+import authRouter from "./routes/authRoutes.js"
 import userRouter from "./routes/userRoutes.js"
 import hotelRouter from "./routes/hotelRoutes.js"
 import connectCloudinary from "./configs/cloudinary.js"
@@ -35,13 +34,9 @@ app.post("/api/webhooks/stripe", express.raw({ type: "application/json" }), stri
 // 3. GLOBAL MIDDLEWARE: Process standard JSON requests for all other routes.
 // This is the correct placement for the standard JSON parser.
 app.use(express.json())
-app.use(clerkMiddleware())
-
-// 4. API Routes
-// Clerk Webhook
-app.use("/api/clerk", clerkWebhooks)
 
 app.get("/", (req, res) => res.send("API IS WORKING"))
+app.use("/api/auth", authRouter)
 app.use("/api/user", userRouter)
 app.use("/api/hotels", hotelRouter)
 app.use("/api/rooms", roomRouter)

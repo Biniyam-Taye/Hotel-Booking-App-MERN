@@ -2,10 +2,11 @@ import React, { useEffect, useState } from 'react'
 import Title from '../../components/Title'
 import { assets } from '../../assets/assets'
 import { useAppContext } from '../../context/AppContext';
+import toast from 'react-hot-toast';
 
 const Dashboard = () => {
 
-    const { currency, user, getToken, toast, axios } = useAppContext();
+    const { currency, user, axios } = useAppContext();
 
     const [dashboardData, setDashboardData] = useState({
         bookings: [],
@@ -15,9 +16,7 @@ const Dashboard = () => {
 
     const fetchDashboardData = async () => {
         try {
-            const { data } = await axios.get('/api/bookings/hotel', {
-                headers: { Authorization: `Bearer ${await getToken()}` }
-            });
+            const { data } = await axios.get('/api/bookings/hotel');
 
             if (data.success) {
                 setDashboardData(data.dashboardData);
@@ -88,7 +87,7 @@ const Dashboard = () => {
                                 </td>
 
                                 <td className='py-3 px-4 text-gray-700 border-t border-gray-300 max-sm:hidden'>
-                                    {item.room.roomType}
+                                    {item.room.title || item.room.roomType}
                                 </td>
 
                                 <td className='py-3 px-4 text-gray-700 border-t border-gray-300 text-center'>

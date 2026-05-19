@@ -1,10 +1,7 @@
-// AppContext.jsx
 import axios from "axios";
 import { createContext, useContext, useEffect, useState } from "react";
 import { useNavigate } from 'react-router-dom'
-import { useUser, useAuth } from '@clerk/clerk-react'
 import { toast } from 'react-hot-toast'
-
 
 axios.defaults.baseURL = import.meta.env.VITE_BACKEND_URL;
 
@@ -13,21 +10,79 @@ const AppContext = createContext();
 export const AppProvider = ({ children }) => {
     const currency = "ETB ";
     const navigate = useNavigate();
-    const { user } = useUser();
-    const { getToken } = useAuth()
 
+    const [user, setUser] = useState(null)
+    const [token, setToken] = useState(() => localStorage.getItem('token'))
     const [isOwner, setIsOwner] = useState(false)
-    const [showHotelReg, setShowHotelReg] = useState(false)
+    const [authLoading, setAuthLoading] = useState(true)
     const [searchedCities, setSearchedCities] = useState([]);
     const [rooms, setRooms] = useState([]);
+
+    const applyAuth = (authToken, userData) => {
+        localStorage.setItem('token', authToken);
+        setToken(authToken);
+        setUser(userData);
+        setIsOwner(userData.role === 'hotelOwner');
+        axios.defaults.headers.common['Authorization'] = `Bearer ${authToken}`;
+    }
+
+    const clearAuth = () => {
+        localStorage.removeItem('token');
+        setToken(null);
+        setUser(null);
+        setIsOwner(false);
+        delete axios.defaults.headers.common['Authorization'];
+    }
+
+    const fetchUser = async () => {
+        try {
+            const { data } = await axios.get('/api/user/');
+            if (data.success) {
+                setIsOwner(data.isOwner);
+                setSearchedCities(data.recentSearchedCities || []);
+                setUser(prev => ({
+                    ...prev,
+                    role: data.role,
+                    username: data.username,
+                    email: data.email,
+                    image: data.image,
+                    isOwner: data.isOwner,
+                }));
+            }
+        } catch {
+            clearAuth();
+        } finally {
+            setAuthLoading(false);
+        }
+    }
+
+    const login = async (email, password) => {
+        const { data } = await axios.post('/api/auth/login', { email, password });
+        if (!data.success) throw new Error(data.message);
+        applyAuth(data.token, data.user);
+        return data.user;
+    }
+
+    const signup = async (payload) => {
+        const { data } = await axios.post('/api/auth/signup', payload);
+        if (!data.success) throw new Error(data.message);
+        applyAuth(data.token, data.user);
+        return data.user;
+    }
+
+    const logout = () => {
+        clearAuth();
+        navigate('/');
+    }
+
+    const getToken = async () => token;
 
     const fetchRooms = async () => {
         try {
             const { data } = await axios.get('/api/rooms')
             if (data.success) {
                 setRooms(data.rooms)
-            }
-            else {
+            } else {
                 toast.error(data.message)
             }
         } catch (error) {
@@ -35,31 +90,30 @@ export const AppProvider = ({ children }) => {
         }
     }
 
-    const fetchUser = async () => {
-        try {
-            const { data } = await axios.get('/api/user/', { headers: { Authorization: `Bearer ${await getToken()}` } });
-            if (data.success) {
-                // FIX CONSUMPTION: Directly use the definitive 'isOwner' boolean returned from the server.
-                // This ensures the state is correct on every page refresh.
-                setIsOwner(data.isOwner);
-                setSearchedCities(data.recentSearchedCities);
-            } else {
-                // Retry Fetching User Details after 5 seconds
-                setTimeout(() => {
-                    fetchUser()
-                }, 5000)
+    useEffect(() => {
+        if (token) {
+            axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+            const stored = localStorage.getItem('user');
+            if (stored) {
+                try {
+                    const parsed = JSON.parse(stored);
+                    setUser(parsed);
+                    setIsOwner(parsed.role === 'hotelOwner');
+                } catch { /* ignore */ }
             }
-        } catch (error) {
-            toast.error(error.message)
+            fetchUser();
+        } else {
+            setAuthLoading(false);
         }
-    }
+    }, []);
 
     useEffect(() => {
         if (user) {
-            // This hook ensures fetchUser runs on initial login and every page refresh
-            fetchUser();
+            localStorage.setItem('user', JSON.stringify(user));
+        } else {
+            localStorage.removeItem('user');
         }
-    }, [user])
+    }, [user]);
 
     useEffect(() => {
         fetchRooms();
@@ -69,17 +123,18 @@ export const AppProvider = ({ children }) => {
         currency,
         navigate,
         user,
+        token,
+        authLoading,
+        isOwner,
+        login,
+        signup,
+        logout,
         getToken,
-        isOwner, // This state now correctly reflects the database
-        setIsOwner,
         axios,
-        showHotelReg,
-        setShowHotelReg,
         searchedCities,
         setSearchedCities,
         rooms,
-        setRooms
-
+        setRooms,
     }
 
     return (

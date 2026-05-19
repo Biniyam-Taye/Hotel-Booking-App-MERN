@@ -16,7 +16,15 @@ export const getUserData = async (req, res) => {
         const isOwner = role === 'hotelOwner';
 
         // Return the definitive owner status
-        res.json({ success: true, role, recentSearchedCities, isOwner });
+        res.json({
+            success: true,
+            role,
+            recentSearchedCities,
+            isOwner,
+            username: req.user.username,
+            email: req.user.email,
+            image: req.user.image,
+        });
     } catch (error) {
         console.error("getUserData Error:", error);
         res.status(500).json({ success: false, message: error.message });
@@ -28,8 +36,7 @@ export const getUserData = async (req, res) => {
 export const storeRecentSearchedCities = async (req, res) => {
     try {
         const { recentSearchedCity } = req.body;
-        const clerkUserId = req.auth.userId || req.user.id;
-        const user = await User.findById(clerkUserId);
+        const user = await User.findById(req.user._id);
 
         if (!user) {
             return res.status(404).json({ success: false, message: "User not found in DB." });
