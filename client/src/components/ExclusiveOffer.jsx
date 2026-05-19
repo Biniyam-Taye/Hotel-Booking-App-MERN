@@ -56,9 +56,9 @@ const ExclusiveOffer = () => {
                 </div>
 
                 {/* View All — outline ghost style matching FeaturedDestination */}
-                <div className="relative group/va flex-shrink-0">
+                <Link to="/offers" onClick={() => scrollTo(0, 0)} className="relative group/va flex-shrink-0">
                     <div className="absolute -inset-1 rounded-2xl bg-gradient-to-r from-orange-400 to-pink-500 opacity-0 group-hover/va:opacity-30 blur-md transition-all duration-500"></div>
-                    <button className="relative flex items-center gap-3 px-8 py-3.5 rounded-2xl font-semibold text-base border-2 border-orange-400 text-orange-500 bg-transparent overflow-hidden transition-all duration-300 group-hover/va:text-white group-hover/va:border-pink-500 group-hover/va:-translate-y-0.5 active:scale-95">
+                    <span className="relative flex items-center gap-3 px-8 py-3.5 rounded-2xl font-semibold text-base border-2 border-orange-400 text-orange-500 bg-transparent overflow-hidden transition-all duration-300 group-hover/va:text-white group-hover/va:border-pink-500 group-hover/va:-translate-y-0.5 active:scale-95">
                         <span className="absolute inset-0 bg-gradient-to-r from-orange-400 to-pink-500 translate-x-[-101%] group-hover/va:translate-x-0 transition-transform duration-500 ease-out"></span>
                         <span className="relative z-10 flex items-center gap-2.5">
                             View All Offers
@@ -68,8 +68,8 @@ const ExclusiveOffer = () => {
                                 </svg>
                             </span>
                         </span>
-                    </button>
-                </div>
+                    </span>
+                </Link>
             </div>
 
             {/* Offer Cards Grid */}
@@ -125,7 +125,7 @@ const ExclusiveOffer = () => {
                             </div>
 
                             {/* Bottom colorful accent line sweeps in on hover */}
-                            <motionless className={`absolute bottom-0 left-0 right-0 h-[3px] bg-gradient-to-r ${cfg.accentLine} scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left`} />
+                            <div className={`absolute bottom-0 left-0 right-0 h-[3px] bg-gradient-to-r ${cfg.accentLine} scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left`} />
                         </Link>
                     )
                 })}
