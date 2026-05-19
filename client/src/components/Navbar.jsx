@@ -41,10 +41,11 @@ const Navbar = () => {
     }, [location.pathname]);
 
     return (
-        <nav className={`fixed top-0 left-0 w-full flex items-center justify-between px-4 md:px-16 lg:px-24 xl:px-32 transition-all duration-500 z-50 ${isScrolled
-            ? "bg-white/80 shadow-[0_4px_30px_rgba(0,0,0,0.08)] text-gray-700 backdrop-blur-xl py-5 border-b border-white/60"
-            : "py-7 md:py-8"
-            }`}>
+        <nav className="fixed top-0 left-0 w-full z-50 px-4 md:px-16 lg:px-24 xl:px-32 pt-4 md:pt-5">
+            <div className={`flex items-center justify-between w-full transition-all duration-500 rounded-[3.5rem] px-5 md:px-8 lg:px-10 ${isScrolled
+                ? "bg-[#F6F9FC]/95 text-gray-700 backdrop-blur-xl py-4 md:py-5 shadow-[0_40px_100px_rgba(0,0,0,0.25)] border border-gray-200"
+                : "py-5 md:py-6 bg-white/10 backdrop-blur-md border border-white/25 shadow-[0_40px_100px_rgba(0,0,0,0.2)]"
+                }`}>
 
             <Link to='/' className="group flex items-center gap-2">
                 <img src={assets.logo} alt="logo" className={`h-11 transition-all duration-500 group-hover:scale-105 ${isScrolled && "invert opacity-80"}`} />
@@ -135,6 +136,7 @@ const Navbar = () => {
                 >
                     <img src={assets.menuIcon} alt="menu" className={`${isScrolled && "invert"} h-4 w-4`} />
                 </button>
+            </div>
             </div>
 
             <div className={`fixed top-0 left-0 w-full h-screen bg-white flex flex-col md:hidden transition-all duration-500 ease-in-out ${isMenuOpen ? "translate-x-0 opacity-100" : "-translate-x-full opacity-0"}`}>
