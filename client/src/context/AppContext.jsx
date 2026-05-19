@@ -20,6 +20,7 @@ export const AppProvider = ({ children }) => {
 
     const applyAuth = (authToken, userData) => {
         localStorage.setItem('token', authToken);
+        localStorage.setItem('user', JSON.stringify(userData));
         setToken(authToken);
         setUser(userData);
         setIsOwner(userData.role === 'hotelOwner');

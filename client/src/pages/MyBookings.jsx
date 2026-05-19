@@ -1,18 +1,18 @@
 import React, { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import Title from '../components/Title'
 import { assets } from '../assets/assets'
 import { useAppContext } from '../context/AppContext'
 import toast from 'react-hot-toast'
 
 const MyBookings = () => {
-    const { axios, getToken, user, currency } = useAppContext()
+    const { axios, user, currency, authLoading } = useAppContext()
+    const navigate = useNavigate()
     const [bookings, setBookings] = useState([])
 
     const fetchUserBookings = async () => {
         try {
-            const { data } = await axios.get('/api/bookings/user', {
-                headers: { Authorization: `Bearer ${await getToken()}` }
-            })
+            const { data } = await axios.get('/api/bookings/user')
             if (data.success) {
                 setBookings(data.bookings)
             } else {
@@ -25,10 +25,7 @@ const MyBookings = () => {
 
     const handlePayment = async (bookingId) => {
         try {
-            const { data } = await axios.post('/api/bookings/stripe-payment',
-                { bookingId },
-                { headers: { Authorization: `Bearer ${await getToken()}` } }
-            )
+            const { data } = await axios.post('/api/bookings/stripe-payment', { bookingId })
 
             if (data.success) {
                 window.location.href = data.url
@@ -42,6 +39,10 @@ const MyBookings = () => {
     }
 
     useEffect(() => {
+        if (!authLoading && !user) {
+            navigate('/login')
+            return
+        }
         if (user) {
             fetchUserBookings()
 
@@ -53,8 +54,7 @@ const MyBookings = () => {
                 const verifyPayment = async () => {
                     try {
                         const { data } = await axios.post('/api/bookings/verify',
-                            { success, session_id: sessionId },
-                            { headers: { Authorization: `Bearer ${await getToken()}` } }
+                            { success, session_id: sessionId }
                         );
 
                         if (data.success) {

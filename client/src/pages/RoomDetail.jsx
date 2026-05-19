@@ -123,10 +123,7 @@ const RoomDetail = () => {
                         {room?.title || `Room ${roomIndex !== -1 ? roomIndex + 1 : ''}`}
                         <span className='font-inter text-lg text-gray-500 font-medium ml-3'>({room?.roomType})</span>
                     </h1>
-                    {room?.description && (
-                        <p className='text-gray-600 mt-3 max-w-2xl leading-relaxed'>{room.description}</p>
-                    )}
-                    
+
                     <div className='flex items-center gap-4 mt-4'>
                         <div className='flex items-center gap-1 bg-gray-50 px-3 py-1 rounded-full border border-gray-100'>
                             <StarRating />

@@ -16,6 +16,10 @@ const AuthGuard = ({ children }) => {
     const isAuthPage = ['/login', '/signup'].includes(location.pathname)
     const isOwnerPath = location.pathname.startsWith('/owner')
 
+    if (user && isAuthPage) {
+        return <Navigate to={isOwner ? '/owner' : '/'} replace />
+    }
+
     if (user && isOwner && !isOwnerPath && !isAuthPage) {
         return <Navigate to="/owner" replace />
     }
