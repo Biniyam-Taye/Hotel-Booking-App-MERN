@@ -81,15 +81,16 @@ export const createBooking = async (req, res) => {
             checkInDate: checkIn,
             checkOutDate: checkOut,
             totalPrice,
+            paymentMethod: req.body.paymentMethod || "Pay At Hotel",
         });
 
-        // inside createBooking after booking is created:
-
-        const mailOptions = {
-            from: process.env.SENDER_EMAIL,
-            to: req.user.email,
-            subject: "Your Hotel Booking Confirmation",
-            html: `
+        // Send confirmation email without failing the booking if SMTP is misconfigured
+        try {
+            const mailOptions = {
+                from: process.env.SENDER_EMAIL,
+                to: req.user.email,
+                subject: "Your Hotel Booking Confirmation",
+                html: `
         <h2>Booking Confirmed ✔</h2>
         <p>Hello ${req.user.username},</p>
 
@@ -106,9 +107,11 @@ export const createBooking = async (req, res) => {
 
         <p>Thank you for booking with us.</p>
     `
-        };
-
-        await transporter.sendMail(mailOptions);
+            };
+            await transporter.sendMail(mailOptions);
+        } catch (emailError) {
+            console.error("Booking confirmation email failed:", emailError.message);
+        }
 
         res.json({ success: true, message: "Booking created successfully" });
 

@@ -54,10 +54,8 @@ export const protect = async (req, res, next) => {
         next();
 
     } catch (error) {
-        console.error("Auth Middleware full error:", error); // <-- Add this line
-        // ... then your existing log:
-        console.log("Auth Middleware Error (Clerk API/Mongoose):");
-        // ... return error response ...
+        console.error("Auth Middleware Error:", error);
+        return res.status(401).json({ success: false, message: "Authentication failed" });
     }
 };
 
