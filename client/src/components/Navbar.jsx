@@ -44,7 +44,7 @@ const Navbar = () => {
         <nav className="fixed top-0 left-0 w-full z-50 px-4 md:px-16 lg:px-24 xl:px-32 pt-4 md:pt-5">
             <div className={`flex items-center justify-between w-full transition-all duration-500 rounded-[3.5rem] px-5 md:px-8 lg:px-10 ${isScrolled
                 ? "bg-[#F6F9FC]/95 text-gray-700 backdrop-blur-xl py-4 md:py-5 shadow-[0_40px_100px_rgba(0,0,0,0.25)] border border-gray-200"
-                : "py-5 md:py-6 bg-white/10 backdrop-blur-md border border-white/25 shadow-[0_40px_100px_rgba(0,0,0,0.2)]"
+                : "py-5 md:py-6 bg-white/10 backdrop-blur-md border border-transparent shadow-[0_40px_100px_rgba(0,0,0,0.2)]"
                 }`}>
 
             <Link to='/' className="group flex items-center gap-2">

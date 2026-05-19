@@ -36,7 +36,7 @@ const Hero = () => {
                     Unparalleled luxury and comfort await at the world's most exclusive rooms and resorts. Start your unforgettable journey today.
                 </p>
 
-                <div className='inline-flex items-center gap-3 bg-white/10 backdrop-blur-md border border-white/20 px-4 py-2 rounded-xl text-sm font-medium hover:bg-white/20 transition-all cursor-default mt-5 shadow-sm'>
+                <div className='inline-flex items-center gap-3 bg-white/10 backdrop-blur-md border border-transparent px-4 py-2 rounded-xl text-sm font-medium hover:bg-white/20 transition-all cursor-default mt-5 shadow-sm'>
                     <span className="relative flex h-3 w-3">
                       <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#49B9FF] opacity-75"></span>
                       <span className="relative inline-flex rounded-full h-3 w-3 bg-[#49B9FF]"></span>
@@ -45,7 +45,7 @@ const Hero = () => {
                 </div>
                 
                 {/* Premium Widget Search Bar */}
-                <form onSubmit={onSearch} className='bg-white/95 backdrop-blur-2xl shadow-[0_20px_50px_rgba(0,0,0,0.25)] rounded-[2rem] p-2.5 mt-8 flex flex-col md:flex-row items-stretch gap-2.5 w-full max-w-[960px] transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_30px_60px_rgba(0,0,0,0.35)] relative z-20 border border-white/50'>
+                <form onSubmit={onSearch} className='bg-white/95 backdrop-blur-2xl shadow-[0_20px_50px_rgba(0,0,0,0.25)] rounded-[2rem] p-2.5 mt-8 flex flex-col md:flex-row items-stretch gap-2.5 w-full max-w-[960px] transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_30px_60px_rgba(0,0,0,0.35)] relative z-20 border border-transparent'>
                     
                     {/* Destination */}
                     <div className='flex-1 w-full bg-gray-50/80 hover:bg-[#e8f4ff] border border-transparent hover:border-blue-300 rounded-[1.5rem] px-4 py-3 transition-all duration-300 group cursor-text focus-within:bg-white focus-within:border-blue-400 focus-within:ring-4 focus-within:ring-blue-100 hover:-translate-y-1 hover:shadow-[0_8px_20px_rgba(73,185,255,0.2)]'>
