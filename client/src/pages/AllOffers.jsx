@@ -17,7 +17,7 @@ const AllOffers = () => {
         <div className='relative flex flex-col px-6 md:px-16 lg:px-24 xl:px-32 pt-32 pb-24 overflow-hidden bg-white min-h-screen group/section'>
             <div className="absolute top-0 left-0 w-[500px] h-[500px] bg-orange-100/40 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2 pointer-events-none transition-all duration-1000 group-hover/section:-translate-x-1/3" />
             <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-violet-100/40 rounded-full blur-3xl translate-x-1/2 translate-y-1/2 pointer-events-none transition-all duration-1000 group-hover/section:translate-x-1/3" />
-            <motionless className="absolute top-1/2 right-1/4 w-80 h-80 bg-emerald-100/30 rounded-full blur-3xl pointer-events-none transition-all duration-1000 group-hover/section:scale-125" />
+            <div className="absolute top-1/2 right-1/4 w-80 h-80 bg-emerald-100/30 rounded-full blur-3xl pointer-events-none transition-all duration-1000 group-hover/section:scale-125" />
 
             <div className="flex flex-col items-center text-center mb-14 relative z-10">
                 <div className="inline-flex items-center gap-2 bg-gradient-to-r from-orange-50 to-pink-50 border border-orange-200 px-5 py-2 rounded-full text-sm font-medium text-orange-600 mb-6 shadow-sm cursor-default transition-all duration-500 hover:-translate-y-1.5 hover:shadow-[0_8px_25px_rgba(249,115,22,0.25)] hover:border-orange-300">
@@ -39,13 +39,13 @@ const AllOffers = () => {
                     <div className="h-[2px] w-12 bg-gradient-to-l from-transparent to-orange-400 transition-all duration-700 group-hover/divider:w-24 group-hover/divider:shadow-[0_0_8px_rgba(249,115,22,0.8)]" />
                 </div>
 
-                <motionless className="relative group/desc cursor-default max-w-2xl">
+                <div className="relative group/desc cursor-default max-w-2xl">
                     <div className="absolute inset-0 -m-4 rounded-2xl bg-gradient-to-r from-orange-50/0 via-pink-50/0 to-orange-50/0 scale-95 opacity-0 group-hover/desc:opacity-100 group-hover/desc:scale-100 group-hover/desc:from-orange-50/80 group-hover/desc:via-pink-50/60 group-hover/desc:to-orange-50/80 transition-all duration-500 border border-transparent group-hover/desc:border-orange-100 backdrop-blur-sm" />
                     <p className='relative z-10 text-gray-600 text-base md:text-lg font-medium leading-relaxed transition-all duration-500 group-hover/desc:text-gray-900 group-hover/desc:text-xl group-hover/desc:font-semibold px-4 py-2'>
                         Browse every limited-time package — seasonal escapes, romantic retreats, and luxury early-bird deals crafted to elevate your stay.
                     </p>
                     <div className="absolute -bottom-1 left-1/2 -translate-x-1/2 h-[2px] w-0 bg-gradient-to-r from-orange-400 to-pink-500 rounded-full group-hover/desc:w-3/4 transition-all duration-700" />
-                </motionless>
+                </div>
             </div>
 
             <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7 relative z-10 w-full'>
@@ -93,7 +93,7 @@ const AllOffers = () => {
                         </Link>
                     )
                 })}
-            </motionless>
+            </div>
 
             <div className="mt-12 text-center relative z-10">
                 <Link

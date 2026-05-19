@@ -9,6 +9,8 @@ import MyBookings from './pages/MyBookings'
 import Experience from './pages/Experience'
 import About from './pages/About'
 import Hospitality from './pages/Hospitality'
+import AllOffers from './pages/AllOffers'
+import OfferDetail from './pages/OfferDetail'
 import LayOut from './pages/hotelOwner/LayOut'
 import Dashboard from './pages/hotelOwner/Dashboard'
 import AddRoom from './pages/hotelOwner/AddRoom'
@@ -46,6 +48,8 @@ const App = () => {
             <Route path='/my-bookings' element={<MyBookings />} />
             <Route path='/experience' element={<Experience />} />
             <Route path='/hospitality' element={<Hospitality />} />
+            <Route path='/offers' element={<AllOffers />} />
+            <Route path='/offers/:id' element={<OfferDetail />} />
             <Route path='/about' element={<About />} />
             <Route path='/login' element={<Login />} />
             <Route path='/signup' element={<Signup />} />

@@ -1,5 +1,6 @@
 import React from 'react'
-import { assets, exclusiveOffers } from '../assets/assets'
+import { Link } from 'react-router-dom'
+import { exclusiveOffers } from '../assets/assets'
 
 // Single unified orange accent for all cards
 const cardConfig = {
