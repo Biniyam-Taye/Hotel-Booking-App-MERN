@@ -1,5 +1,6 @@
 import { Navigate, useLocation } from 'react-router-dom'
 import { useAppContext } from '../context/AppContext'
+import { isPublicInfoPage } from '../constants/publicInfoPages'
 
 const AuthGuard = ({ children }) => {
     const { user, isOwner, isAdmin, ownerStatus, authLoading } = useAppContext()
@@ -18,6 +19,7 @@ const AuthGuard = ({ children }) => {
     const isOwnerPath = location.pathname.startsWith('/owner')
     const isPendingPath = location.pathname === '/owner/pending'
     const isPendingOwner = user?.role === 'hotelOwner' && ownerStatus === 'pending'
+    const isInfoPage = isPublicInfoPage(location.pathname)
 
     if (user && isAuthPage) {
         if (isAdmin) return <Navigate to="/admin" replace />
@@ -30,7 +32,7 @@ const AuthGuard = ({ children }) => {
         return <Navigate to="/" replace />
     }
 
-    if (user && isAdmin && !isAdminPath && !isAuthPage) {
+    if (user && isAdmin && !isAdminPath && !isAuthPage && !isInfoPage) {
         return <Navigate to="/admin" replace />
     }
 
@@ -39,12 +41,12 @@ const AuthGuard = ({ children }) => {
     }
 
     if (user && isPendingOwner) {
-        if (!isPendingPath && !isAuthPage) {
+        if (!isPendingPath && !isAuthPage && !isInfoPage) {
             return <Navigate to="/owner/pending" replace />
         }
     }
 
-    if (user && isOwner && !isOwnerPath && !isAuthPage && !isAdminPath) {
+    if (user && isOwner && !isOwnerPath && !isAuthPage && !isAdminPath && !isInfoPage) {
         return <Navigate to="/owner" replace />
     }
 

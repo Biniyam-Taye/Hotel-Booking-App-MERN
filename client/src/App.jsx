@@ -11,7 +11,17 @@ import About from './pages/About'
 import Hospitality from './pages/Hospitality'
 import AllOffers from './pages/AllOffers'
 import OfferDetail from './pages/OfferDetail'
-import FooterStaticPage from './pages/FooterStaticPage'
+import {
+  CareersPage,
+  PressPage,
+  BlogPage,
+  PartnersPage,
+  HelpPage,
+  SafetyPage,
+  CancelPolicyPage,
+  SupportPage,
+  AccessPage,
+} from './pages/footer/createFooterPage'
 import LayOut from './pages/hotelOwner/LayOut'
 import Dashboard from './pages/hotelOwner/Dashboard'
 import AddRoom from './pages/hotelOwner/AddRoom'
@@ -52,15 +62,15 @@ const App = () => {
             <Route path='/offers' element={<AllOffers />} />
             <Route path='/offers/:id' element={<OfferDetail />} />
             <Route path='/about' element={<About />} />
-            <Route path='/careers' element={<FooterStaticPage />} />
-            <Route path='/press' element={<FooterStaticPage />} />
-            <Route path='/blog' element={<FooterStaticPage />} />
-            <Route path='/partners' element={<FooterStaticPage />} />
-            <Route path='/help' element={<FooterStaticPage />} />
-            <Route path='/safety' element={<FooterStaticPage />} />
-            <Route path='/cancel-policy' element={<FooterStaticPage />} />
-            <Route path='/support' element={<FooterStaticPage />} />
-            <Route path='/access' element={<FooterStaticPage />} />
+            <Route path='/careers' element={<CareersPage />} />
+            <Route path='/press' element={<PressPage />} />
+            <Route path='/blog' element={<BlogPage />} />
+            <Route path='/partners' element={<PartnersPage />} />
+            <Route path='/help' element={<HelpPage />} />
+            <Route path='/safety' element={<SafetyPage />} />
+            <Route path='/cancel-policy' element={<CancelPolicyPage />} />
+            <Route path='/support' element={<SupportPage />} />
+            <Route path='/access' element={<AccessPage />} />
             <Route path='/login' element={<Login />} />
             <Route path='/signup' element={<Signup />} />
             <Route path='/loader/:nextUrl' element={<Loader />} />

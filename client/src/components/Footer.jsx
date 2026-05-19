@@ -19,7 +19,7 @@ const resourceLinks = [
 ]
 
 const Footer = () => {
-    const scrollTop = () => scrollTo(0, 0)
+    const scrollTop = () => window.scrollTo({ top: 0, behavior: 'smooth' })
 
     return (
         <div className="px-6 md:px-16 lg:px-24 xl:px-32 pb-14 pt-8 bg-white">

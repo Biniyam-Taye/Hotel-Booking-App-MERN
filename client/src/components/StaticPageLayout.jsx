@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 
 const StaticPageLayout = ({ page }) => {
     useEffect(() => {
-        scrollTo(0, 0)
+        window.scrollTo({ top: 0, behavior: 'instant' })
     }, [page.slug])
 
     const accent = page.accent || 'blue'
