@@ -63,7 +63,7 @@ const Signup = () => {
                             : 'border-gray-200 text-gray-600 hover:border-gray-300'
                             }`}
                     >
-                        Book stays
+                        Customer
                     </button>
                     <button
                         type="button"
@@ -73,7 +73,7 @@ const Signup = () => {
                             : 'border-gray-200 text-gray-600 hover:border-gray-300'
                             }`}
                     >
-                        List my hotel
+                        Hotel Owner
                     </button>
                 </div>
 
