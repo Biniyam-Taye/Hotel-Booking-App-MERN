@@ -23,6 +23,10 @@ const AuthGuard = ({ children }) => {
         if (isAdmin) return <Navigate to="/admin" replace />
         if (isPendingOwner) return <Navigate to="/owner/pending" replace />
         if (isOwner) return <Navigate to="/owner" replace />
+        const from = location.state?.from
+        if (from && from !== '/login' && from !== '/signup') {
+            return <Navigate to={from} replace />
+        }
         return <Navigate to="/" replace />
     }
 

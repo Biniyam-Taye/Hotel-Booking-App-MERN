@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { assets } from '../assets/assets'
 import { useAppContext } from '../context/AppContext'
 import toast from 'react-hot-toast'
@@ -7,6 +7,8 @@ import toast from 'react-hot-toast'
 const Login = () => {
     const { login } = useAppContext()
     const navigate = useNavigate()
+    const location = useLocation()
+    const redirectTo = location.state?.from || '/'
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [loading, setLoading] = useState(false)
@@ -20,7 +22,7 @@ const Login = () => {
             if (user.isAdmin) navigate('/admin')
             else if (user.role === 'hotelOwner' && user.ownerStatus === 'pending') navigate('/owner/pending')
             else if (user.isOwner) navigate('/owner')
-            else navigate('/')
+            else navigate(redirectTo)
         } catch (error) {
             toast.error(error.response?.data?.message || error.message)
         } finally {
@@ -34,7 +36,11 @@ const Login = () => {
                 <div className="text-center mb-8">
                     <img src={assets.logo} alt="logo" className="h-12 mx-auto invert opacity-80 mb-4" />
                     <h1 className="text-2xl font-bold text-gray-900 font-playfair">Welcome back</h1>
-                    <p className="text-gray-500 text-sm mt-1">Sign in to your account</p>
+                    <p className="text-gray-500 text-sm mt-1">
+                        {redirectTo === '/hospitality'
+                            ? 'Sign in to complete your order'
+                            : 'Sign in to your account'}
+                    </p>
                 </div>
 
                 <form onSubmit={onSubmit} className="space-y-5">

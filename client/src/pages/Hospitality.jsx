@@ -1,6 +1,6 @@
 import React, { useState, useMemo } from 'react'
 import { assets } from '../assets/assets'
-import { useSearchParams } from 'react-router-dom'
+import { useNavigate, useSearchParams } from 'react-router-dom'
 import StarRating from '../components/StarRating'
 import toast from 'react-hot-toast'
 import { useAppContext } from '../context/AppContext'
@@ -32,7 +32,16 @@ const RadioButton = ({ label, selected = false, onChange = () => { } }) => {
 
 const Hospitality = () => {
     const [searchParams, setSearchParams] = useSearchParams()
-    const { hospitalities, currency } = useAppContext()
+    const { hospitalities, currency, user, navigate } = useAppContext()
+
+    const handleOrder = (item) => {
+        if (!user || user.role !== 'user') {
+            toast.error('Please sign in as a customer to place an order')
+            navigate('/login', { state: { from: '/hospitality' } })
+            return
+        }
+        toast.success(`Added ${item.title} to your order!`)
+    }
 
     const [openFilters, setOpenFilters] = useState(false)
     const [selectedFilters, setSelectedFilters] = useState({
@@ -218,7 +227,7 @@ const Hospitality = () => {
                                         </p>
                                     </div>
                                     
-                                    <button onClick={() => toast.success(`Added ${dining.title} to your order!`)} className="relative group/btn overflow-hidden bg-gray-900 hover:bg-blue-600 text-white px-6 py-3 rounded-xl font-medium transition-colors duration-500 shadow-sm hover:shadow-[0_8px_20px_rgba(37,99,235,0.3)]">
+                                    <button onClick={() => handleOrder(dining)} className="relative group/btn overflow-hidden bg-gray-900 hover:bg-blue-600 text-white px-6 py-3 rounded-xl font-medium transition-colors duration-500 shadow-sm hover:shadow-[0_8px_20px_rgba(37,99,235,0.3)]">
                                         <span className="relative z-10 flex items-center gap-2">
                                             Order Now
                                             <svg className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
