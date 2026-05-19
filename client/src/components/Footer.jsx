@@ -1,13 +1,31 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import { assets } from '../assets/assets'
 
+const companyLinks = [
+    { name: 'About', path: '/about' },
+    { name: 'Careers', path: '/careers' },
+    { name: 'Press', path: '/press' },
+    { name: 'Blog', path: '/blog' },
+    { name: 'Partners', path: '/partners' },
+]
+
+const resourceLinks = [
+    { name: 'Help', path: '/help' },
+    { name: 'Safety', path: '/safety' },
+    { name: 'Cancel', path: '/cancel-policy' },
+    { name: 'Support', path: '/support' },
+    { name: 'Access', path: '/access' },
+]
+
 const Footer = () => {
+    const scrollTop = () => scrollTo(0, 0)
+
     return (
         <div className="px-6 md:px-16 lg:px-24 xl:px-32 pb-14 pt-8 bg-white">
             <footer className="bg-[#F6F9FC] rounded-[3.5rem] p-10 md:p-14 w-full text-gray-500 shadow-[0_40px_100px_rgba(0,0,0,0.25)] border border-gray-200">
                 <div className="flex flex-col md:flex-row justify-between w-full gap-10 border-b border-gray-500/30 pb-6">
 
-                    {/* Left Logo + Text */}
                     <div className="md:max-w-96 ">
                         <img alt="logo" className="mb-4 h-8 md:h-9 invert opacity-80" src={assets.logo} />
                         <p className="mt-6 text-sm">
@@ -18,77 +36,71 @@ const Footer = () => {
                             <img src={assets.facebookIcon} alt="facebook-icon" className='w-6' />
                             <img src={assets.twitterIcon} alt="twitter-icon" className='w-6' />
                             <img src={assets.linkendinIcon} alt="linkendin-icon" className='w-6' />
-
                         </div>
                     </div>
 
-                    {/* Columns */}
-                    <div className="flex-1 flex items-start md:justify-end gap-20">
+                    <div className="flex-1 flex flex-wrap items-start md:justify-end gap-12 md:gap-20">
 
-                        {/* Company */}
                         <div>
                             <h2 className="font-playfair text-xl text-gray-800">COMPANY</h2>
-                            <ul className="text-sm space-y-2">
-                                <li><a href="#">About</a></li>
-                                <li><a href="#">Careers</a></li>
-                                <li><a href="#">Press</a></li>
-                                <li><a href="#">Blog</a></li>
-                                <li><a href="#">Partners</a></li>
-
+                            <ul className="mt-3 flex flex-col gap-2 text-sm">
+                                {companyLinks.map((link) => (
+                                    <li key={link.path}>
+                                        <Link
+                                            to={link.path}
+                                            onClick={scrollTop}
+                                            className="hover:text-[#49B9FF] transition-colors"
+                                        >
+                                            {link.name}
+                                        </Link>
+                                    </li>
+                                ))}
                             </ul>
                         </div>
 
-                        {/* New Column - Resources */}
                         <div>
                             <h2 className="font-playfair text-xl text-gray-800">RESOURCES</h2>
                             <ul className="mt-3 flex flex-col gap-2 text-sm">
-                                <li><a href="#">Help</a></li>
-                                <li><a href="#">Safety</a></li>
-                                <li><a href="#">Cancel</a></li>
-                                <li><a href="#">Support</a></li>
-                                <li><a href="#">Access</a></li>
+                                {resourceLinks.map((link) => (
+                                    <li key={link.path}>
+                                        <Link
+                                            to={link.path}
+                                            onClick={scrollTop}
+                                            className="hover:text-[#49B9FF] transition-colors"
+                                        >
+                                            {link.name}
+                                        </Link>
+                                    </li>
+                                ))}
                             </ul>
                         </div>
 
-
-                        {/* Newsletter */}
                         <div>
                             <h2 className="font-playfair text-xl text-gray-800">STAY UPDATED</h2>
-                            <div className="text-sm space-y-2">
+                            <div className="text-sm space-y-2 mt-3">
                                 <p>The latest news, articles, and resources, sent to your inbox weekly.</p>
-
-                                <div className="flex items-center gap-2 pt-4">
-                                    <input
-                                        className="border border-gray-500/30 placeholder-gray-500 focus:ring-2 ring-indigo-600 outline-none w-full max-w-64 h-9 rounded px-2"
-                                        type="email"
-                                        placeholder="Enter your email"
-                                    />
-
-                                    <button className="bg-black hover:bg-gray-900 transition-all duration-300 w-20 h-8 rounded-lg flex items-center justify-center shadow-md shadow-black/20">
-                                        <img src={assets.arrowIcon} alt="arrow-icon" className="w-3.5 invert" />
-                                    </button>
-
-
-                                </div>
+                                <p className="text-xs text-gray-400 pt-2">
+                                    Subscribe via our{' '}
+                                    <Link to="/blog" onClick={scrollTop} className="text-[#49B9FF] hover:underline">
+                                        Journal
+                                    </Link>{' '}
+                                    page for editorial updates.
+                                </p>
                             </div>
                         </div>
-                        <hr className='border-gray-300 mt-8' />
                     </div>
                 </div>
 
-                {/* Bottom */}
                 <div className='flex flex-col md:flex-row gap-2 items-center justify-between py-5'>
                     <p className="pt-4 text-center text-xs md:text-sm pb-5">
                         Copyright ©{new Date().getFullYear()} - Biniyam Taye .All rights reserved.
                     </p>
-                    <ul className="flex items-center gap-4">
-                        <li><a href="#">Privacy</a></li>
-                        <li><a href="#">Terms</a></li>
-                        <li><a href="#">Sitemap</a></li>
+                    <ul className="flex items-center gap-4 text-sm">
+                        <li><Link to="/help" onClick={scrollTop} className="hover:text-[#49B9FF]">Privacy</Link></li>
+                        <li><Link to="/cancel-policy" onClick={scrollTop} className="hover:text-[#49B9FF]">Terms</Link></li>
+                        <li><Link to="/support" onClick={scrollTop} className="hover:text-[#49B9FF]">Sitemap</Link></li>
                     </ul>
                 </div>
-
-
             </footer>
         </div>
     )
