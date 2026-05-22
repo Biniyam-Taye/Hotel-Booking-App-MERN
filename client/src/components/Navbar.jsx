@@ -301,8 +301,8 @@ const Navbar = () => {
                         </div>
                     ) : (
                         <div className="flex items-center gap-2">
-                            <span className={`px-6 py-2.5 text-base font-semibold rounded-xl transition-all ${theme.logoInvert ? "text-gray-700 hover:text-blue-600" : "text-white hover:bg-white/10"}`}>Login</span>
-                            <span className={`px-8 py-2 rounded-xl text-base font-semibold whitespace-nowrap transition-all hover:scale-105 ${theme.logoInvert ? "bg-gradient-to-r from-[#49B9FF] to-blue-600 text-white shadow-lg" : "bg-white text-gray-900 shadow-lg"}`}>Sign Up</span>
+                            <Link to="/login" className={`px-6 py-2.5 text-base font-semibold rounded-xl transition-all ${theme.logoInvert ? "text-gray-700 hover:text-blue-600" : "text-white hover:bg-white/10"}`}>Login</Link>
+                            <Link to="/signup" className={`px-8 py-2 rounded-xl text-base font-semibold whitespace-nowrap transition-all hover:scale-105 ${theme.logoInvert ? "bg-gradient-to-r from-[#49B9FF] to-blue-600 text-white shadow-lg" : "bg-white text-gray-900 shadow-lg"}`}>Sign Up</Link>
                         </div>
                     )}
                 </div>
