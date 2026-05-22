@@ -28,13 +28,15 @@ const SafetyLayout = ({ page }) => {
                 <div className="absolute -bottom-20 -left-20 w-80 h-80 rounded-full border-[40px] border-emerald-800/50 pointer-events-none" />
             </section>
 
-            <section className="px-6 md:px-16 py-8 flex flex-wrap gap-4 justify-center border-y border-emerald-800">
-                {page.stats.map((s) => (
-                    <span key={s.label} className="px-5 py-2 rounded-full bg-emerald-900 text-sm">
-                        <strong className="text-emerald-300">{s.value}</strong> · {s.label}
-                    </span>
-                ))}
-            </section>
+            {page.stats && (
+                <section className="px-6 md:px-16 py-8 flex flex-wrap gap-4 justify-center border-y border-emerald-800">
+                    {page.stats.map((s) => (
+                        <span key={s.label} className="px-5 py-2 rounded-full bg-emerald-900 text-sm">
+                            <strong className="text-emerald-300">{s.value}</strong> · {s.label}
+                        </span>
+                    ))}
+                </section>
+            )}
 
             <section className="px-6 md:px-16 py-12 max-w-3xl">
                 {page.intro.map((p, i) => (

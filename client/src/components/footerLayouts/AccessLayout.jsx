@@ -26,14 +26,16 @@ const AccessLayout = ({ page }) => {
                             {p}
                         </p>
                     ))}
-                    <div className="flex flex-wrap gap-4 mt-4">
-                        {page.stats.map((s) => (
-                            <div key={s.label}>
-                                <p className="text-2xl font-bold text-indigo-600">{s.value}</p>
-                                <p className="text-xs text-gray-500">{s.label}</p>
-                            </div>
-                        ))}
-                    </div>
+                    {page.stats && (
+                        <div className="flex flex-wrap gap-4 mt-4">
+                            {page.stats.map((s) => (
+                                <div key={s.label}>
+                                    <p className="text-2xl font-bold text-indigo-600">{s.value}</p>
+                                    <p className="text-xs text-gray-500">{s.label}</p>
+                                </div>
+                            ))}
+                        </div>
+                    )}
                 </div>
                 <img src={page.heroImage} alt="" className="w-full h-64 md:h-auto object-cover order-1 md:order-2" />
             </section>
