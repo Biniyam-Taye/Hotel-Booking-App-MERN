@@ -203,14 +203,6 @@ const seedDatabase = async () => {
         image: "https://images.unsplash.com/photo-1470337458703-46ad1756a187?w=800&h=600&fit=crop",
       },
       {
-        title: "Airport Transfer Service",
-        description: "Luxury sedan pickup and drop-off service to and from Bole International Airport with complimentary water and WiFi.",
-        category: "Transport",
-        price: 1500,
-        features: ["Luxury Vehicle", "Professional Driver", "Free WiFi", "Bottled Water"],
-        image: "https://images.unsplash.com/photo-1449965408869-ebd3fee7287f?w=800&h=600&fit=crop",
-      },
-      {
         title: "Cultural City Tour",
         description: "Guided half-day tour exploring local landmarks, markets, and hidden gems with an experienced local guide.",
         category: "Tour",
