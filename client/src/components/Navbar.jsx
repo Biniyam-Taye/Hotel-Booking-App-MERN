@@ -25,22 +25,26 @@ const Navbar = () => {
     const { user, navigate, logout } = useAppContext()
 
     useEffect(() => {
-  // Smooth scroll to top on route change
-  window.scrollTo({ top: 0, behavior: "smooth" });
+        // Smooth scroll to top on route change
+        window.scrollTo({ top: 0, behavior: "smooth" });
 
-  // Update scrolled state based on pathname
-  if (location.pathname !== '/') {
-    setIsScrolled(true);
-  } else {
-    setIsScrolled(false);
-  }
+        // Update scrolled state based on pathname
+        if (location.pathname !== '/') {
+            setIsScrolled(true);
+        } else {
+            setIsScrolled(false);
+        }
 
-  const handleScroll = () => {
-    setIsScrolled(window.scrollY > 10);
-  };
-  window.addEventListener("scroll", handleScroll);
-  return () => window.removeEventListener("scroll", handleScroll);
-}, [location.pathname]);
+        const handleScroll = () => {
+            if (location.pathname !== '/') {
+                setIsScrolled(true);
+            } else {
+                setIsScrolled(window.scrollY > 10);
+            }
+        };
+        window.addEventListener("scroll", handleScroll);
+        return () => window.removeEventListener("scroll", handleScroll);
+    }, [location.pathname]);
 
     return (
         <nav className="fixed top-0 left-0 w-full z-50 px-4 md:px-16 lg:px-24 xl:px-32 pt-4 md:pt-5">
@@ -49,96 +53,96 @@ const Navbar = () => {
                 : "py-5 md:py-6 bg-white/10 backdrop-blur-md border border-transparent shadow-[0_40px_100px_rgba(0,0,0,0.2)]"
                 }`}>
 
-            <Link to='/' className="group flex items-center gap-2">
-                <img src={assets.logo} alt="logo" className={`h-11 transition-all duration-500 group-hover:scale-105 ${isScrolled && "invert opacity-80"}`} />
-            </Link>
+                <Link to='/' className="group flex items-center gap-2">
+                    <img src={assets.logo} alt="logo" className={`h-11 transition-all duration-500 group-hover:scale-105 ${isScrolled && "invert opacity-80"}`} />
+                </Link>
 
-            <div className="hidden md:flex items-center gap-1 lg:gap-2">
-                {navLinks.map((link, i) => (
-                    <Link
-                        key={i}
-                        to={link.path}
-                        className={`relative px-5 py-2.5 text-base font-medium rounded-xl transition-all duration-300 group
+                <div className="hidden md:flex items-center gap-1 lg:gap-2">
+                    {navLinks.map((link, i) => (
+                        <Link
+                            key={i}
+                            to={link.path}
+                            className={`relative px-5 py-2.5 text-base font-medium rounded-xl transition-all duration-300 group
                             ${isScrolled
-                                ? "text-gray-600 hover:text-gray-900 hover:bg-gray-100"
-                                : "text-white/80 hover:text-white hover:bg-white/10"
-                            }`}
-                    >
-                        {link.name}
-                        <span className={`absolute bottom-1.5 left-5 right-5 h-[2px] rounded-full scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left
-                            ${isScrolled ? "bg-[#49B9FF]" : "bg-white"}`}
-                        />
-                    </Link>
-                ))}
-            </div>
-
-            <div className="hidden md:flex items-center gap-3">
-                <button className={`p-2.5 rounded-xl transition-all duration-300 hover:scale-110 active:scale-95
-                    ${isScrolled ? "hover:bg-gray-100" : "hover:bg-white/10"}`}>
-                    <img src={assets.searchIcon} alt="search" className={`${isScrolled && 'invert'} h-6 w-6`} />
-                </button>
-
-                {user ? (
-                    <div className="relative">
-                        <button
-                            onClick={() => setProfileOpen(!profileOpen)}
-                            className={`flex items-center gap-2 rounded-full ring-2 ring-offset-2 transition-all duration-300 hover:ring-[#49B9FF]
-                                ${isScrolled ? "ring-gray-200 ring-offset-white" : "ring-white/30 ring-offset-transparent"}`}
-                        >
-                            <img src={user.image} alt="" className="w-10 h-10 rounded-full object-cover" />
-                        </button>
-                        {profileOpen && (
-                            <div className="absolute right-0 mt-2 w-48 bg-white rounded-xl shadow-lg border border-gray-100 py-2 z-50">
-                                <p className="px-4 py-2 text-sm font-semibold text-gray-800 truncate">{user.username}</p>
-                                <button
-                                    onClick={() => { navigate('/my-bookings'); setProfileOpen(false); }}
-                                    className="w-full px-4 py-2 text-left text-sm text-gray-600 hover:bg-gray-50 flex items-center gap-2"
-                                >
-                                    <BookIcon /> My Bookings
-                                </button>
-                                <button
-                                    onClick={() => { logout(); setProfileOpen(false); }}
-                                    className="w-full px-4 py-2 text-left text-sm text-red-600 hover:bg-red-50"
-                                >
-                                    Logout
-                                </button>
-                            </div>
-                        )}
-                    </div>
-                ) : (
-                    <div className="flex items-center gap-2">
-                        <Link
-                            to="/login"
-                            className={`px-6 py-2.5 text-base font-semibold rounded-xl transition-all
-                                ${isScrolled ? "text-gray-700 hover:text-blue-600" : "text-white hover:bg-white/10"}`}
-                        >
-                            Login
-                        </Link>
-                        <Link
-                            to="/signup"
-                            className={`px-6 py-3 rounded-xl text-base font-semibold transition-all hover:scale-105
-                                ${isScrolled
-                                    ? "bg-gradient-to-r from-[#49B9FF] to-blue-600 text-white shadow-lg"
-                                    : "bg-white text-gray-900 shadow-lg"
+                                    ? "text-gray-600 hover:text-gray-900 hover:bg-gray-100"
+                                    : "text-white/80 hover:text-white hover:bg-white/10"
                                 }`}
                         >
-                            Sign Up
+                            {link.name}
+                            <span className={`absolute bottom-1.5 left-5 right-5 h-[2px] rounded-full scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left
+                            ${isScrolled ? "bg-[#49B9FF]" : "bg-white"}`}
+                            />
                         </Link>
-                    </div>
-                )}
-            </div>
+                    ))}
+                </div>
 
-            <div className="flex items-center gap-3 md:hidden">
-                {user ? (
-                    <img src={user.image} alt="" className="w-9 h-9 rounded-full" />
-                ) : null}
-                <button
-                    onClick={() => setIsMenuOpen(!isMenuOpen)}
-                    className={`p-2 rounded-xl transition-all duration-300 ${isScrolled ? "hover:bg-gray-100" : "hover:bg-white/10"}`}
-                >
-                    <img src={assets.menuIcon} alt="menu" className={`${isScrolled && "invert"} h-4 w-4`} />
-                </button>
-            </div>
+                <div className="hidden md:flex items-center gap-3">
+                    <button className={`p-2.5 rounded-xl transition-all duration-300 hover:scale-110 active:scale-95
+                    ${isScrolled ? "hover:bg-gray-100" : "hover:bg-white/10"}`}>
+                        <img src={assets.searchIcon} alt="search" className={`${isScrolled && 'invert'} h-6 w-6`} />
+                    </button>
+
+                    {user ? (
+                        <div className="relative">
+                            <button
+                                onClick={() => setProfileOpen(!profileOpen)}
+                                className={`flex items-center gap-2 rounded-full ring-2 ring-offset-2 transition-all duration-300 hover:ring-[#49B9FF]
+                                ${isScrolled ? "ring-gray-200 ring-offset-white" : "ring-white/30 ring-offset-transparent"}`}
+                            >
+                                <img src={user.image} alt="" className="w-10 h-10 rounded-full object-cover" />
+                            </button>
+                            {profileOpen && (
+                                <div className="absolute right-0 mt-2 w-48 bg-white rounded-xl shadow-lg border border-gray-100 py-2 z-50">
+                                    <p className="px-4 py-2 text-sm font-semibold text-gray-800 truncate">{user.username}</p>
+                                    <button
+                                        onClick={() => { navigate('/my-bookings'); setProfileOpen(false); }}
+                                        className="w-full px-4 py-2 text-left text-sm text-gray-600 hover:bg-gray-50 flex items-center gap-2"
+                                    >
+                                        <BookIcon /> My Bookings
+                                    </button>
+                                    <button
+                                        onClick={() => { logout(); setProfileOpen(false); }}
+                                        className="w-full px-4 py-2 text-left text-sm text-red-600 hover:bg-red-50"
+                                    >
+                                        Logout
+                                    </button>
+                                </div>
+                            )}
+                        </div>
+                    ) : (
+                        <div className="flex items-center gap-2">
+                            <Link
+                                to="/login"
+                                className={`px-6 py-2.5 text-base font-semibold rounded-xl transition-all
+                                ${isScrolled ? "text-gray-700 hover:text-blue-600" : "text-white hover:bg-white/10"}`}
+                            >
+                                Login
+                            </Link>
+                            <Link
+                                to="/signup"
+                                className={`px-6 py-3 rounded-xl text-base font-semibold transition-all hover:scale-105
+                                ${isScrolled
+                                        ? "bg-gradient-to-r from-[#49B9FF] to-blue-600 text-white shadow-lg"
+                                        : "bg-white text-gray-900 shadow-lg"
+                                    }`}
+                            >
+                                Sign Up
+                            </Link>
+                        </div>
+                    )}
+                </div>
+
+                <div className="flex items-center gap-3 md:hidden">
+                    {user ? (
+                        <img src={user.image} alt="" className="w-9 h-9 rounded-full" />
+                    ) : null}
+                    <button
+                        onClick={() => setIsMenuOpen(!isMenuOpen)}
+                        className={`p-2 rounded-xl transition-all duration-300 ${isScrolled ? "hover:bg-gray-100" : "hover:bg-white/10"}`}
+                    >
+                        <img src={assets.menuIcon} alt="menu" className={`${isScrolled && "invert"} h-4 w-4`} />
+                    </button>
+                </div>
             </div>
 
             <div className={`fixed top-0 left-0 w-full h-screen bg-white flex flex-col md:hidden transition-all duration-500 ease-in-out ${isMenuOpen ? "translate-x-0 opacity-100" : "-translate-x-full opacity-0"}`}>
