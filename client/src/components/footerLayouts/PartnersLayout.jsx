@@ -14,6 +14,7 @@ const tiers = [
         setup: 'Free',
         support: 'Email',
         features: ['Room listings', 'Basic offers', 'Guest messaging', 'Analytics dashboard', 'Mobile-friendly profile'],
+        footerNote: 'Commission-only pricing · No monthly fees',
         highlight: false,
     },
     {
@@ -25,6 +26,7 @@ const tiers = [
         setup: 'Free',
         support: 'Priority email + phone',
         features: ['All Boutique features', 'Hospitality add-ons', 'Exclusive Offers module', 'Featured placement', 'Dedicated account manager', 'Revenue analytics'],
+        footerNote: 'Priority onboarding · Featured marketplace placement',
         highlight: true,
     },
     {
@@ -36,6 +38,7 @@ const tiers = [
         setup: 'Free',
         support: '24/7 priority line',
         features: ['All Luxury features', 'Multi-property dashboard', 'API / PMS integration', 'Custom branding', 'White-glove onboarding', 'Joint marketing campaigns'],
+        footerNote: 'Volume rates · 24/7 partner success line',
         highlight: false,
     },
 ]
@@ -173,15 +176,16 @@ const PartnersLayout = ({ page }) => {
                                         ))}
                                     </ul>
 
-                                    <span
-                                        className={`w-full py-3 rounded-xl font-semibold text-sm text-center block select-none ${
+                                    <div
+                                        className={`w-full py-3 px-4 rounded-xl text-sm text-center select-none border ${
                                             tier.highlight
-                                                ? 'bg-gradient-to-r from-amber-400 to-orange-500 text-white shadow-lg shadow-amber-200/40'
-                                                : 'bg-gray-900 text-white'
+                                                ? 'bg-amber-50 border-amber-200 text-amber-900'
+                                                : 'bg-gray-50 border-gray-200 text-gray-600'
                                         }`}
+                                        aria-hidden="true"
                                     >
-                                        ✦ Free to Join
-                                    </span>
+                                        {tier.footerNote}
+                                    </div>
                                 </div>
                             </div>
                         ))}

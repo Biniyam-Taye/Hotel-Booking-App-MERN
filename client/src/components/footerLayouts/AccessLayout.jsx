@@ -2,8 +2,6 @@ import React, { useState } from 'react'
 import { BackLink, ContactPanel, usePageScroll } from './FooterShared'
 import { FooterIcon } from './FooterIcons'
 
-const unsplash = (id) => `https://images.unsplash.com/photo-${id}?w=900&q=80`
-
 const AccessLayout = ({ page }) => {
     usePageScroll(page.slug)
     const digital = page.sections[0]
@@ -44,37 +42,42 @@ const AccessLayout = ({ page }) => {
                 <div className="absolute top-0 right-0 w-[40%] h-full bg-gradient-to-l from-indigo-500/10 to-transparent pointer-events-none" />
             </section>
 
-            {/* ─── INTRODUCTION ─── */}
-            <section className="grid md:grid-cols-2 min-h-[400px] border-b border-slate-900">
-                <div className="p-10 md:p-20 flex flex-col justify-center bg-slate-900/40">
+            {/* ─── INTRO (compact) ─── */}
+            <section className="px-6 md:px-20 -mt-6 pb-12 relative z-10">
+                <div className="max-w-4xl mx-auto rounded-2xl border border-indigo-500/20 bg-slate-900/80 backdrop-blur-sm p-6 md:p-8 shadow-xl">
+                    <div className="flex items-start gap-4 mb-5">
+                        <div className="w-10 h-10 rounded-xl bg-indigo-500/20 flex items-center justify-center shrink-0">
+                            <FooterIcon name="♿" className="w-5 h-5 text-indigo-300" />
+                        </div>
+                        <p className="text-indigo-300 text-xs font-bold uppercase tracking-widest pt-2">Our commitment</p>
+                    </div>
                     {page.intro.map((p, i) => (
-                        <p key={i} className="text-slate-300 leading-relaxed mb-6 text-lg font-light last:mb-0">
+                        <p
+                            key={i}
+                            className={`leading-relaxed ${i === 0 ? 'text-slate-200 text-sm md:text-base' : 'text-slate-400 text-sm mt-3'}`}
+                        >
                             {p}
                         </p>
                     ))}
                     {page.stats && (
-                        <div className="grid grid-cols-2 gap-6 mt-8 pt-8 border-t border-slate-800">
+                        <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mt-6 pt-6 border-t border-slate-800">
                             {page.stats.map((s) => (
-                                <div key={s.label}>
-                                    <p className="text-3xl font-extrabold text-indigo-400">{s.value}</p>
-                                    <p className="text-xs text-slate-400 mt-1 uppercase tracking-wider font-semibold">{s.label}</p>
+                                <div key={s.label} className="text-center sm:text-left">
+                                    <p className="text-xl font-bold text-indigo-400">{s.value}</p>
+                                    <p className="text-[10px] text-slate-500 mt-0.5 uppercase tracking-wider">{s.label}</p>
                                 </div>
                             ))}
                         </div>
                     )}
                 </div>
-                <div className="relative h-72 md:h-auto overflow-hidden">
-                    <img src={page.heroImage} alt="Accessibility" className="w-full h-full object-cover" />
-                    <div className="absolute inset-0 bg-gradient-to-r from-slate-950 via-transparent to-transparent" />
-                </div>
             </section>
 
             {/* ─── DIGITAL WCAG STANDARDS ─── */}
-            <section className="py-24 px-6 md:px-20 bg-slate-950">
+            <section className="py-16 px-6 md:px-20 bg-slate-950">
                 <div className="max-w-6xl mx-auto">
-                    <div className="text-center mb-16">
-                        <p className="text-indigo-400 text-xs font-bold uppercase tracking-widest mb-3">Online Experience</p>
-                        <h2 className="font-playfair text-4xl md:text-5xl font-bold">{digital.heading}</h2>
+                    <div className="text-center mb-10">
+                        <p className="text-indigo-400 text-xs font-bold uppercase tracking-widest mb-2">Online Experience</p>
+                        <h2 className="font-playfair text-3xl md:text-4xl font-bold">{digital.heading}</h2>
                     </div>
 
                     <div className="grid md:grid-cols-2 gap-6 max-w-5xl mx-auto">
@@ -90,11 +93,11 @@ const AccessLayout = ({ page }) => {
             </section>
 
             {/* ─── PROPERTY ACCESSIBILITY FEATURES ─── */}
-            <section className="py-24 px-6 md:px-20 bg-slate-900/60 border-t border-slate-900">
+            <section className="py-16 px-6 md:px-20 bg-slate-900/60 border-t border-slate-900">
                 <div className="max-w-6xl mx-auto">
-                    <div className="text-center mb-16">
-                        <p className="text-indigo-400 text-xs font-bold uppercase tracking-widest mb-3">On-Property Accommodations</p>
-                        <h2 className="font-playfair text-4xl md:text-5xl font-bold">{property.heading}</h2>
+                    <div className="text-center mb-10">
+                        <p className="text-indigo-400 text-xs font-bold uppercase tracking-widest mb-2">On-Property Accommodations</p>
+                        <h2 className="font-playfair text-3xl md:text-4xl font-bold">{property.heading}</h2>
                     </div>
 
                     <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -112,7 +115,7 @@ const AccessLayout = ({ page }) => {
             </section>
 
             {/* ─── REQUEST ACCOMMODATIONS & INTERACTIVE FORM ─── */}
-            <section className="py-24 px-6 md:px-20 bg-white text-gray-900 rounded-t-[3.5rem] shadow-2xl">
+            <section className="py-16 px-6 md:px-20 bg-white text-gray-900 rounded-t-[3rem] shadow-2xl">
                 <div className="max-w-6xl mx-auto grid md:grid-cols-12 gap-12 items-start">
                     
                     {/* Left side: Info block */}
@@ -219,7 +222,7 @@ const AccessLayout = ({ page }) => {
                 </div>
 
                 {/* Contact box */}
-                <div className="mt-20 max-w-4xl mx-auto">
+                <div className="mt-12 max-w-4xl mx-auto">
                     <ContactPanel block={page.contactBlock} />
                 </div>
             </section>

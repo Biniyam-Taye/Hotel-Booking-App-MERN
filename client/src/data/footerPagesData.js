@@ -254,6 +254,12 @@ export const footerPages = {
         subtitle: 'How we protect guests, partners, and every stay on our platform.',
         heroImage: img('1557804506-669a67965ba0'),
         accent: 'emerald',
+        stats: [
+            { value: '24/7', label: 'Safety desk monitoring' },
+            { value: '48h', label: 'Partner verification' },
+            { value: '256-bit', label: 'Payment encryption' },
+            { value: '<2hr', label: 'Urgent case response' },
+        ],
         intro: [
             'Your safety is foundational to everything we build. HotelDemo verifies partner properties, secures personal data, and provides clear policies so you can book with confidence.',
             'We continuously improve our standards through guest feedback, partner audits, and collaboration with industry security experts.',

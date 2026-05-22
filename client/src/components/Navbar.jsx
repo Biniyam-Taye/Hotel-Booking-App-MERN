@@ -204,12 +204,10 @@ const getNavbarTheme = (pathname, isScrolled) => {
 
 const Navbar = () => {
     const navLinks = [
-        { name: 'Home', path: '/' },
         { name: 'Rooms', path: '/rooms' },
         { name: 'Hospitality', path: '/hospitality' },
         { name: 'Experience', path: '/experience' },
         { name: 'About', path: '/about' },
-        { name: 'Press', path: '/press' },
     ];
 
     const [isScrolled, setIsScrolled] = useState(false);
@@ -322,7 +320,9 @@ const Navbar = () => {
 
             <div className={`fixed top-0 left-0 w-full h-screen bg-white flex flex-col md:hidden transition-all duration-500 ease-in-out ${isMenuOpen ? "translate-x-0 opacity-100" : "-translate-x-full opacity-0"}`}>
                 <div className="flex items-center justify-between px-6 py-5 border-b border-gray-100">
-                    <img src={assets.logo} alt="logo" className="h-7 invert opacity-80" />
+                    <Link to="/" onClick={() => setIsMenuOpen(false)} className="flex items-center">
+                        <img src={assets.logo} alt="logo" className="h-7 invert opacity-80" />
+                    </Link>
                     <button onClick={() => setIsMenuOpen(false)} className="p-2 rounded-xl hover:bg-gray-100">
                         <img src={assets.closeIcon} alt="close" className="h-5 w-5" />
                     </button>
