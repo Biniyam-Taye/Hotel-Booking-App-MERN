@@ -30,9 +30,10 @@ const seedDatabase = async () => {
     }
 
     // ── 2. Clear old seed data ──
-    await Hotel.deleteMany({ owner: dummyOwnerId });
-    // rooms/hospitality will be cleaned by cascade below
-    console.log("🧹 Old seed data cleared");
+    await Hotel.deleteMany({});
+    await Room.deleteMany({});
+    await Hospitality.deleteMany({});
+    console.log("🧹 All existing hotels, rooms, and hospitalities cleared");
 
     // ── 3. Hotels ──
     const hotelsData = [
