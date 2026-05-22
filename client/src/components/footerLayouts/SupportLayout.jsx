@@ -138,7 +138,7 @@ const SupportLayout = ({ page }) => {
                             return (
                                 <button
                                     key={item.title}
-                                    onClick={() => handleTopicChange(item.title)}
+                                    onClick={() => setActiveTopic(item.title)}
                                     className={`p-6 rounded-2xl text-left border-2 transition-all duration-300 flex flex-col justify-between h-40 ${
                                         isSelected
                                             ? 'bg-gradient-to-br from-[#49B9FF]/20 to-[#0284c7]/20 border-[#49B9FF] shadow-lg shadow-cyan-950/30'
@@ -202,17 +202,15 @@ const SupportLayout = ({ page }) => {
                             className="group p-6 rounded-2xl bg-slate-900 border border-slate-800 hover:border-slate-700 transition-all duration-300"
                         >
                             <div className="flex items-start gap-4">
-                                <div className="w-10 h-10 rounded-xl bg-slate-800 flex items-center justify-center text-lg shadow-inner shrink-0 text-[#49B9FF]">
-                                    {i === 0 ? '✉️' : i === 1 ? '📞' : i === 2 ? '💬' : '🔑'}
+                                <div className="w-10 h-10 rounded-xl bg-slate-800 flex items-center justify-center shadow-inner shrink-0 text-[#49B9FF]">
+                                    <FooterIcon
+                                        name={i === 0 ? 'mail' : i === 1 ? 'phone' : i === 2 ? 'chat' : 'key'}
+                                        className="w-5 h-5"
+                                    />
                                 </div>
                                 <div className="flex-1">
                                     <h3 className="font-bold text-white text-base">{item.title}</h3>
                                     <p className="text-slate-400 text-sm mt-1 leading-relaxed">{item.description}</p>
-                                    <div className="mt-4 flex gap-2">
-                                        <button className="text-xs font-bold text-[#49B9FF] hover:underline flex items-center gap-1">
-                                            {i === 0 ? 'Open Mail Client' : i === 1 ? 'Dial Number' : i === 2 ? 'Start Chat Session' : 'Request Credentials'} &rarr;
-                                        </button>
-                                    </div>
                                 </div>
                             </div>
                         </div>
