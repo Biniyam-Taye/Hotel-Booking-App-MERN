@@ -25,20 +25,22 @@ const Navbar = () => {
     const { user, navigate, logout } = useAppContext()
 
     useEffect(() => {
-        if (location.pathname !== '/') {
-            setIsScrolled(true);
-            return;
-        } else {
-            setIsScrolled(false)
-        }
-        setIsScrolled(prev => location.pathname !== '/' ? true : prev);
+  // Smooth scroll to top on route change
+  window.scrollTo({ top: 0, behavior: "smooth" });
 
-        const handleScroll = () => {
-            setIsScrolled(window.scrollY > 10);
-        };
-        window.addEventListener("scroll", handleScroll);
-        return () => window.removeEventListener("scroll", handleScroll);
-    }, [location.pathname]);
+  // Update scrolled state based on pathname
+  if (location.pathname !== '/') {
+    setIsScrolled(true);
+  } else {
+    setIsScrolled(false);
+  }
+
+  const handleScroll = () => {
+    setIsScrolled(window.scrollY > 10);
+  };
+  window.addEventListener("scroll", handleScroll);
+  return () => window.removeEventListener("scroll", handleScroll);
+}, [location.pathname]);
 
     return (
         <nav className="fixed top-0 left-0 w-full z-50 px-4 md:px-16 lg:px-24 xl:px-32 pt-4 md:pt-5">
