@@ -67,6 +67,7 @@ const BlogLayout = ({ page }) => {
     const topics = page.sections[0]
     const articlesSection = page.sections[1]
     const [activeTopic, setActiveTopic] = useState(null)
+    const [subscribed, setSubscribed] = useState(false)
 
     const displayed = activeTopic
         ? articles.filter(a => a.tag === activeTopic || a.category === activeTopic)
@@ -196,15 +197,24 @@ const BlogLayout = ({ page }) => {
                         <h3 className="font-playfair text-2xl font-bold text-white mb-2">Get the Weekly Journal</h3>
                         <p className="text-neutral-400 text-sm">Curated hotel stories, destination tips, and exclusive offer previews — every Friday morning.</p>
                     </div>
-                    <div className="flex gap-3 w-full md:w-auto">
-                        <input
-                            className="flex-1 md:w-64 bg-white/10 border border-white/20 rounded-xl px-4 py-3 text-sm text-white placeholder-neutral-500 focus:outline-none focus:border-rose-400 transition-colors"
-                            placeholder="Your email address"
-                        />
-                        <button className="bg-rose-500 hover:bg-rose-400 text-white rounded-xl px-5 py-3 text-sm font-semibold transition-colors shrink-0">
-                            Subscribe
-                        </button>
-                    </div>
+                    {!subscribed ? (
+                        <form onSubmit={(e) => { e.preventDefault(); setSubscribed(true); }} className="flex gap-3 w-full md:w-auto">
+                            <input
+                                required
+                                type="email"
+                                className="flex-1 md:w-64 bg-white/10 border border-white/20 rounded-xl px-4 py-3 text-sm text-white placeholder-neutral-500 focus:outline-none focus:border-rose-400 transition-colors"
+                                placeholder="Your email address"
+                            />
+                            <button type="submit" className="bg-rose-500 hover:bg-rose-400 text-white rounded-xl px-5 py-3 text-sm font-semibold transition-colors shrink-0">
+                                Subscribe
+                            </button>
+                        </form>
+                    ) : (
+                        <div className="bg-emerald-500/20 border border-emerald-500/30 px-6 py-4 rounded-2xl text-center">
+                            <p className="text-sm font-bold text-emerald-400">✓ Subscribed Successfully!</p>
+                            <p className="text-xs text-emerald-400/80 mt-1">Thank you for joining our weekly journal.</p>
+                        </div>
+                    )}
                 </div>
             </section>
 

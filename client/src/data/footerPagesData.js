@@ -173,10 +173,10 @@ export const footerPages = {
                 heading: 'Partner Benefits',
                 type: 'cards',
                 items: [
-                    { icon: '📊', title: 'Owner dashboard', description: 'Add rooms, hospitality services, photos, and rates in minutes.' },
-                    { icon: '🎯', title: 'Qualified demand', description: 'Guests searching with dates, preferences, and verified profiles.' },
-                    { icon: '🏷️', title: 'Promotions', description: 'Feature in Exclusive Offers and seasonal campaigns.' },
-                    { icon: '🔒', title: 'Secure payouts', description: 'Transparent reporting and reliable payment schedules.' },
+                    { icon: 'bar-chart', title: 'Owner dashboard', description: 'Add rooms, hospitality services, photos, and rates in minutes.' },
+                    { icon: 'target', title: 'Qualified demand', description: 'Guests searching with dates, preferences, and verified profiles.' },
+                    { icon: 'tag', title: 'Promotions', description: 'Feature in Exclusive Offers and seasonal campaigns.' },
+                    { icon: 'lock', title: 'Secure payouts', description: 'Transparent reporting and reliable payment schedules.' },
                 ],
             },
             {
@@ -367,10 +367,10 @@ export const footerPages = {
                 heading: 'Support by Topic',
                 type: 'cards',
                 items: [
-                    { icon: '🧳', title: 'Guest bookings', description: 'Changes, payments, My Bookings, offers, and hospitality orders.' },
-                    { icon: '🏨', title: 'Hotel owners', description: 'Listings, approvals, dashboard, payouts, and availability.' },
-                    { icon: '💳', title: 'Billing', description: 'Invoices, refunds, and payment method updates.' },
-                    { icon: '🔧', title: 'Technical issues', description: 'Login problems, site errors, and mobile browser compatibility.' },
+                    { icon: 'briefcase', title: 'Guest bookings', description: 'Changes, payments, My Bookings, offers, and hospitality orders.' },
+                    { icon: 'hotel', title: 'Hotel owners', description: 'Listings, approvals, dashboard, payouts, and availability.' },
+                    { icon: 'credit-card', title: 'Billing', description: 'Invoices, refunds, and payment method updates.' },
+                    { icon: 'wrench', title: 'Technical issues', description: 'Login problems, site errors, and mobile browser compatibility.' },
                 ],
             },
             {

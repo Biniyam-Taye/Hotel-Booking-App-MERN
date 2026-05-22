@@ -255,7 +255,23 @@ export const MessageSquareIcon = ({ className, ...props }) => (
     </svg>
 );
 
+export const MailIcon = ({ className, ...props }) => (
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={`w-6 h-6 stroke-current ${className || ''}`} {...props}>
+        <rect width="20" height="16" x="2" y="4" rx="2" />
+        <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+    </svg>
+);
+
+export const KeyIcon = ({ className, ...props }) => (
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={`w-6 h-6 stroke-current ${className || ''}`} {...props}>
+        <circle cx="7.5" cy="15.5" r="5.5" />
+        <path d="m21 2-9.6 9.6" />
+        <path d="m15.5 7.5 3 3M17.5 5.5l3 3" />
+    </svg>
+);
+
 const lookupMap = {
+    // Emojis for backward compatibility
     '🌍': GlobeIcon,
     '📚': BookOpenIcon,
     '🏨': HotelIcon,
@@ -289,6 +305,43 @@ const lookupMap = {
     '🛎️': BellIcon,
     '❌': XIcon,
     '💬': MessageSquareIcon,
+
+    // String keys for modern usage
+    'globe': GlobeIcon,
+    'book-open': BookOpenIcon,
+    'hotel': HotelIcon,
+    'scale': ScaleIcon,
+    'lightbulb': LightbulbIcon,
+    'handshake': HandshakeIcon,
+    'plane': PlaneIcon,
+    'utensils': UtensilsIcon,
+    'gem': GemIcon,
+    'leaf': LeafIcon,
+    'bar-chart': BarChartIcon,
+    'target': TargetIcon,
+    'tag': TagIcon,
+    'lock': LockIcon,
+    'accessibility': AccessibilityIcon,
+    'eye': EyeIcon,
+    'paw': PawIcon,
+    'phone': PhoneIcon,
+    'briefcase': BriefcaseIcon,
+    'credit-card': CreditCardIcon,
+    'wrench': WrenchIcon,
+    'lock-keyhole': LockKeyholeIcon,
+    'check-circle': CheckCircleIcon,
+    'clipboard': ClipboardIcon,
+    'shield': ShieldIcon,
+    'home': HomeIcon,
+    'palm': PalmIcon,
+    'building': BuildingIcon,
+    'calendar': CalendarIcon,
+    'receipt': ReceiptIcon,
+    'bell': BellIcon,
+    'x': XIcon,
+    'message-square': MessageSquareIcon,
+    'mail': MailIcon,
+    'key': KeyIcon,
 };
 
 export const FooterIcon = ({ name, className, ...props }) => {
@@ -296,4 +349,5 @@ export const FooterIcon = ({ name, className, ...props }) => {
     if (!Comp) return null;
     return <Comp className={className} {...props} />;
 };
+
 

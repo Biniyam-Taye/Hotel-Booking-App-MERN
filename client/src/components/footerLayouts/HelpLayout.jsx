@@ -3,12 +3,12 @@ import { BackLink, ContactPanel, usePageScroll } from './FooterShared'
 import { FooterIcon } from './FooterIcons'
 
 const quickActions = [
-    { icon: '📅', label: 'Change Booking', color: 'from-blue-500 to-indigo-600' },
-    { icon: '🧾', label: 'Request Receipt', color: 'from-emerald-500 to-teal-600' },
-    { icon: '🛎️', label: 'Add Amenities', color: 'from-purple-500 to-violet-600' },
-    { icon: '❌', label: 'Cancel Stay', color: 'from-rose-500 to-pink-600' },
-    { icon: '💬', label: 'Live Chat', color: 'from-amber-500 to-orange-500' },
-    { icon: '📞', label: 'Call Support', color: 'from-cyan-500 to-blue-500' },
+    { icon: 'calendar', label: 'Change Booking', color: 'from-blue-500 to-indigo-600' },
+    { icon: 'receipt', label: 'Request Receipt', color: 'from-emerald-500 to-teal-600' },
+    { icon: 'bell', label: 'Add Amenities', color: 'from-purple-500 to-violet-600' },
+    { icon: 'x', label: 'Cancel Stay', color: 'from-rose-500 to-pink-600' },
+    { icon: 'message-square', label: 'Live Chat', color: 'from-amber-500 to-orange-500' },
+    { icon: 'phone', label: 'Call Support', color: 'from-cyan-500 to-blue-500' },
 ]
 
 const faqCategories = ['All', 'Booking', 'Payment', 'Cancellation', 'Hospitality']
@@ -179,11 +179,6 @@ const HelpLayout = ({ page }) => {
                                     <div className="px-5 pb-5 bg-white">
                                         <div className="ml-11 text-sm text-gray-600 leading-relaxed border-l-2 border-[#49B9FF] pl-4">
                                             {faq.a}
-                                        </div>
-                                        <div className="ml-11 mt-3 flex items-center gap-2">
-                                            <span className="text-xs text-gray-400">Was this helpful?</span>
-                                            <button className="text-xs px-3 py-1 rounded-full bg-emerald-50 text-emerald-600 hover:bg-emerald-100 transition-colors font-medium">👍 Yes</button>
-                                            <button className="text-xs px-3 py-1 rounded-full bg-gray-50 text-gray-500 hover:bg-gray-100 transition-colors font-medium">👎 No</button>
                                         </div>
                                     </div>
                                 )}

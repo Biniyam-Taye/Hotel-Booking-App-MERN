@@ -84,6 +84,7 @@ const CareersLayout = ({ page }) => {
     const [activeDept, setActiveDept] = useState('All')
     const [expandedJob, setExpandedJob] = useState(null)
     const [appliedJobs, setAppliedJobs] = useState(new Set())
+    const [appSubmitted, setAppSubmitted] = useState(false)
 
     const filteredJobs = jobs.items.filter(job => {
         if (activeDept === 'All') return true
@@ -311,18 +312,31 @@ const CareersLayout = ({ page }) => {
                         </div>
                         <div className="w-full md:w-72 bg-white/5 border border-white/10 rounded-2xl p-6">
                             <p className="text-sm font-semibold text-white mb-4">Quick Application</p>
-                            <div className="space-y-3">
-                                <input className="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-[#49B9FF] transition-colors" placeholder="Full name" />
-                                <input className="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-[#49B9FF] transition-colors" placeholder="Email address" />
-                                <input className="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-[#49B9FF] transition-colors" placeholder="Portfolio / LinkedIn URL" />
-                                <select className="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3 text-sm text-slate-400 focus:outline-none focus:border-[#49B9FF] transition-colors">
-                                    <option value="">Select a role</option>
-                                    {jobs.items.map(j => <option key={j.title} value={j.title}>{j.title}</option>)}
-                                </select>
-                                <button className="w-full bg-gradient-to-r from-[#49B9FF] to-cyan-400 text-white rounded-xl py-3 text-sm font-bold hover:shadow-lg hover:shadow-cyan-500/30 transition-all duration-300">
-                                    Send Application
-                                </button>
-                            </div>
+                            {!appSubmitted ? (
+                                <form onSubmit={(e) => { e.preventDefault(); setAppSubmitted(true); }} className="space-y-3">
+                                    <input required className="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-[#49B9FF] transition-colors" placeholder="Full name" />
+                                    <input required type="email" className="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-[#49B9FF] transition-colors" placeholder="Email address" />
+                                    <input required type="url" className="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-[#49B9FF] transition-colors" placeholder="Portfolio / LinkedIn URL" />
+                                    <select required className="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3 text-sm text-slate-400 focus:outline-none focus:border-[#49B9FF] transition-colors">
+                                        <option value="">Select a role</option>
+                                        {jobs.items.map(j => <option key={j.title} value={j.title}>{j.title}</option>)}
+                                    </select>
+                                    <button type="submit" className="w-full bg-gradient-to-r from-[#49B9FF] to-cyan-400 text-white rounded-xl py-3 text-sm font-bold hover:shadow-lg hover:shadow-cyan-500/30 transition-all duration-300">
+                                        Send Application
+                                    </button>
+                                </form>
+                            ) : (
+                                <div className="text-center py-6 space-y-4">
+                                    <div className="w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center mx-auto text-xl font-bold">
+                                        ✓
+                                    </div>
+                                    <p className="text-sm text-white font-semibold">Application Sent!</p>
+                                    <p className="text-xs text-slate-400">Thanks for applying. We will review your profile and get back to you soon.</p>
+                                    <button onClick={() => setAppSubmitted(false)} className="text-xs text-[#49B9FF] hover:underline font-semibold bg-transparent border-none outline-none cursor-pointer">
+                                        Send another application
+                                    </button>
+                                </div>
+                            )}
                         </div>
                     </div>
                 </div>

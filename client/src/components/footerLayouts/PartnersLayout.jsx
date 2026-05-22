@@ -7,7 +7,7 @@ const unsplash = (id) => `https://images.unsplash.com/photo-${id}?w=900&q=80`
 const tiers = [
     {
         name: 'Boutique',
-        icon: '🏡',
+        icon: 'home',
         color: 'from-indigo-500 to-violet-600',
         rooms: '1–20 rooms',
         commission: '12%',
@@ -18,7 +18,7 @@ const tiers = [
     },
     {
         name: 'Luxury Resort',
-        icon: '🌴',
+        icon: 'palm',
         color: 'from-amber-500 to-orange-500',
         rooms: '21–100 rooms',
         commission: '10%',
@@ -29,7 +29,7 @@ const tiers = [
     },
     {
         name: 'Global Chain',
-        icon: '🏙️',
+        icon: 'building',
         color: 'from-emerald-500 to-teal-600',
         rooms: '100+ rooms',
         commission: '8%',
@@ -173,11 +173,14 @@ const PartnersLayout = ({ page }) => {
                                         ))}
                                     </ul>
 
-                                    <button className={`w-full py-3 rounded-xl font-semibold text-sm transition-all duration-300 ${
-                                        tier.highlight
-                                            ? 'bg-gradient-to-r from-amber-400 to-orange-500 text-white hover:shadow-lg hover:shadow-amber-200'
-                                            : 'bg-gray-900 text-white hover:bg-indigo-700'
-                                    }`}>
+                                    <button
+                                        onClick={() => document.getElementById('partner-contact')?.scrollIntoView({ behavior: 'smooth' })}
+                                        className={`w-full py-3 rounded-xl font-semibold text-sm transition-all duration-300 ${
+                                            tier.highlight
+                                                ? 'bg-gradient-to-r from-amber-400 to-orange-500 text-white hover:shadow-lg hover:shadow-amber-200'
+                                                : 'bg-gray-900 text-white hover:bg-indigo-700'
+                                        }`}
+                                    >
                                         Get Started — Free
                                     </button>
                                 </div>
@@ -223,7 +226,7 @@ const PartnersLayout = ({ page }) => {
                     </div>
 
                     {/* Contact */}
-                    <div className="max-w-2xl mx-auto">
+                    <div id="partner-contact" className="max-w-2xl mx-auto">
                         <ContactPanel block={page.contactBlock} />
                     </div>
                 </div>
