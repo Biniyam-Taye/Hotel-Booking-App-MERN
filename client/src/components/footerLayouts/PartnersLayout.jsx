@@ -173,16 +173,15 @@ const PartnersLayout = ({ page }) => {
                                         ))}
                                     </ul>
 
-                                    <button
-                                        onClick={() => document.getElementById('partner-contact')?.scrollIntoView({ behavior: 'smooth' })}
-                                        className={`w-full py-3 rounded-xl font-semibold text-sm transition-all duration-300 ${
+                                    <span
+                                        className={`w-full py-3 rounded-xl font-semibold text-sm text-center block select-none ${
                                             tier.highlight
-                                                ? 'bg-gradient-to-r from-amber-400 to-orange-500 text-white hover:shadow-lg hover:shadow-amber-200'
-                                                : 'bg-gray-900 text-white hover:bg-indigo-700'
+                                                ? 'bg-gradient-to-r from-amber-400 to-orange-500 text-white shadow-lg shadow-amber-200/40'
+                                                : 'bg-gray-900 text-white'
                                         }`}
                                     >
-                                        Get Started — Free
-                                    </button>
+                                        ✦ Free to Join
+                                    </span>
                                 </div>
                             </div>
                         ))}

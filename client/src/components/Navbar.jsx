@@ -268,10 +268,9 @@ const Navbar = () => {
                 </div>
 
                 <div className="hidden md:flex items-center gap-3">
-                    <button className={`p-2.5 rounded-xl transition-all duration-300 hover:scale-110 active:scale-95
-                        ${theme.logoInvert ? "hover:bg-gray-100" : "hover:bg-white/10"}`}>
-                        <img src={assets.searchIcon} alt="search" className={`${theme.logoInvert ? 'invert' : ''} h-6 w-6`} />
-                    </button>
+                    <span className={`p-2.5 rounded-xl ${theme.logoInvert ? "invert" : ""}`}>
+                        <img src={assets.searchIcon} alt="search" className="h-6 w-6" />
+                    </span>
 
                     {user ? (
                         <div className="relative">
@@ -302,23 +301,8 @@ const Navbar = () => {
                         </div>
                     ) : (
                         <div className="flex items-center gap-2">
-                            <Link
-                                to="/login"
-                                className={`px-6 py-2.5 text-base font-semibold rounded-xl transition-all
-                                    ${theme.logoInvert ? "text-gray-700 hover:text-blue-600" : "text-white hover:bg-white/10"}`}
-                            >
-                                Login
-                            </Link>
-                            <Link
-                                to="/signup"
-                                className={`px-8 py-2 rounded-xl text-base font-semibold whitespace-nowrap transition-all hover:scale-105
-                                    ${theme.logoInvert
-                                        ? "bg-gradient-to-r from-[#49B9FF] to-blue-600 text-white shadow-lg"
-                                        : "bg-white text-gray-900 shadow-lg"
-                                    }`}
-                            >
-                                Sign Up
-                            </Link>
+                            <span className={`px-6 py-2.5 text-base font-semibold rounded-xl transition-all ${theme.logoInvert ? "text-gray-700 hover:text-blue-600" : "text-white hover:bg-white/10"}`}>Login</span>
+                            <span className={`px-8 py-2 rounded-xl text-base font-semibold whitespace-nowrap transition-all hover:scale-105 ${theme.logoInvert ? "bg-gradient-to-r from-[#49B9FF] to-blue-600 text-white shadow-lg" : "bg-white text-gray-900 shadow-lg"}`}>Sign Up</span>
                         </div>
                     )}
                 </div>
