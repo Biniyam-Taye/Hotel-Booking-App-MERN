@@ -1,5 +1,6 @@
 import React from 'react'
 import { BackLink, ContactPanel, usePageScroll } from './FooterShared'
+import { FooterIcon } from './FooterIcons'
 
 /** Centered typographic hero + full-width image strip + job table — no title/photo split */
 const CareersLayout = ({ page }) => {
@@ -54,7 +55,7 @@ const CareersLayout = ({ page }) => {
                             key={item.title}
                             className={`p-6 rounded-2xl ${i % 3 === 2 ? 'bg-[#0a1628] text-white' : i % 2 === 0 ? 'bg-blue-50' : 'bg-slate-100'}`}
                         >
-                            <span className="text-3xl">{item.icon}</span>
+                            <FooterIcon name={item.icon} className={`w-8 h-8 mb-2 ${i % 3 === 2 ? 'text-cyan-400' : 'text-indigo-600'}`} />
                             <h3 className="font-bold mt-3 mb-2">{item.title}</h3>
                             <p className={`text-sm ${i % 3 === 2 ? 'text-slate-300' : 'text-gray-500'}`}>{item.description}</p>
                         </div>

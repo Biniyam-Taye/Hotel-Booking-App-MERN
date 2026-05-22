@@ -1,5 +1,6 @@
 import React from 'react'
 import { BackLink, ContactPanel, usePageScroll } from './FooterShared'
+import { FooterIcon } from './FooterIcons'
 
 /** Hub layout: center image, benefits orbit, partner tiers below */
 const PartnersLayout = ({ page }) => {
@@ -31,7 +32,7 @@ const PartnersLayout = ({ page }) => {
                                 className="absolute hidden lg:block w-40 p-3 rounded-xl bg-white/10 backdrop-blur border border-white/20 text-center text-xs"
                                 style={{ transform: `translate(${x}px, ${y}px)` }}
                             >
-                                <span className="text-xl block">{item.icon}</span>
+                                <FooterIcon name={item.icon} className="w-6 h-6 mx-auto mb-1 text-amber-400" />
                                 <p className="font-bold mt-1">{item.title}</p>
                             </div>
                         )
@@ -62,7 +63,7 @@ const PartnersLayout = ({ page }) => {
             <section className="lg:hidden px-6 pb-12 grid grid-cols-2 gap-3">
                 {benefits.items.map((item) => (
                     <div key={item.title} className="p-4 rounded-xl bg-white/10 text-sm">
-                        <span>{item.icon}</span>
+                        <FooterIcon name={item.icon} className="w-6 h-6 text-amber-400 mb-2" />
                         <p className="font-bold mt-2">{item.title}</p>
                         <p className="text-indigo-200 text-xs mt-1">{item.description}</p>
                     </div>

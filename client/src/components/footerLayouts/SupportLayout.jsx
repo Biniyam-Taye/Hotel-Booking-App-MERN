@@ -1,5 +1,6 @@
 import React from 'react'
 import { BackLink, ContactPanel, usePageScroll } from './FooterShared'
+import { FooterIcon } from './FooterIcons'
 
 /** Chat / ticket UI — sidebar channels, message-style content */
 const SupportLayout = ({ page }) => {
@@ -19,10 +20,10 @@ const SupportLayout = ({ page }) => {
                         {topics.items.map((item, i) => (
                             <div
                                 key={item.title}
-                                className={`p-3 rounded-xl text-sm cursor-default ${i === 0 ? 'bg-cyan-600' : 'hover:bg-slate-800'}`}
+                                className={`p-3 rounded-xl text-sm cursor-default flex items-center gap-2 ${i === 0 ? 'bg-cyan-600' : 'hover:bg-slate-800'}`}
                             >
-                                <span className="mr-2">{item.icon}</span>
-                                {item.title}
+                                <FooterIcon name={item.icon} className={`w-5 h-5 shrink-0 ${i === 0 ? 'text-white' : 'text-cyan-400'}`} />
+                                <span>{item.title}</span>
                             </div>
                         ))}
                     </nav>

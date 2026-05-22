@@ -1,5 +1,6 @@
 import React from 'react'
 import { BackLink, ContactPanel, usePageScroll } from './FooterShared'
+import { FooterIcon } from './FooterIcons'
 
 /** Shield / trust badges — small corner image, large pillar cards */
 const SafetyLayout = ({ page }) => {
@@ -54,7 +55,7 @@ const SafetyLayout = ({ page }) => {
                             key={item.title}
                             className="aspect-square max-w-sm mx-auto sm:max-w-none flex flex-col items-center justify-center p-8 rounded-[2rem] bg-gradient-to-br from-emerald-800 to-emerald-900 border border-emerald-700 text-center"
                         >
-                            <span className="text-5xl mb-4">{item.icon}</span>
+                            <FooterIcon name={item.icon} className="w-12 h-12 text-emerald-300 mb-4" />
                             <h3 className="font-bold text-lg">{item.title}</h3>
                             <p className="text-emerald-200/80 text-sm mt-3">{item.description}</p>
                         </div>

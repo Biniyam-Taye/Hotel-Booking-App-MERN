@@ -1,5 +1,6 @@
 import React from 'react'
 import { BackLink, ContactPanel, usePageScroll } from './FooterShared'
+import { FooterIcon } from './FooterIcons'
 
 /** Zigzag full-bleed stripes — alternating layout each section */
 const AccessLayout = ({ page }) => {
@@ -57,8 +58,8 @@ const AccessLayout = ({ page }) => {
                 <h2 className="font-playfair text-3xl font-bold text-gray-900 mb-10 text-right">{property.heading}</h2>
                 <div className="max-w-5xl ml-auto grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
                     {property.items.map((item) => (
-                        <div key={item.title} className="bg-white p-6 rounded-3xl shadow-md text-center rotate-0 hover:-rotate-1 transition-transform">
-                            <span className="text-4xl">{item.icon}</span>
+                        <div key={item.title} className="bg-white p-6 rounded-3xl shadow-md text-center rotate-0 hover:-rotate-1 transition-transform flex flex-col items-center justify-center">
+                            <FooterIcon name={item.icon} className="w-10 h-10 text-indigo-600 mb-2" />
                             <h3 className="font-bold mt-4 text-sm">{item.title}</h3>
                             <p className="text-gray-500 text-xs mt-2">{item.description}</p>
                         </div>

@@ -1,5 +1,6 @@
 import React from 'react'
 import { BackLink, ContactPanel, usePageScroll } from './FooterShared'
+import { FooterIcon } from './FooterIcons'
 
 /** Masonry journal — image tiles, no split hero */
 const BlogLayout = ({ page }) => {
@@ -33,7 +34,7 @@ const BlogLayout = ({ page }) => {
                             i === 0 ? 'bg-rose-600' : i === 1 ? 'bg-amber-700' : i === 2 ? 'bg-violet-800' : 'bg-teal-800'
                         } ${i === 0 ? 'row-span-2' : ''}`}
                     >
-                        <span className="text-2xl">{t.icon}</span>
+                        <FooterIcon name={t.icon} className="w-8 h-8 text-white mb-2" />
                         <p className="font-bold text-sm mt-2">{t.title}</p>
                     </div>
                 ))}
