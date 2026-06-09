@@ -22,10 +22,20 @@ const Hero = () => {
 
     return (
         <div className='flex flex-col items-start justify-center px-6 md:px-16 lg:px-24
-         xl:px-32 text-white bg-[url("/src/assets/heroImage.png")] bg-no-repeat bg-cover bg-center h-screen relative overflow-hidden'>
-            {/* Gradient overlay for text readability while keeping the image vibrant on the right */}
-            <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/40 to-transparent pointer-events-none"></div>
-            
+         xl:px-32 text-white h-screen relative overflow-hidden'>
+            {/* Background Video */}
+            <video
+                autoPlay
+                loop
+                muted
+                playsInline
+                className="absolute inset-0 w-full h-full object-cover z-0"
+            >
+                <source src="/hero-bg.mp4" type="video/mp4" />
+            </video>
+            {/* Gradient overlay for text readability */}
+            <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/40 to-transparent pointer-events-none z-[1]"></div>
+
             <div className="relative z-10 w-full animate-fade-in-up mt-10">
                 <h1 className='font-playfair text-3xl md:text-5xl lg:text-[58px] lg:leading-[68px] font-bold max-w-2xl drop-shadow-xl leading-tight group/title cursor-default transition-all duration-500 hover:translate-x-3 hover:drop-shadow-[0_0_30px_rgba(204,84,64,0.4)]'>
                     Discover Your Perfect <br className="hidden md:block" />
