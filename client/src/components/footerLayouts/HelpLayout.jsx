@@ -37,7 +37,7 @@ const HelpLayout = ({ page }) => {
     return (
         <div className="min-h-screen bg-white">
             {/* ─── HERO (preserved) ─── */}
-            <section className="pt-28 pb-16 px-6 bg-[#49B9FF] text-white text-center">
+            <section className="pt-28 pb-16 px-6 bg-[#cc5440] text-white text-center">
                 <div className="max-w-2xl mx-auto">
                     <BackLink className="text-white/80 hover:text-white justify-center !flex" />
                     <h1 className="font-playfair text-5xl md:text-6xl font-bold mt-8">
@@ -63,7 +63,7 @@ const HelpLayout = ({ page }) => {
             <section className="px-6 md:px-16 py-16">
                 <div className="max-w-5xl mx-auto">
                     <div className="text-center mb-10">
-                        <p className="text-[#49B9FF] text-xs font-bold uppercase tracking-[0.4em] mb-2">Quick Actions</p>
+                        <p className="text-[#cc5440] text-xs font-bold uppercase tracking-[0.4em] mb-2">Quick Actions</p>
                         <h2 className="font-playfair text-3xl font-bold text-gray-900">What do you need help with?</h2>
                     </div>
                     <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
@@ -73,7 +73,7 @@ const HelpLayout = ({ page }) => {
                                 onClick={() => setClickedAction(action.label)}
                                 className={`group relative flex flex-col items-center gap-3 p-5 rounded-2xl border-2 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg ${
                                     clickedAction === action.label
-                                        ? 'border-[#49B9FF] bg-blue-50 shadow-md'
+                                        ? 'border-[#cc5440] bg-blue-50 shadow-md'
                                         : 'border-gray-100 bg-white hover:border-gray-200'
                                 }`}
                             >
@@ -82,14 +82,14 @@ const HelpLayout = ({ page }) => {
                                 </div>
                                 <span className="text-xs font-semibold text-gray-700 text-center leading-tight">{action.label}</span>
                                 {clickedAction === action.label && (
-                                    <span className="absolute -top-1 -right-1 w-4 h-4 bg-[#49B9FF] rounded-full flex items-center justify-center text-white text-[9px] font-bold">✓</span>
+                                    <span className="absolute -top-1 -right-1 w-4 h-4 bg-[#cc5440] rounded-full flex items-center justify-center text-white text-[9px] font-bold">✓</span>
                                 )}
                             </button>
                         ))}
                     </div>
                     {clickedAction && (
                         <div className="mt-6 p-4 bg-blue-50 rounded-2xl border border-blue-200 text-center">
-                            <p className="text-sm text-[#49B9FF] font-semibold">✓ We've opened <strong>{clickedAction}</strong> — a support agent will assist you shortly.</p>
+                            <p className="text-sm text-[#cc5440] font-semibold">✓ We've opened <strong>{clickedAction}</strong> — a support agent will assist you shortly.</p>
                         </div>
                     )}
                 </div>
@@ -99,16 +99,16 @@ const HelpLayout = ({ page }) => {
             <section className="px-6 md:px-16 py-16 bg-[#F6F9FC]">
                 <div className="max-w-5xl mx-auto">
                     <div className="text-center mb-14">
-                        <p className="text-[#49B9FF] text-xs font-bold uppercase tracking-[0.4em] mb-2">Getting Started</p>
+                        <p className="text-[#cc5440] text-xs font-bold uppercase tracking-[0.4em] mb-2">Getting Started</p>
                         <h2 className="font-playfair text-3xl font-bold text-gray-900">{steps.heading}</h2>
                     </div>
                     <div className="relative">
                         {/* Connecting line */}
-                        <div className="absolute top-8 left-8 right-8 h-0.5 bg-gradient-to-r from-[#49B9FF] via-blue-300 to-indigo-300 hidden md:block" />
+                        <div className="absolute top-8 left-8 right-8 h-0.5 bg-gradient-to-r from-[#cc5440] via-blue-300 to-indigo-300 hidden md:block" />
                         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
                             {steps.items.map((item, i) => (
                                 <div key={item.title} className="relative flex flex-col items-center text-center group">
-                                    <div className="relative z-10 w-16 h-16 rounded-full bg-gradient-to-br from-[#49B9FF] to-indigo-600 text-white font-black text-xl flex items-center justify-center mb-5 shadow-lg shadow-blue-200 group-hover:scale-110 group-hover:shadow-blue-300 transition-all duration-300">
+                                    <div className="relative z-10 w-16 h-16 rounded-full bg-gradient-to-br from-[#cc5440] to-indigo-600 text-white font-black text-xl flex items-center justify-center mb-5 shadow-lg shadow-blue-200 group-hover:scale-110 group-hover:shadow-blue-300 transition-all duration-300">
                                         {i + 1}
                                         <div className="absolute inset-0 rounded-full border-4 border-white shadow-inner" />
                                     </div>
@@ -127,7 +127,7 @@ const HelpLayout = ({ page }) => {
             <section className="px-6 md:px-16 py-20">
                 <div className="max-w-3xl mx-auto">
                     <div className="text-center mb-10">
-                        <p className="text-[#49B9FF] text-xs font-bold uppercase tracking-[0.4em] mb-2">FAQ</p>
+                        <p className="text-[#cc5440] text-xs font-bold uppercase tracking-[0.4em] mb-2">FAQ</p>
                         <h2 className="font-playfair text-3xl font-bold text-gray-900">{faqs.heading}</h2>
                     </div>
 
@@ -139,7 +139,7 @@ const HelpLayout = ({ page }) => {
                                 onClick={() => { setActiveFaqCat(cat); setOpenFaq(0) }}
                                 className={`px-4 py-2 rounded-full text-sm font-semibold transition-all duration-200 ${
                                     activeFaqCat === cat
-                                        ? 'bg-[#49B9FF] text-white shadow-md'
+                                        ? 'bg-[#cc5440] text-white shadow-md'
                                         : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
                                 }`}
                             >
@@ -153,7 +153,7 @@ const HelpLayout = ({ page }) => {
                             <div
                                 key={faq.q}
                                 className={`rounded-2xl border-2 overflow-hidden transition-all duration-300 ${
-                                    openFaq === i ? 'border-[#49B9FF] shadow-lg shadow-blue-50' : 'border-gray-100 hover:border-gray-200'
+                                    openFaq === i ? 'border-[#cc5440] shadow-lg shadow-blue-50' : 'border-gray-100 hover:border-gray-200'
                                 }`}
                             >
                                 <button
@@ -162,14 +162,14 @@ const HelpLayout = ({ page }) => {
                                 >
                                     <div className="flex items-center gap-4">
                                         <span className={`shrink-0 w-7 h-7 rounded-lg flex items-center justify-center text-xs font-bold ${
-                                            openFaq === i ? 'bg-[#49B9FF] text-white' : 'bg-gray-100 text-gray-500'
+                                            openFaq === i ? 'bg-[#cc5440] text-white' : 'bg-gray-100 text-gray-500'
                                         } transition-colors duration-300`}>
                                             {String(i + 1).padStart(2, '0')}
                                         </span>
                                         <span className="font-semibold text-gray-900 text-sm">{faq.q}</span>
                                     </div>
                                     <svg
-                                        className={`w-5 h-5 text-gray-400 shrink-0 transition-transform duration-300 ${openFaq === i ? 'rotate-180 text-[#49B9FF]' : ''}`}
+                                        className={`w-5 h-5 text-gray-400 shrink-0 transition-transform duration-300 ${openFaq === i ? 'rotate-180 text-[#cc5440]' : ''}`}
                                         fill="none" stroke="currentColor" viewBox="0 0 24 24"
                                     >
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
@@ -177,7 +177,7 @@ const HelpLayout = ({ page }) => {
                                 </button>
                                 {openFaq === i && (
                                     <div className="px-5 pb-5 bg-white">
-                                        <div className="ml-11 text-sm text-gray-600 leading-relaxed border-l-2 border-[#49B9FF] pl-4">
+                                        <div className="ml-11 text-sm text-gray-600 leading-relaxed border-l-2 border-[#cc5440] pl-4">
                                             {faq.a}
                                         </div>
                                     </div>

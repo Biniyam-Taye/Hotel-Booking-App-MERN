@@ -49,7 +49,7 @@ const Footer = () => {
                                         <Link
                                             to={link.path}
                                             onClick={scrollTop}
-                                            className="hover:text-[#49B9FF] transition-colors"
+                                            className="hover:text-[#cc5440] transition-colors"
                                         >
                                             {link.name}
                                         </Link>
@@ -66,7 +66,7 @@ const Footer = () => {
                                         <Link
                                             to={link.path}
                                             onClick={scrollTop}
-                                            className="hover:text-[#49B9FF] transition-colors"
+                                            className="hover:text-[#cc5440] transition-colors"
                                         >
                                             {link.name}
                                         </Link>
@@ -81,7 +81,7 @@ const Footer = () => {
                                 <p>The latest news, articles, and resources, sent to your inbox weekly.</p>
                                 <p className="text-xs text-gray-400 pt-2">
                                     Subscribe via our{' '}
-                                    <Link to="/blog" onClick={scrollTop} className="text-[#49B9FF] hover:underline">
+                                    <Link to="/blog" onClick={scrollTop} className="text-[#cc5440] hover:underline">
                                         Journal
                                     </Link>{' '}
                                     page for editorial updates.
@@ -96,9 +96,9 @@ const Footer = () => {
                         Copyright ©{new Date().getFullYear()} - Biniyam Taye .All rights reserved.
                     </p>
                     <ul className="flex items-center gap-4 text-sm">
-                        <li><Link to="/help" onClick={scrollTop} className="hover:text-[#49B9FF]">Privacy</Link></li>
-                        <li><Link to="/cancel-policy" onClick={scrollTop} className="hover:text-[#49B9FF]">Terms</Link></li>
-                        <li><Link to="/support" onClick={scrollTop} className="hover:text-[#49B9FF]">Sitemap</Link></li>
+                        <li><Link to="/help" onClick={scrollTop} className="hover:text-[#cc5440]">Privacy</Link></li>
+                        <li><Link to="/cancel-policy" onClick={scrollTop} className="hover:text-[#cc5440]">Terms</Link></li>
+                        <li><Link to="/support" onClick={scrollTop} className="hover:text-[#cc5440]">Sitemap</Link></li>
                     </ul>
                 </div>
             </footer>

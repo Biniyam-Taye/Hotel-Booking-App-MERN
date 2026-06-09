@@ -27,9 +27,9 @@ const Hero = () => {
             <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/40 to-transparent pointer-events-none"></div>
             
             <div className="relative z-10 w-full animate-fade-in-up mt-10">
-                <h1 className='font-playfair text-3xl md:text-5xl lg:text-[58px] lg:leading-[68px] font-bold max-w-2xl drop-shadow-xl leading-tight group/title cursor-default transition-all duration-500 hover:translate-x-3 hover:drop-shadow-[0_0_30px_rgba(73,185,255,0.4)]'>
+                <h1 className='font-playfair text-3xl md:text-5xl lg:text-[58px] lg:leading-[68px] font-bold max-w-2xl drop-shadow-xl leading-tight group/title cursor-default transition-all duration-500 hover:translate-x-3 hover:drop-shadow-[0_0_30px_rgba(204,84,64,0.4)]'>
                     Discover Your Perfect <br className="hidden md:block" />
-                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#49B9FF] to-blue-200 transition-all duration-500 group-hover/title:from-[#FF4D00] group-hover/title:to-[#FF8C00]">Getaway</span> Destination
+                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#cc5440] to-blue-200 transition-all duration-500 group-hover/title:from-[#FF4D00] group-hover/title:to-[#FF8C00]">Getaway</span> Destination
                 </h1>
                 
                 <p className='max-w-lg mt-4 text-sm md:text-base text-gray-300 font-light drop-shadow-md leading-relaxed transition-all duration-500 hover:text-white hover:translate-x-1 cursor-default'>
@@ -38,8 +38,8 @@ const Hero = () => {
 
                 <div className='inline-flex items-center gap-3 bg-white/10 backdrop-blur-md border border-transparent px-4 py-2 rounded-xl text-sm font-medium hover:bg-white/20 transition-all cursor-default mt-5 shadow-sm'>
                     <span className="relative flex h-3 w-3">
-                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#49B9FF] opacity-75"></span>
-                      <span className="relative inline-flex rounded-full h-3 w-3 bg-[#49B9FF]"></span>
+                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#cc5440] opacity-75"></span>
+                      <span className="relative inline-flex rounded-full h-3 w-3 bg-[#cc5440]"></span>
                     </span>
                     The Ultimate Hotel Experience
                 </div>
@@ -48,7 +48,7 @@ const Hero = () => {
                 <form onSubmit={onSearch} className='bg-white/95 backdrop-blur-2xl shadow-[0_20px_50px_rgba(0,0,0,0.25)] rounded-[2rem] p-2.5 mt-8 flex flex-col md:flex-row items-stretch gap-2.5 w-full max-w-[960px] transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_30px_60px_rgba(0,0,0,0.35)] relative z-20 border border-transparent'>
                     
                     {/* Destination */}
-                    <div className='flex-1 w-full bg-gray-50/80 hover:bg-[#e8f4ff] border border-transparent hover:border-blue-300 rounded-[1.5rem] px-4 py-3 transition-all duration-300 group cursor-text focus-within:bg-white focus-within:border-blue-400 focus-within:ring-4 focus-within:ring-blue-100 hover:-translate-y-1 hover:shadow-[0_8px_20px_rgba(73,185,255,0.2)]'>
+                    <div className='flex-1 w-full bg-gray-50/80 hover:bg-[#fdf5f4] border border-transparent hover:border-blue-300 rounded-[1.5rem] px-4 py-3 transition-all duration-300 group cursor-text focus-within:bg-white focus-within:border-blue-400 focus-within:ring-4 focus-within:ring-blue-100 hover:-translate-y-1 hover:shadow-[0_8px_20px_rgba(204,84,64,0.2)]'>
                         <div className='flex items-center gap-2 mb-1'>
                             <img src={assets.locationIcon} alt="Location" className='w-3.5 h-3.5 opacity-50 group-hover:opacity-80 group-focus-within:opacity-100 group-focus-within:scale-110 group-hover:scale-110 transition-all duration-300' />
                             <label htmlFor="destinationInput" className='text-[10px] font-bold text-gray-400 uppercase tracking-wider cursor-text group-hover:text-blue-500 transition-colors duration-300'>Destination</label>
@@ -64,7 +64,7 @@ const Hero = () => {
                     </div>
 
                     {/* Check In */}
-                    <div className='flex-1 w-full bg-gray-50/80 hover:bg-[#e8f4ff] border border-transparent hover:border-blue-300 rounded-[1.5rem] px-4 py-3 transition-all duration-300 group cursor-text focus-within:bg-white focus-within:border-blue-400 focus-within:ring-4 focus-within:ring-blue-100 hover:-translate-y-1 hover:shadow-[0_8px_20px_rgba(73,185,255,0.2)]'>
+                    <div className='flex-1 w-full bg-gray-50/80 hover:bg-[#fdf5f4] border border-transparent hover:border-blue-300 rounded-[1.5rem] px-4 py-3 transition-all duration-300 group cursor-text focus-within:bg-white focus-within:border-blue-400 focus-within:ring-4 focus-within:ring-blue-100 hover:-translate-y-1 hover:shadow-[0_8px_20px_rgba(204,84,64,0.2)]'>
                         <div className='flex items-center gap-2 mb-1'>
                             <img src={assets.calenderIcon} alt="Check In" className='w-3.5 h-3.5 opacity-50 group-hover:opacity-80 group-focus-within:opacity-100 group-hover:scale-110 group-focus-within:scale-110 transition-all duration-300' />
                             <label htmlFor="checkIn" className='text-[10px] font-bold text-gray-400 uppercase tracking-wider cursor-text group-hover:text-blue-500 transition-colors duration-300'>Check in</label>
@@ -73,7 +73,7 @@ const Hero = () => {
                     </div>
 
                     {/* Check Out */}
-                    <div className='flex-1 w-full bg-gray-50/80 hover:bg-[#e8f4ff] border border-transparent hover:border-blue-300 rounded-[1.5rem] px-4 py-3 transition-all duration-300 group cursor-text focus-within:bg-white focus-within:border-blue-400 focus-within:ring-4 focus-within:ring-blue-100 hover:-translate-y-1 hover:shadow-[0_8px_20px_rgba(73,185,255,0.2)]'>
+                    <div className='flex-1 w-full bg-gray-50/80 hover:bg-[#fdf5f4] border border-transparent hover:border-blue-300 rounded-[1.5rem] px-4 py-3 transition-all duration-300 group cursor-text focus-within:bg-white focus-within:border-blue-400 focus-within:ring-4 focus-within:ring-blue-100 hover:-translate-y-1 hover:shadow-[0_8px_20px_rgba(204,84,64,0.2)]'>
                         <div className='flex items-center gap-2 mb-1'>
                             <img src={assets.calenderIcon} alt="Check Out" className='w-3.5 h-3.5 opacity-50 group-hover:opacity-80 group-focus-within:opacity-100 group-hover:scale-110 group-focus-within:scale-110 transition-all duration-300' />
                             <label htmlFor="checkOut" className='text-[10px] font-bold text-gray-400 uppercase tracking-wider cursor-text group-hover:text-blue-500 transition-colors duration-300'>Check out</label>
@@ -83,7 +83,7 @@ const Hero = () => {
 
                     {/* Guests & Button Container */}
                     <div className='flex items-stretch w-full md:w-auto gap-2.5'>
-                        <div className='flex-1 md:w-32 bg-gray-50/80 hover:bg-[#e8f4ff] border border-transparent hover:border-blue-300 rounded-[1.5rem] px-4 py-3 transition-all duration-300 group cursor-text focus-within:bg-white focus-within:border-blue-400 focus-within:ring-4 focus-within:ring-blue-100 hover:-translate-y-1 hover:shadow-[0_8px_20px_rgba(73,185,255,0.2)]'>
+                        <div className='flex-1 md:w-32 bg-gray-50/80 hover:bg-[#fdf5f4] border border-transparent hover:border-blue-300 rounded-[1.5rem] px-4 py-3 transition-all duration-300 group cursor-text focus-within:bg-white focus-within:border-blue-400 focus-within:ring-4 focus-within:ring-blue-100 hover:-translate-y-1 hover:shadow-[0_8px_20px_rgba(204,84,64,0.2)]'>
                             <div className='flex items-center gap-2 mb-1'>
                                 <img src={assets.guestsIcon} alt="Guests" className='w-3.5 h-3.5 opacity-50 group-hover:opacity-80 group-focus-within:opacity-100 group-hover:scale-110 group-focus-within:scale-110 transition-all duration-300' />
                                 <label htmlFor="guests" className='text-[10px] font-bold text-gray-400 uppercase tracking-wider cursor-text group-hover:text-blue-500 transition-colors duration-300'>Guests</label>
@@ -91,7 +91,7 @@ const Hero = () => {
                             <input min={1} max={4} id="guests" type="number" className="w-full text-sm md:text-base font-bold text-gray-900 placeholder-gray-400 outline-none bg-transparent" placeholder="0" />
                         </div>
                         
-                        <button className='bg-gradient-to-br from-[#49B9FF] to-blue-600 w-full md:w-16 rounded-[1.5rem] shadow-lg shadow-blue-500/40 hover:shadow-[0_0_25px_rgba(73,185,255,0.7)] hover:-translate-y-2 hover:scale-105 active:scale-95 transition-all duration-300 flex items-center justify-center flex-shrink-0 h-full py-3 md:py-0 group/btn'>
+                        <button className='bg-gradient-to-br from-[#cc5440] to-blue-600 w-full md:w-16 rounded-[1.5rem] shadow-lg shadow-blue-500/40 hover:shadow-[0_0_25px_rgba(204,84,64,0.7)] hover:-translate-y-2 hover:scale-105 active:scale-95 transition-all duration-300 flex items-center justify-center flex-shrink-0 h-full py-3 md:py-0 group/btn'>
                             <img src={assets.searchIcon} alt="Search" className='w-5 h-5 group-hover/btn:rotate-12 group-hover/btn:scale-125 transition-all duration-500' style={{ filter: 'brightness(0) invert(1)' }} />
                             <span className="md:hidden ml-2 font-bold text-white tracking-wide">Search</span>
                         </button>

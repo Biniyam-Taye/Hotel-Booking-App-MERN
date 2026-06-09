@@ -20,10 +20,10 @@ const StaticPageLayout = ({ page }) => {
             ? 'from-orange-400 to-pink-500'
             : accent === 'emerald'
               ? 'from-emerald-500 to-teal-600'
-              : 'from-[#49B9FF] to-blue-700'
+              : 'from-[#cc5440] to-blue-700'
 
     const dotColor =
-        accent === 'orange' ? 'bg-orange-400' : accent === 'emerald' ? 'bg-emerald-500' : 'bg-[#49B9FF]'
+        accent === 'orange' ? 'bg-orange-400' : accent === 'emerald' ? 'bg-emerald-500' : 'bg-[#cc5440]'
 
     return (
         <div className="relative min-h-screen bg-white overflow-hidden">
@@ -50,9 +50,9 @@ const StaticPageLayout = ({ page }) => {
                         </h1>
                         <p className="text-lg text-gray-600 leading-relaxed mb-6">{page.subtitle}</p>
                         <div className="flex items-center gap-3">
-                            <div className={`h-[2px] w-12 bg-gradient-to-r from-transparent ${accent === 'orange' ? 'to-orange-400' : accent === 'emerald' ? 'to-emerald-500' : 'to-[#49B9FF]'}`} />
+                            <div className={`h-[2px] w-12 bg-gradient-to-r from-transparent ${accent === 'orange' ? 'to-orange-400' : accent === 'emerald' ? 'to-emerald-500' : 'to-[#cc5440]'}`} />
                             <div className={`w-2.5 h-2.5 rounded-full ${dotColor}`} />
-                            <div className={`h-[2px] w-12 bg-gradient-to-l from-transparent ${accent === 'orange' ? 'to-orange-400' : accent === 'emerald' ? 'to-emerald-500' : 'to-[#49B9FF]'}`} />
+                            <div className={`h-[2px] w-12 bg-gradient-to-l from-transparent ${accent === 'orange' ? 'to-orange-400' : accent === 'emerald' ? 'to-emerald-500' : 'to-[#cc5440]'}`} />
                         </div>
                     </div>
                     <div className="relative rounded-[2.5rem] overflow-hidden shadow-[0_40px_100px_rgba(0,0,0,0.15)] aspect-[4/3]">
@@ -131,7 +131,7 @@ const StaticPageLayout = ({ page }) => {
                                         key={item.title}
                                         className="flex gap-4 p-5 rounded-2xl bg-white border border-gray-100 hover:border-gray-200 transition-colors"
                                     >
-                                        <span className={`flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center text-white text-sm font-bold ${accent === 'orange' ? 'bg-gradient-to-r from-orange-400 to-pink-500' : accent === 'emerald' ? 'bg-gradient-to-r from-emerald-500 to-teal-600' : 'bg-gradient-to-r from-[#49B9FF] to-blue-600'}`}>
+                                        <span className={`flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center text-white text-sm font-bold ${accent === 'orange' ? 'bg-gradient-to-r from-orange-400 to-pink-500' : accent === 'emerald' ? 'bg-gradient-to-r from-emerald-500 to-teal-600' : 'bg-gradient-to-r from-[#cc5440] to-blue-600'}`}>
                                             •
                                         </span>
                                         <div>
@@ -147,7 +147,7 @@ const StaticPageLayout = ({ page }) => {
                             <ol className="max-w-3xl mx-auto space-y-6">
                                 {section.items.map((item, i) => (
                                     <li key={item.title} className="flex gap-5">
-                                        <span className={`flex-shrink-0 w-10 h-10 rounded-2xl flex items-center justify-center text-white font-bold ${accent === 'orange' ? 'bg-gradient-to-r from-orange-400 to-pink-500' : accent === 'emerald' ? 'bg-gradient-to-r from-emerald-500 to-teal-600' : 'bg-gradient-to-r from-[#49B9FF] to-blue-600'}`}>
+                                        <span className={`flex-shrink-0 w-10 h-10 rounded-2xl flex items-center justify-center text-white font-bold ${accent === 'orange' ? 'bg-gradient-to-r from-orange-400 to-pink-500' : accent === 'emerald' ? 'bg-gradient-to-r from-emerald-500 to-teal-600' : 'bg-gradient-to-r from-[#cc5440] to-blue-600'}`}>
                                             {i + 1}
                                         </span>
                                         <div className="pt-1">

@@ -39,7 +39,7 @@ const brandAssets = [
         title: 'Logo & Brand Guidelines',
         format: 'SVG + PDF',
         size: '12 MB',
-        desc: 'Primary and secondary logos, color palette (#49B9FF, navy, white), typography — Playfair Display and system sans.',
+        desc: 'Primary and secondary logos, color palette (#cc5440, navy, white), typography — Playfair Display and system sans.',
         color: 'from-blue-500 to-indigo-600',
     },
     {

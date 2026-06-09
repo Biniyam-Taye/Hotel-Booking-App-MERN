@@ -67,7 +67,7 @@ const Experience = () => {
                     Immersive Activities
                 </div>
                 <h2 className='font-playfair text-4xl md:text-5xl font-bold text-gray-900 mb-6 transition-transform duration-500 group-hover/header:scale-105 cursor-default'>
-                    Unforgettable <span className="inline-block text-transparent bg-clip-text bg-gradient-to-r from-[#49B9FF] to-blue-700 transition-all duration-500 hover:-translate-y-1 hover:from-[#FF4D00] hover:to-[#FF8C00] hover:drop-shadow-[0_0_12px_rgba(255,77,0,0.6)]">Experiences</span>
+                    Unforgettable <span className="inline-block text-transparent bg-clip-text bg-gradient-to-r from-[#cc5440] to-blue-700 transition-all duration-500 hover:-translate-y-1 hover:from-[#FF4D00] hover:to-[#FF8C00] hover:drop-shadow-[0_0_12px_rgba(255,77,0,0.6)]">Experiences</span>
                 </h2>
                 <div className="max-w-2xl relative">
                     <p className='text-gray-500 text-lg leading-relaxed transform transition-all duration-500 hover:text-gray-800 hover:-translate-y-1 hover:shadow-sm p-2 rounded-xl'>
@@ -96,7 +96,7 @@ const Experience = () => {
                             {/* Title inside image area that moves */}
                             <div className="absolute bottom-4 left-6 z-20 transition-transform duration-500 group-hover:-translate-y-2">
                                 <h3 className="font-playfair text-2xl font-bold text-white mb-1 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-[#FF4D00] group-hover:to-[#FFD194] transition-all duration-300">{exp.title}</h3>
-                                <div className="h-1 w-12 bg-[#49B9FF] group-hover:bg-[#FF4D00] transition-colors duration-500 rounded-full group-hover:w-24"></div>
+                                <div className="h-1 w-12 bg-[#cc5440] group-hover:bg-[#FF4D00] transition-colors duration-500 rounded-full group-hover:w-24"></div>
                             </div>
                         </div>
 
@@ -109,7 +109,7 @@ const Experience = () => {
                                 {exp.description}
                             </p>
 
-                            <div className="mt-6 flex items-center gap-2 text-[#49B9FF] font-semibold group-hover:text-[#FF4D00] transition-colors duration-300 relative z-10">
+                            <div className="mt-6 flex items-center gap-2 text-[#cc5440] font-semibold group-hover:text-[#FF4D00] transition-colors duration-300 relative z-10">
                                 <span>Discover More</span>
                                 <svg className="w-5 h-5 transform group-hover:translate-x-2 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
                             </div>

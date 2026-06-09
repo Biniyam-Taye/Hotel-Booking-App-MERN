@@ -7,7 +7,7 @@ const cardAccents = [
     { badge: 'from-amber-400 to-orange-500' },
     { badge: 'from-violet-500 to-purple-600' },
     { badge: 'from-emerald-400 to-teal-500' },
-    { badge: 'from-[#49B9FF] to-blue-600' },
+    { badge: 'from-[#cc5440] to-blue-600' },
 ]
 
 const HospitalityCard = ({ item, index = 0 }) => {
@@ -18,7 +18,7 @@ const HospitalityCard = ({ item, index = 0 }) => {
         <Link
             to="/hospitality"
             onClick={() => scrollTo(0, 0)}
-            className="group relative w-full rounded-3xl overflow-hidden bg-white text-gray-500/90 shadow-[0_4px_20px_rgba(0,0,0,0.08)] transition-all duration-500 hover:-translate-y-3 hover:shadow-[0_20px_40px_rgba(73,185,255,0.2)]"
+            className="group relative w-full rounded-3xl overflow-hidden bg-white text-gray-500/90 shadow-[0_4px_20px_rgba(0,0,0,0.08)] transition-all duration-500 hover:-translate-y-3 hover:shadow-[0_20px_40px_rgba(204,84,64,0.2)]"
         >
             <div className="relative overflow-hidden h-52">
                 <img
@@ -65,8 +65,8 @@ const HospitalityCard = ({ item, index = 0 }) => {
                     </div>
 
                     <div className="relative group/btn">
-                        <span className="absolute inset-0 rounded-xl bg-[#49B9FF]/25 opacity-0 scale-100 group-hover/btn:opacity-100 group-hover/btn:scale-[1.6] transition-all duration-500 pointer-events-none" />
-                        <button type="button" className="relative px-5 py-2 rounded-xl text-xs font-bold text-white bg-gradient-to-r from-[#49B9FF] to-blue-600 shadow-md shadow-blue-300/40 transition-all duration-300 group-hover/btn:shadow-[0_0_20px_rgba(73,185,255,0.55)] group-hover/btn:-translate-y-0.5 active:scale-95 overflow-hidden">
+                        <span className="absolute inset-0 rounded-xl bg-[#cc5440]/25 opacity-0 scale-100 group-hover/btn:opacity-100 group-hover/btn:scale-[1.6] transition-all duration-500 pointer-events-none" />
+                        <button type="button" className="relative px-5 py-2 rounded-xl text-xs font-bold text-white bg-gradient-to-r from-[#cc5440] to-blue-600 shadow-md shadow-blue-300/40 transition-all duration-300 group-hover/btn:shadow-[0_0_20px_rgba(204,84,64,0.55)] group-hover/btn:-translate-y-0.5 active:scale-95 overflow-hidden">
                             <span className="relative z-10 flex items-center gap-1.5">
                                 Order Now
                                 <svg className="w-3.5 h-3.5 group-hover/btn:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">

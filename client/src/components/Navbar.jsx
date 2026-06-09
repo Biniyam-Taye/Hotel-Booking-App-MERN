@@ -17,7 +17,7 @@ const getNavbarTheme = (pathname, isScrolled) => {
         linkText: "text-gray-600 hover:text-gray-900 hover:bg-gray-100",
         logoInvert: true,
         activeLink: "text-blue-600 font-bold",
-        activeIndicator: "bg-[#49B9FF]"
+        activeIndicator: "bg-[#cc5440]"
     };
 
     const defaultTop = {
@@ -41,16 +41,16 @@ const getNavbarTheme = (pathname, isScrolled) => {
                 text: "text-white",
                 linkText: "text-slate-300 hover:text-white hover:bg-white/10",
                 logoInvert: false,
-                activeLink: "text-[#49B9FF] font-bold",
-                activeIndicator: "bg-[#49B9FF]"
+                activeLink: "text-[#cc5440] font-bold",
+                activeIndicator: "bg-[#cc5440]"
             },
             scrolled: {
                 bg: "bg-[#0a1628]/95 backdrop-blur-xl border-slate-800 shadow-[0_40px_100px_rgba(0,0,0,0.35)] py-4 md:py-5",
                 text: "text-white",
                 linkText: "text-slate-300 hover:text-white hover:bg-white/5",
                 logoInvert: false,
-                activeLink: "text-[#49B9FF] font-bold",
-                activeIndicator: "bg-[#49B9FF]"
+                activeLink: "text-[#cc5440] font-bold",
+                activeIndicator: "bg-[#cc5440]"
             }
         },
         '/press': {
@@ -117,7 +117,7 @@ const getNavbarTheme = (pathname, isScrolled) => {
                 activeIndicator: "bg-white"
             },
             scrolled: {
-                bg: "bg-[#49B9FF]/95 backdrop-blur-xl border-sky-400 shadow-[0_40px_100px_rgba(0,0,0,0.25)] py-4 md:py-5",
+                bg: "bg-[#cc5440]/95 backdrop-blur-xl border-sky-400 shadow-[0_40px_100px_rgba(0,0,0,0.25)] py-4 md:py-5",
                 text: "text-white",
                 linkText: "text-white/95 hover:text-white hover:bg-white/5",
                 logoInvert: false,
@@ -274,7 +274,7 @@ const Navbar = () => {
                         <div className="relative">
                             <button
                                 onClick={() => setProfileOpen(!profileOpen)}
-                                className={`flex items-center gap-2 rounded-full ring-2 ring-offset-2 transition-all duration-300 hover:ring-[#49B9FF]
+                                className={`flex items-center gap-2 rounded-full ring-2 ring-offset-2 transition-all duration-300 hover:ring-[#cc5440]
                                     ${theme.logoInvert ? "ring-gray-200 ring-offset-white" : "ring-white/30 ring-offset-transparent"}`}
                             >
                                 <img src={user.image} alt="" className="w-10 h-10 rounded-full object-cover" />
@@ -300,7 +300,7 @@ const Navbar = () => {
                     ) : (
                         <div className="flex items-center gap-2">
                             <Link to="/login" className={`px-6 py-2.5 text-base font-semibold rounded-xl transition-all ${theme.logoInvert ? "text-gray-700 hover:text-blue-600" : "text-white hover:bg-white/10"}`}>Login</Link>
-                            <Link to="/signup" className={`px-8 py-2 rounded-xl text-base font-semibold whitespace-nowrap transition-all hover:scale-105 ${theme.logoInvert ? "bg-gradient-to-r from-[#49B9FF] to-blue-600 text-white shadow-lg" : "bg-white text-gray-900 shadow-lg"}`}>Sign Up</Link>
+                            <Link to="/signup" className={`px-8 py-2 rounded-xl text-base font-semibold whitespace-nowrap transition-all hover:scale-105 ${theme.logoInvert ? "bg-gradient-to-r from-[#cc5440] to-blue-600 text-white shadow-lg" : "bg-white text-gray-900 shadow-lg"}`}>Sign Up</Link>
                         </div>
                     )}
                 </div>
@@ -333,7 +333,7 @@ const Navbar = () => {
                             key={i}
                             to={link.path}
                             onClick={() => setIsMenuOpen(false)}
-                            className="flex items-center gap-3 px-4 py-3.5 rounded-xl text-gray-700 font-medium hover:bg-blue-50 hover:text-[#49B9FF]"
+                            className="flex items-center gap-3 px-4 py-3.5 rounded-xl text-gray-700 font-medium hover:bg-blue-50 hover:text-[#cc5440]"
                         >
                             {link.name}
                         </Link>
@@ -342,7 +342,7 @@ const Navbar = () => {
                 <div className="px-6 pb-10 flex flex-col gap-3">
                     {user ? (
                         <>
-                            <button onClick={() => { navigate('/my-bookings'); setIsMenuOpen(false); }} className="w-full py-3 rounded-xl border-2 border-[#49B9FF] text-[#49B9FF] font-semibold">
+                            <button onClick={() => { navigate('/my-bookings'); setIsMenuOpen(false); }} className="w-full py-3 rounded-xl border-2 border-[#cc5440] text-[#cc5440] font-semibold">
                                 My Bookings
                             </button>
                             <button onClick={() => { logout(); setIsMenuOpen(false); }} className="w-full py-3 rounded-xl bg-gray-100 text-gray-700 font-semibold">
@@ -351,10 +351,10 @@ const Navbar = () => {
                         </>
                     ) : (
                         <>
-                            <Link to="/login" onClick={() => setIsMenuOpen(false)} className="w-full py-3 text-center rounded-xl border-2 border-[#49B9FF] text-[#49B9FF] font-semibold">
+                            <Link to="/login" onClick={() => setIsMenuOpen(false)} className="w-full py-3 text-center rounded-xl border-2 border-[#cc5440] text-[#cc5440] font-semibold">
                                 Login
                             </Link>
-                            <Link to="/signup" onClick={() => setIsMenuOpen(false)} className="w-full py-3 text-center rounded-xl bg-gradient-to-r from-[#49B9FF] to-blue-600 text-white font-semibold">
+                            <Link to="/signup" onClick={() => setIsMenuOpen(false)} className="w-full py-3 text-center rounded-xl bg-gradient-to-r from-[#cc5440] to-blue-600 text-white font-semibold">
                                 Sign Up
                             </Link>
                         </>

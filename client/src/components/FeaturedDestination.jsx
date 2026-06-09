@@ -17,8 +17,8 @@ const FeaturedDestination = () => {
 
                 {/* Badge — floats up and glows on hover */}
                 <div className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-50 to-cyan-50 border border-blue-200 px-5 py-2 rounded-full text-sm font-medium text-blue-600 mb-6 shadow-sm cursor-default
-                    transition-all duration-500 hover:-translate-y-1.5 hover:shadow-[0_8px_25px_rgba(73,185,255,0.35)] hover:border-blue-400 hover:bg-white hover:text-blue-700">
-                    <span className="w-2 h-2 rounded-full bg-[#49B9FF] animate-pulse"></span>
+                    transition-all duration-500 hover:-translate-y-1.5 hover:shadow-[0_8px_25px_rgba(204,84,64,0.35)] hover:border-blue-400 hover:bg-white hover:text-blue-700">
+                    <span className="w-2 h-2 rounded-full bg-[#cc5440] animate-pulse"></span>
                     ✦ Handpicked For You ✦
                 </div>
 
@@ -26,16 +26,16 @@ const FeaturedDestination = () => {
                 <h2 className='font-playfair text-4xl md:text-5xl font-bold text-gray-900 mb-5 cursor-default'>
                     <span className="inline-block transition-all duration-500 hover:-translate-y-1 hover:text-gray-700">Featured</span>
                     {' '}
-                    <span className="inline-block text-transparent bg-clip-text bg-gradient-to-r from-[#49B9FF] to-blue-700 transition-all duration-500 hover:-translate-y-1 hover:from-[#FF4D00] hover:to-[#FF8C00] hover:drop-shadow-[0_0_12px_rgba(255,77,0,0.6)]">
+                    <span className="inline-block text-transparent bg-clip-text bg-gradient-to-r from-[#cc5440] to-blue-700 transition-all duration-500 hover:-translate-y-1 hover:from-[#FF4D00] hover:to-[#FF8C00] hover:drop-shadow-[0_0_12px_rgba(255,77,0,0.6)]">
                         Destinations
                     </span>
                 </h2>
 
                 {/* Animated divider — expands outward on hover */}
                 <div className="flex items-center gap-3 mb-6 group/divider cursor-default">
-                    <div className="h-[2px] w-12 bg-gradient-to-r from-transparent to-[#49B9FF] transition-all duration-700 group-hover/divider:w-24 group-hover/divider:shadow-[0_0_8px_rgba(73,185,255,0.8)]"></div>
-                    <div className="w-3 h-3 rounded-full bg-[#49B9FF] transition-all duration-500 group-hover/divider:scale-150 group-hover/divider:shadow-[0_0_14px_rgba(73,185,255,1)] group-hover/divider:bg-white group-hover/divider:ring-4 group-hover/divider:ring-[#49B9FF]"></div>
-                    <div className="h-[2px] w-12 bg-gradient-to-l from-transparent to-[#49B9FF] transition-all duration-700 group-hover/divider:w-24 group-hover/divider:shadow-[0_0_8px_rgba(73,185,255,0.8)]"></div>
+                    <div className="h-[2px] w-12 bg-gradient-to-r from-transparent to-[#cc5440] transition-all duration-700 group-hover/divider:w-24 group-hover/divider:shadow-[0_0_8px_rgba(204,84,64,0.8)]"></div>
+                    <div className="w-3 h-3 rounded-full bg-[#cc5440] transition-all duration-500 group-hover/divider:scale-150 group-hover/divider:shadow-[0_0_14px_rgba(204,84,64,1)] group-hover/divider:bg-white group-hover/divider:ring-4 group-hover/divider:ring-[#cc5440]"></div>
+                    <div className="h-[2px] w-12 bg-gradient-to-l from-transparent to-[#cc5440] transition-all duration-700 group-hover/divider:w-24 group-hover/divider:shadow-[0_0_8px_rgba(204,84,64,0.8)]"></div>
                 </div>
 
                 {/* Description — bold glass card reveal on hover */}
@@ -46,7 +46,7 @@ const FeaturedDestination = () => {
                         Discover our handpicked selection of exceptional properties around the world, offering unparalleled luxury and unforgettable experiences.
                     </p>
                     {/* Bottom accent line that grows on hover */}
-                    <div className="absolute -bottom-1 left-1/2 -translate-x-1/2 h-[2px] w-0 bg-gradient-to-r from-[#49B9FF] to-blue-600 rounded-full group-hover/desc:w-3/4 transition-all duration-700"></div>
+                    <div className="absolute -bottom-1 left-1/2 -translate-x-1/2 h-[2px] w-0 bg-gradient-to-r from-[#cc5440] to-blue-600 rounded-full group-hover/desc:w-3/4 transition-all duration-700"></div>
                 </div>
             </div>
 
@@ -60,14 +60,14 @@ const FeaturedDestination = () => {
             {/* View All Button — outline style with fill-on-hover */}
             <div className="relative mt-16 group/cta cursor-pointer" onClick={() => { navigate('/rooms'); scrollTo(0, 0) }}>
                 {/* Outer glow ring that appears on hover */}
-                <div className="absolute -inset-1 rounded-2xl bg-gradient-to-r from-[#49B9FF] to-blue-600 opacity-0 group-hover/cta:opacity-40 blur-md transition-all duration-500"></div>
+                <div className="absolute -inset-1 rounded-2xl bg-gradient-to-r from-[#cc5440] to-blue-600 opacity-0 group-hover/cta:opacity-40 blur-md transition-all duration-500"></div>
 
-                <button className="relative flex items-center gap-3 px-10 py-4 rounded-2xl font-semibold text-base border-2 border-[#49B9FF] text-[#49B9FF] bg-transparent overflow-hidden transition-all duration-300 group-hover/cta:text-white group-hover/cta:border-blue-600 group-hover/cta:-translate-y-1 active:scale-95">
+                <button className="relative flex items-center gap-3 px-10 py-4 rounded-2xl font-semibold text-base border-2 border-[#cc5440] text-[#cc5440] bg-transparent overflow-hidden transition-all duration-300 group-hover/cta:text-white group-hover/cta:border-blue-600 group-hover/cta:-translate-y-1 active:scale-95">
                     {/* Fill block slides in from left on hover */}
-                    <span className="absolute inset-0 bg-gradient-to-r from-[#49B9FF] to-blue-600 translate-x-[-101%] group-hover/cta:translate-x-0 transition-transform duration-500 ease-out"></span>
+                    <span className="absolute inset-0 bg-gradient-to-r from-[#cc5440] to-blue-600 translate-x-[-101%] group-hover/cta:translate-x-0 transition-transform duration-500 ease-out"></span>
                     <span className="relative z-10 flex items-center gap-3">
                         Explore All Destinations
-                        <span className="flex items-center justify-center w-7 h-7 rounded-full border-2 border-[#49B9FF] group-hover/cta:border-white transition-all duration-300 group-hover/cta:bg-white/20">
+                        <span className="flex items-center justify-center w-7 h-7 rounded-full border-2 border-[#cc5440] group-hover/cta:border-white transition-all duration-300 group-hover/cta:bg-white/20">
                             <svg className="w-4 h-4 group-hover/cta:translate-x-0.5 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                             </svg>

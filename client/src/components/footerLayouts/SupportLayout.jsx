@@ -105,9 +105,9 @@ const SupportLayout = ({ page }) => {
             {/* ─── HERO SECTION (preserved structural bindings but fully stylized) ─── */}
             <section className="pt-28 px-6 md:px-20 pb-16 text-center max-w-5xl mx-auto">
                 <BackLink className="text-slate-400 hover:text-white !mb-8" />
-                <p className="text-[#49B9FF] text-xs font-bold uppercase tracking-[0.4em] mb-4">{page.badge}</p>
+                <p className="text-[#cc5440] text-xs font-bold uppercase tracking-[0.4em] mb-4">{page.badge}</p>
                 <h1 className="font-playfair text-5xl md:text-7xl font-bold leading-tight">
-                    {page.titleLead} <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#49B9FF] to-cyan-300">{page.titleHighlight}</span>
+                    {page.titleLead} <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#cc5440] to-cyan-300">{page.titleHighlight}</span>
                 </h1>
                 <p className="text-slate-400 text-lg md:text-xl mt-6 max-w-2xl mx-auto">{page.subtitle}</p>
             </section>
@@ -116,8 +116,8 @@ const SupportLayout = ({ page }) => {
             <section className="max-w-6xl mx-auto px-6 mb-16">
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                     {page.stats.map((s) => (
-                        <div key={s.label} className="p-6 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-md text-center hover:border-[#49B9FF]/50 transition-all duration-300">
-                            <p className="text-3xl font-extrabold text-[#49B9FF]">{s.value}</p>
+                        <div key={s.label} className="p-6 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-md text-center hover:border-[#cc5440]/50 transition-all duration-300">
+                            <p className="text-3xl font-extrabold text-[#cc5440]">{s.value}</p>
                             <p className="text-xs text-slate-400 mt-2 font-medium uppercase tracking-wider">{s.label}</p>
                         </div>
                     ))}
@@ -141,11 +141,11 @@ const SupportLayout = ({ page }) => {
                                     onClick={() => setActiveTopic(item.title)}
                                     className={`p-6 rounded-2xl text-left border-2 transition-all duration-300 flex flex-col justify-between h-40 ${
                                         isSelected
-                                            ? 'bg-gradient-to-br from-[#49B9FF]/20 to-[#0284c7]/20 border-[#49B9FF] shadow-lg shadow-cyan-950/30'
+                                            ? 'bg-gradient-to-br from-[#cc5440]/20 to-[#0284c7]/20 border-[#cc5440] shadow-lg shadow-cyan-950/30'
                                             : 'bg-slate-950/40 border-slate-800 hover:border-slate-700 hover:bg-slate-900/40'
                                     }`}
                                 >
-                                    <div className={`w-10 h-10 rounded-xl flex items-center justify-center ${isSelected ? 'bg-[#49B9FF] text-white shadow-md' : 'bg-slate-800 text-slate-400'}`}>
+                                    <div className={`w-10 h-10 rounded-xl flex items-center justify-center ${isSelected ? 'bg-[#cc5440] text-white shadow-md' : 'bg-slate-800 text-slate-400'}`}>
                                         <FooterIcon name={item.icon} className="w-5 h-5" />
                                     </div>
                                     <div>
@@ -161,7 +161,7 @@ const SupportLayout = ({ page }) => {
                     <div className="grid md:grid-cols-12 gap-8 items-stretch bg-slate-950/60 rounded-3xl p-6 md:p-8 border border-slate-800">
                         <div className="md:col-span-8 flex flex-col justify-between">
                             <div>
-                                <span className="text-xs font-bold text-[#49B9FF] uppercase tracking-widest">{activeTopic} Help</span>
+                                <span className="text-xs font-bold text-[#cc5440] uppercase tracking-widest">{activeTopic} Help</span>
                                 <h3 className="font-playfair text-2xl font-bold mt-2 text-white">{currentAdvice.title}</h3>
                                 <p className="text-slate-300 text-sm mt-4 leading-relaxed">{currentAdvice.advice}</p>
 
@@ -170,7 +170,7 @@ const SupportLayout = ({ page }) => {
                                     <ul className="space-y-2">
                                         {currentAdvice.tips.map((tip, index) => (
                                             <li key={index} className="flex items-start gap-3 text-xs text-slate-300 leading-relaxed">
-                                                <span className="w-1.5 h-1.5 rounded-full bg-[#49B9FF] mt-1.5 shrink-0" />
+                                                <span className="w-1.5 h-1.5 rounded-full bg-[#cc5440] mt-1.5 shrink-0" />
                                                 {tip}
                                             </li>
                                         ))}
@@ -202,7 +202,7 @@ const SupportLayout = ({ page }) => {
                             className="group p-6 rounded-2xl bg-slate-900 border border-slate-800 hover:border-slate-700 transition-all duration-300"
                         >
                             <div className="flex items-start gap-4">
-                                <div className="w-10 h-10 rounded-xl bg-slate-800 flex items-center justify-center shadow-inner shrink-0 text-[#49B9FF]">
+                                <div className="w-10 h-10 rounded-xl bg-slate-800 flex items-center justify-center shadow-inner shrink-0 text-[#cc5440]">
                                     <FooterIcon
                                         name={i === 0 ? 'mail' : i === 1 ? 'phone' : i === 2 ? 'chat' : 'key'}
                                         className="w-5 h-5"
@@ -219,7 +219,7 @@ const SupportLayout = ({ page }) => {
 
                 {/* Simulated Ticket Submission Form */}
                 <div className="md:col-span-6 bg-slate-900 border border-slate-800 rounded-3xl p-8 relative overflow-hidden">
-                    <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-[#49B9FF] to-cyan-400" />
+                    <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-[#cc5440] to-cyan-400" />
                     
                     {!ticketSubmitted ? (
                         <form onSubmit={handleSubmitTicket} className="space-y-4">
@@ -238,7 +238,7 @@ const SupportLayout = ({ page }) => {
                                         value={ticketForm.name}
                                         onChange={handleInputChange}
                                         placeholder="Jane Doe"
-                                        className="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-2.5 text-sm text-white placeholder-slate-600 focus:outline-none focus:border-[#49B9FF] transition-all"
+                                        className="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-2.5 text-sm text-white placeholder-slate-600 focus:outline-none focus:border-[#cc5440] transition-all"
                                     />
                                 </div>
                                 <div className="space-y-1">
@@ -250,7 +250,7 @@ const SupportLayout = ({ page }) => {
                                         value={ticketForm.email}
                                         onChange={handleInputChange}
                                         placeholder="jane@example.com"
-                                        className="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-2.5 text-sm text-white placeholder-slate-600 focus:outline-none focus:border-[#49B9FF] transition-all"
+                                        className="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-2.5 text-sm text-white placeholder-slate-600 focus:outline-none focus:border-[#cc5440] transition-all"
                                     />
                                 </div>
                             </div>
@@ -264,7 +264,7 @@ const SupportLayout = ({ page }) => {
                                         value={ticketForm.bookingId}
                                         onChange={handleInputChange}
                                         placeholder="HB-123456"
-                                        className="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-2.5 text-sm text-white placeholder-slate-600 focus:outline-none focus:border-[#49B9FF] transition-all"
+                                        className="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-2.5 text-sm text-white placeholder-slate-600 focus:outline-none focus:border-[#cc5440] transition-all"
                                     />
                                 </div>
                                 <div className="space-y-1">
@@ -273,7 +273,7 @@ const SupportLayout = ({ page }) => {
                                         name="priority"
                                         value={ticketForm.priority}
                                         onChange={handleInputChange}
-                                        className="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-2.5 text-sm text-slate-400 focus:outline-none focus:border-[#49B9FF] transition-all"
+                                        className="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-2.5 text-sm text-slate-400 focus:outline-none focus:border-[#cc5440] transition-all"
                                     >
                                         <option value="Normal">Normal (default)</option>
                                         <option value="Urgent">Urgent (Stays within 24h)</option>
@@ -291,13 +291,13 @@ const SupportLayout = ({ page }) => {
                                     value={ticketForm.message}
                                     onChange={handleInputChange}
                                     placeholder="Please provide details about your request or issue..."
-                                    className="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-2.5 text-sm text-white placeholder-slate-600 focus:outline-none focus:border-[#49B9FF] transition-all resize-none"
+                                    className="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-2.5 text-sm text-white placeholder-slate-600 focus:outline-none focus:border-[#cc5440] transition-all resize-none"
                                 />
                             </div>
 
                             <button
                                 type="submit"
-                                className="w-full bg-gradient-to-r from-[#49B9FF] to-cyan-400 text-white rounded-xl py-3 text-sm font-bold hover:shadow-lg hover:shadow-cyan-500/20 active:scale-[0.98] transition-all duration-300"
+                                className="w-full bg-gradient-to-r from-[#cc5440] to-cyan-400 text-white rounded-xl py-3 text-sm font-bold hover:shadow-lg hover:shadow-cyan-500/20 active:scale-[0.98] transition-all duration-300"
                             >
                                 Submit Support Ticket
                             </button>
@@ -320,7 +320,7 @@ const SupportLayout = ({ page }) => {
                             </div>
                             <button
                                 onClick={resetTicketForm}
-                                className="text-xs font-semibold text-[#49B9FF] hover:underline"
+                                className="text-xs font-semibold text-[#cc5440] hover:underline"
                             >
                                 Submit another ticket
                             </button>
@@ -333,7 +333,7 @@ const SupportLayout = ({ page }) => {
             <section className="px-6 md:px-20 pb-24 max-w-4xl mx-auto">
                 <div className="bg-gradient-to-br from-slate-900 to-slate-950 rounded-[2rem] border border-slate-800 p-8 md:p-12 flex flex-col md:flex-row gap-8 items-center">
                     <div className="flex-1">
-                        <p className="text-[#49B9FF] text-xs font-bold uppercase tracking-[0.3em] mb-2">{page.contactBlock.title}</p>
+                        <p className="text-[#cc5440] text-xs font-bold uppercase tracking-[0.3em] mb-2">{page.contactBlock.title}</p>
                         <p className="text-slate-300 text-sm leading-relaxed mb-4">{page.contactBlock.description}</p>
                         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                             {page.contactBlock.details.map((detail, index) => (

@@ -147,7 +147,7 @@ const Signup = () => {
                     )}
 
                     <button type="submit" disabled={loading}
-                        className="w-full py-3.5 rounded-xl bg-gradient-to-r from-[#49B9FF] to-blue-600 text-white font-semibold shadow-lg mt-2 disabled:opacity-60">
+                        className="w-full py-3.5 rounded-xl bg-gradient-to-r from-[#cc5440] to-blue-600 text-white font-semibold shadow-lg mt-2 disabled:opacity-60">
                         {loading ? 'Submitting...' : accountType === 'owner' ? 'Submit for approval' : 'Create account'}
                     </button>
                 </form>

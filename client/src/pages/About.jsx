@@ -52,7 +52,7 @@ const About = () => {
                             Our Story
                         </div>
                         <h1 className='font-playfair text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 transition-transform duration-500 group-hover/header:translate-x-2 cursor-default leading-tight'>
-                            Redefining <span className="inline-block text-transparent bg-clip-text bg-gradient-to-r from-[#49B9FF] to-blue-700 transition-all duration-500 hover:-translate-y-1 hover:from-[#FF4D00] hover:to-[#FF8C00] hover:drop-shadow-[0_0_12px_rgba(255,77,0,0.6)]">Hospitality</span> <br/> Since 2010
+                            Redefining <span className="inline-block text-transparent bg-clip-text bg-gradient-to-r from-[#cc5440] to-blue-700 transition-all duration-500 hover:-translate-y-1 hover:from-[#FF4D00] hover:to-[#FF8C00] hover:drop-shadow-[0_0_12px_rgba(255,77,0,0.6)]">Hospitality</span> <br/> Since 2010
                         </h1>
                         <p className='text-gray-500 text-lg leading-relaxed mb-6'>
                             Founded with a vision to create unparalleled travel experiences, HotelDemo has grown into a premier destination for discerning travelers. We blend modern elegance with timeless charm, offering a sanctuary where every detail is meticulously crafted.
@@ -140,7 +140,7 @@ const About = () => {
                                 <div className="absolute inset-0 bg-gradient-to-br from-orange-50/0 to-red-50/0 group-hover:from-orange-50/50 group-hover:to-red-50/30 transition-colors duration-500 pointer-events-none"></div>
                                 
                                 <div className="relative z-10">
-                                    <div className="w-16 h-16 bg-blue-50 text-[#49B9FF] rounded-2xl flex items-center justify-center mb-8 group-hover:bg-[#FF4D00] group-hover:text-white group-hover:rotate-12 transition-all duration-500 shadow-sm group-hover:shadow-[0_8px_20px_rgba(255,77,0,0.4)]">
+                                    <div className="w-16 h-16 bg-blue-50 text-[#cc5440] rounded-2xl flex items-center justify-center mb-8 group-hover:bg-[#FF4D00] group-hover:text-white group-hover:rotate-12 transition-all duration-500 shadow-sm group-hover:shadow-[0_8px_20px_rgba(255,77,0,0.4)]">
                                         {val.icon}
                                     </div>
                                     <h3 className="text-2xl font-bold text-gray-900 mb-4 group-hover:text-[#FF4D00] transition-colors duration-300">
@@ -170,7 +170,7 @@ const About = () => {
                     <p className='text-gray-600 text-lg mb-10 relative z-10 max-w-2xl mx-auto'>
                         Join thousands of satisfied guests who have made HotelDemo their preferred choice for luxury stays. Your perfect room is just a click away.
                     </p>
-                    <button className="relative z-10 bg-gradient-to-r from-[#49B9FF] to-blue-600 hover:from-[#FF4D00] hover:to-[#FF8C00] text-white px-10 py-4 rounded-full font-bold text-lg transition-all duration-500 shadow-lg hover:shadow-[0_10px_30px_rgba(255,77,0,0.5)] hover:-translate-y-1">
+                    <button className="relative z-10 bg-gradient-to-r from-[#cc5440] to-blue-600 hover:from-[#FF4D00] hover:to-[#FF8C00] text-white px-10 py-4 rounded-full font-bold text-lg transition-all duration-500 shadow-lg hover:shadow-[0_10px_30px_rgba(255,77,0,0.5)] hover:-translate-y-1">
                         Book Your Stay Now
                     </button>
                 </div>

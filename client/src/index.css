@@ -3,9 +3,54 @@
 @import "tailwindcss";
 
 @theme {
-  --color-primary: #2563EB;
+  --color-primary: #751402;
   --color-secondary: #FBBF24;
   
+  --color-blue-50: #fdf5f4;
+  --color-blue-100: #fae7e4;
+  --color-blue-200: #f3cdc7;
+  --color-blue-300: #eaab9f;
+  --color-blue-400: #dd7c6b;
+  --color-blue-500: #cc5440;
+  --color-blue-600: #b53b28;
+  --color-blue-700: #962c1d;
+  --color-blue-800: #7e271a;
+  --color-blue-900: #751402;
+  --color-blue-950: #3c0900;
+
+  --color-indigo-50: #fffbeb;
+  --color-indigo-100: #fef3c7;
+  --color-indigo-200: #fde68a;
+  --color-indigo-300: #fcd34d;
+  --color-indigo-400: #fbbf24;
+  --color-indigo-500: #f59e0b;
+  --color-indigo-600: #d97706;
+  --color-indigo-700: #b45309;
+  --color-indigo-800: #92400e;
+  --color-indigo-900: #78350f;
+
+  --color-cyan-50: #fff7ed;
+  --color-cyan-100: #ffedd5;
+  --color-cyan-200: #fed7aa;
+  --color-cyan-300: #fdba74;
+  --color-cyan-400: #fb923c;
+  --color-cyan-500: #f97316;
+  --color-cyan-600: #ea580c;
+  --color-cyan-700: #c2410c;
+  --color-cyan-800: #9a3412;
+  --color-cyan-900: #7c2d12;
+
+  --color-sky-50: #fffbeb;
+  --color-sky-100: #fef3c7;
+  --color-sky-200: #fde68a;
+  --color-sky-300: #fcd34d;
+  --color-sky-400: #fbbf24;
+  --color-sky-500: #f59e0b;
+  --color-sky-600: #d97706;
+  --color-sky-700: #b45309;
+  --color-sky-800: #92400e;
+  --color-sky-900: #78350f;
+
   --animate-fade-in-up: fade-in-up 1s ease-out forwards;
 
   @keyframes fade-in-up {

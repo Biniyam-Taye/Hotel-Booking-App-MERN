@@ -102,11 +102,11 @@ const CareersLayout = ({ page }) => {
             {/* ─── HERO SECTION (preserved) ─── */}
             <section className="pt-28 px-6 md:px-20 pb-16 text-center max-w-5xl mx-auto">
                 <BackLink className="text-slate-400 hover:text-white !mb-10" />
-                <p className="text-[#49B9FF] text-xs font-bold uppercase tracking-[0.4em] mb-6">{page.badge}</p>
+                <p className="text-[#cc5440] text-xs font-bold uppercase tracking-[0.4em] mb-6">{page.badge}</p>
                 <h1 className="font-playfair text-5xl md:text-8xl font-bold leading-[0.95]">
                     {page.titleLead}
                     <br />
-                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#49B9FF] to-cyan-300">
+                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#cc5440] to-cyan-300">
                         {page.titleHighlight}
                     </span>
                 </h1>
@@ -119,7 +119,7 @@ const CareersLayout = ({ page }) => {
                 <div className="absolute bottom-0 left-0 right-0 flex overflow-x-auto gap-4 px-6 pb-6">
                     {page.stats.map((s) => (
                         <div key={s.label} className="flex-shrink-0 min-w-[140px] px-5 py-4 rounded-2xl bg-white/10 backdrop-blur border border-white/20 text-center">
-                            <p className="text-2xl font-bold text-[#49B9FF]">{s.value}</p>
+                            <p className="text-2xl font-bold text-[#cc5440]">{s.value}</p>
                             <p className="text-xs text-slate-300 mt-1">{s.label}</p>
                         </div>
                     ))}
@@ -137,7 +137,7 @@ const CareersLayout = ({ page }) => {
             <section className="px-6 md:px-20 pb-16">
                 <div className="max-w-6xl mx-auto">
                     <div className="text-center mb-10">
-                        <p className="text-[#49B9FF] text-xs font-bold uppercase tracking-[0.4em] mb-3">Our Culture</p>
+                        <p className="text-[#cc5440] text-xs font-bold uppercase tracking-[0.4em] mb-3">Our Culture</p>
                         <h2 className="font-playfair text-3xl md:text-4xl font-bold">Life at HotelDemo</h2>
                     </div>
                     <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
@@ -161,7 +161,7 @@ const CareersLayout = ({ page }) => {
             <section className="px-6 md:px-20 py-20 bg-white text-gray-900 rounded-t-[3rem]">
                 <div className="max-w-6xl mx-auto">
                     <div className="text-center mb-14">
-                        <p className="text-[#49B9FF] text-xs font-bold uppercase tracking-[0.4em] mb-3">Why Join Us</p>
+                        <p className="text-[#cc5440] text-xs font-bold uppercase tracking-[0.4em] mb-3">Why Join Us</p>
                         <h2 className="font-playfair text-4xl font-bold">{benefits.heading}</h2>
                         <p className="text-gray-500 mt-3 max-w-xl mx-auto">{benefits.subheading}</p>
                     </div>
@@ -179,7 +179,7 @@ const CareersLayout = ({ page }) => {
                                 <div className="absolute top-0 left-0 right-0 h-40 bg-gradient-to-b from-black/40 to-transparent" />
                                 <div className="p-6 bg-white">
                                     <div className="flex items-center gap-3 mb-3">
-                                        <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#49B9FF] to-blue-700 flex items-center justify-center shadow-md">
+                                        <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#cc5440] to-blue-700 flex items-center justify-center shadow-md">
                                             <FooterIcon name={item.icon} className="w-5 h-5 text-white" />
                                         </div>
                                         <h3 className="font-bold text-gray-900">{item.title}</h3>
@@ -197,7 +197,7 @@ const CareersLayout = ({ page }) => {
                 <div className="max-w-5xl mx-auto">
                     <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-10">
                         <div>
-                            <p className="text-[#49B9FF] text-xs font-bold uppercase tracking-[0.4em] mb-2">Open Roles</p>
+                            <p className="text-[#cc5440] text-xs font-bold uppercase tracking-[0.4em] mb-2">Open Roles</p>
                             <h2 className="font-playfair text-4xl font-bold text-gray-900">{jobs.heading}</h2>
                         </div>
                         <div className="flex flex-wrap gap-2">
@@ -227,7 +227,7 @@ const CareersLayout = ({ page }) => {
                                 <div
                                     key={job.title}
                                     className={`rounded-2xl border-2 transition-all duration-300 cursor-pointer ${
-                                        isOpen ? 'border-[#49B9FF] bg-white shadow-xl' : 'border-gray-200 bg-white hover:border-gray-300 hover:shadow-md'
+                                        isOpen ? 'border-[#cc5440] bg-white shadow-xl' : 'border-gray-200 bg-white hover:border-gray-300 hover:shadow-md'
                                     }`}
                                     onClick={() => setExpandedJob(isOpen ? null : job.title)}
                                 >
@@ -235,7 +235,7 @@ const CareersLayout = ({ page }) => {
                                         <div className="flex-1">
                                             <div className="flex flex-wrap items-center gap-2 mb-2">
                                                 {details.dept && (
-                                                    <span className="text-xs font-bold text-[#49B9FF] uppercase tracking-wider bg-blue-50 px-2 py-0.5 rounded-full">{details.dept}</span>
+                                                    <span className="text-xs font-bold text-[#cc5440] uppercase tracking-wider bg-blue-50 px-2 py-0.5 rounded-full">{details.dept}</span>
                                                 )}
                                                 {details.type && (
                                                     <span className="text-xs text-gray-500 border border-gray-200 px-2 py-0.5 rounded-full">{details.type}</span>
@@ -269,7 +269,7 @@ const CareersLayout = ({ page }) => {
                                             <ul className="space-y-2 mb-6">
                                                 {details.responsibilities?.map((r, ri) => (
                                                     <li key={ri} className="flex gap-3 text-sm text-gray-600">
-                                                        <span className="mt-1.5 w-2 h-2 rounded-full bg-[#49B9FF] shrink-0" />
+                                                        <span className="mt-1.5 w-2 h-2 rounded-full bg-[#cc5440] shrink-0" />
                                                         {r}
                                                     </li>
                                                 ))}
@@ -279,7 +279,7 @@ const CareersLayout = ({ page }) => {
                                                 className={`px-6 py-3 rounded-xl font-semibold text-sm transition-all duration-300 ${
                                                     isApplied
                                                         ? 'bg-emerald-500 text-white cursor-default'
-                                                        : 'bg-[#0a1628] text-white hover:bg-[#49B9FF] hover:shadow-lg hover:-translate-y-0.5'
+                                                        : 'bg-[#0a1628] text-white hover:bg-[#cc5440] hover:shadow-lg hover:-translate-y-0.5'
                                                 }`}
                                             >
                                                 {isApplied ? '✓ Application Submitted' : 'Apply for This Role →'}
@@ -298,13 +298,13 @@ const CareersLayout = ({ page }) => {
                 <div className="max-w-4xl mx-auto">
                     <div className="rounded-3xl bg-white/5 border border-white/10 backdrop-blur p-10 md:p-14 flex flex-col md:flex-row gap-10 items-start">
                         <div className="flex-1">
-                            <p className="text-[#49B9FF] text-xs font-bold uppercase tracking-[0.4em] mb-3">Apply Today</p>
+                            <p className="text-[#cc5440] text-xs font-bold uppercase tracking-[0.4em] mb-3">Apply Today</p>
                             <h2 className="font-playfair text-3xl font-bold mb-4">{page.contactBlock.title}</h2>
                             <p className="text-slate-300 leading-relaxed mb-6">{page.contactBlock.description}</p>
                             <ul className="space-y-3">
                                 {page.contactBlock.details.map(line => (
                                     <li key={line} className="flex items-start gap-3 text-slate-300 text-sm">
-                                        <span className="mt-1.5 w-2 h-2 rounded-full bg-[#49B9FF] shrink-0" />
+                                        <span className="mt-1.5 w-2 h-2 rounded-full bg-[#cc5440] shrink-0" />
                                         {line}
                                     </li>
                                 ))}
@@ -314,14 +314,14 @@ const CareersLayout = ({ page }) => {
                             <p className="text-sm font-semibold text-white mb-4">Quick Application</p>
                             {!appSubmitted ? (
                                 <form onSubmit={(e) => { e.preventDefault(); setAppSubmitted(true); }} className="space-y-3">
-                                    <input required className="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-[#49B9FF] transition-colors" placeholder="Full name" />
-                                    <input required type="email" className="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-[#49B9FF] transition-colors" placeholder="Email address" />
-                                    <input required type="url" className="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-[#49B9FF] transition-colors" placeholder="Portfolio / LinkedIn URL" />
-                                    <select required className="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3 text-sm text-slate-400 focus:outline-none focus:border-[#49B9FF] transition-colors">
+                                    <input required className="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-[#cc5440] transition-colors" placeholder="Full name" />
+                                    <input required type="email" className="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-[#cc5440] transition-colors" placeholder="Email address" />
+                                    <input required type="url" className="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-[#cc5440] transition-colors" placeholder="Portfolio / LinkedIn URL" />
+                                    <select required className="w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3 text-sm text-slate-400 focus:outline-none focus:border-[#cc5440] transition-colors">
                                         <option value="">Select a role</option>
                                         {jobs.items.map(j => <option key={j.title} value={j.title}>{j.title}</option>)}
                                     </select>
-                                    <button type="submit" className="w-full bg-gradient-to-r from-[#49B9FF] to-cyan-400 text-white rounded-xl py-3 text-sm font-bold hover:shadow-lg hover:shadow-cyan-500/30 transition-all duration-300">
+                                    <button type="submit" className="w-full bg-gradient-to-r from-[#cc5440] to-cyan-400 text-white rounded-xl py-3 text-sm font-bold hover:shadow-lg hover:shadow-cyan-500/30 transition-all duration-300">
                                         Send Application
                                     </button>
                                 </form>
@@ -332,7 +332,7 @@ const CareersLayout = ({ page }) => {
                                     </div>
                                     <p className="text-sm text-white font-semibold">Application Sent!</p>
                                     <p className="text-xs text-slate-400">Thanks for applying. We will review your profile and get back to you soon.</p>
-                                    <button onClick={() => setAppSubmitted(false)} className="text-xs text-[#49B9FF] hover:underline font-semibold bg-transparent border-none outline-none cursor-pointer">
+                                    <button onClick={() => setAppSubmitted(false)} className="text-xs text-[#cc5440] hover:underline font-semibold bg-transparent border-none outline-none cursor-pointer">
                                         Send another application
                                     </button>
                                 </div>

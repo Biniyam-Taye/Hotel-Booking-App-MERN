@@ -218,7 +218,7 @@ const AllRooms = () => {
                                         </p>
                                     </div>
                                     
-                                    <button onClick={() => { navigate(`/rooms/${room._id}`); scrollTo(0, 0) }} className="relative group/btn overflow-hidden bg-gray-900 hover:bg-blue-600 text-white px-6 py-3 rounded-xl font-medium transition-colors duration-500 shadow-sm hover:shadow-[0_8px_20px_rgba(37,99,235,0.3)]">
+                                    <button onClick={() => { navigate(`/rooms/${room._id}`); scrollTo(0, 0) }} className="relative group/btn overflow-hidden bg-gray-900 hover:bg-blue-600 text-white px-6 py-3 rounded-xl font-medium transition-colors duration-500 shadow-sm hover:shadow-[0_8px_20px_rgba(181,59,40,0.3)]">
                                         <span className="relative z-10 flex items-center gap-2">
                                             View Details
                                             <svg className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
