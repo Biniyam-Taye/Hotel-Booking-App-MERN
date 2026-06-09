@@ -88,7 +88,7 @@ const seedDatabase = async () => {
         amenities: ["Free Wifi", "Free Breakfast", "Room Service", "Mountain View", "Air Conditioning"],
         images: [
           "https://images.unsplash.com/photo-1618773928121-c32242e63f39?w=800&h=600&fit=crop",
-          "https://images.unsplash.com/photo-1590490360182-c33d955e7f24?w=800&h=600&fit=crop",
+          "https://images.unsplash.com/photo-1611892440504-42a792e24d32?w=800&h=600&fit=crop",
         ],
       },
       {
